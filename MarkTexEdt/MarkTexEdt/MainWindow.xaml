@@ -5,9 +5,6 @@
         Title="MarkTexEdt" Height="600" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <util:VisibilityToBoolConverter x:Key="VisibilityToBoolConverter" />
-        <Style TargetType="Button" x:Key="ToolbarItem">
-            <Setter Property="Padding" Value="10,0"></Setter>
-        </Style>
     </Window.Resources>
     <Grid>
         <DockPanel>
@@ -29,14 +26,36 @@
                 </MenuItem>
             </Menu>
             <ToolBarTray IsLocked="True" DockPanel.Dock="Top">
+                <ToolBarTray.Resources>
+                    <Style TargetType="Image">
+                        <Setter Property="Width" Value="13"></Setter>
+                    </Style>
+                </ToolBarTray.Resources>
                 <ToolBarTray.ContextMenu>
                     <ContextMenu>
                         <MenuItem IsCheckable="True" Header="显示菜单栏" IsChecked="{Binding Path=MenuBarVisibility,Converter={StaticResource VisibilityToBoolConverter}}"></MenuItem>
                     </ContextMenu>
                 </ToolBarTray.ContextMenu>
-                <ToolBar>
-                    <Button Style="{StaticResource ToolbarItem}">打开</Button>
-                    <Button Style="{StaticResource ToolbarItem}">保存</Button>
+                <ToolBar Band="1" BandIndex="1">
+                    <Button Click="Add_Click">
+                        <Image Source="/resource/img/add_file-26.png" ></Image>
+                    </Button>
+                    <Button Click="Open_Click">
+                        <Image Source="/resource/img/folder-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/save-26.png" ></Image>
+                    </Button>
+                    <Separator Margin="5,0"></Separator>
+                    <Button >
+                        <Image Source="/resource/img/bold-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/italic-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/list-26.png" ></Image>
+                    </Button>
                 </ToolBar>
             </ToolBarTray>
             <StatusBar DockPanel.Dock="Bottom">

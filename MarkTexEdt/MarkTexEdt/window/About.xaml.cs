@@ -21,6 +21,7 @@ namespace MarkTexEdt.window
     {
         public About()
         {
+            InitializeComponent();
         }
     }
 }

@@ -1,3 +1,13 @@
 *.suo
 /marktex/marktex/bin
 /marktex/marktex/obj
+
+/MarkTexEdt/MarkTexEdt/*.user
+
+/MarkTexEdt/MarkTexEdt/obj/Debug/*.lref
+
+/MarkTexEdt/MarkTexEdt/bin/Debug/*.pdb
+
+/MarkTexEdt/MarkTexEdt/bin/Debug
+/MarkTexEdt/MarkTexEdt/bin
+/MarkTexEdt/MarkTexEdt/obj

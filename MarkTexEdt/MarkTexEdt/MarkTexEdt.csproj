@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="util\Config.cs" />
     <Compile Include="util\ObservableClass.cs" />
     <Compile Include="util\VisibilityToBoolConverter.cs" />
     <Compile Include="window\About.xaml.cs">
@@ -109,6 +110,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\img\add_file-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\img\bold-26.png" />
+    <Resource Include="resource\img\folder-26.png" />
+    <Resource Include="resource\img\italic-26.png" />
+    <Resource Include="resource\img\list-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\img\save-26.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

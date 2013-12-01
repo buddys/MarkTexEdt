@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace MarkTexEdt
 {
@@ -91,6 +92,37 @@ namespace MarkTexEdt
             //预览HTML页面
             wbViewer.Navigate(uri);
 
+        }
+
+
+        /// <summary>
+        /// 新建文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: clear current content
+            tbEditor.IsEnabled = true;
+        }
+
+
+        /// <summary>
+        /// 打开文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
+            ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
+            ofd.CheckFileExists = true;
+            ofd.Filter = util.Config.MarkdownFileFilter;
+            ofd.Multiselect = false;
+            if ((bool)ofd.ShowDialog())
+            {
+                //TODO: Open file ofd.FileName                
+            }
         }
 
     }
