@@ -123,6 +123,29 @@
   <ItemGroup>
     <Resource Include="resource\img\save-26.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\img\add_link-26.png" />
+    <Resource Include="resource\img\cllipboard-26.png" />
+    <Resource Include="resource\img\copy-26.png" />
+    <Resource Include="resource\img\cut-26.png" />
+    <Resource Include="resource\img\google_code-26.png" />
+    <Resource Include="resource\img\math-26.png" />
+    <Resource Include="resource\img\picture-26.png" />
+    <Resource Include="resource\img\redo-26.png" />
+    <Resource Include="resource\img\undo-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\img\center-26.png" />
+    <Resource Include="resource\img\left-26.png" />
+    <Resource Include="resource\img\right-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\img\ordered_list-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\img\left_array-26.png" />
+    <Resource Include="resource\img\right_array-26.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

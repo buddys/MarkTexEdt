@@ -114,8 +114,7 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
-            ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
+           OpenFileDialog ofd = new OpenFileDialog();
             ofd.CheckFileExists = true;
             ofd.Filter = util.Config.MarkdownFileFilter;
             ofd.Multiselect = false;
@@ -123,6 +122,33 @@ namespace MarkTexEdt
             {
                 //TODO: Open file ofd.FileName                
             }
+        }
+
+        /// <summary>
+        /// 保存文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: save current file
+        }
+
+        /// <summary>
+        /// 另存为
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.CheckPathExists = true;
+            sfd.Filter = util.Config.MarkdownFileFilter;
+            if ((bool)sfd.ShowDialog())
+            {
+                //TODO: Save file sfd.FileName
+            }
+
         }
 
     }

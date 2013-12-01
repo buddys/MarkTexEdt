@@ -10,15 +10,25 @@
         <DockPanel>
             <Menu Visibility="{Binding Path=MenuBarVisibility}" Background="LightGray" DockPanel.Dock="Top">
                 <MenuItem Padding="10,3" Header="文件">
+                    <MenuItem Header="打开" Click="Open_Click"></MenuItem>
+                    <MenuItem Header="保存" Click="Save_Click"></MenuItem>
+                    <MenuItem Header="另存为" Click="SaveAs_Click"></MenuItem>
                     <MenuItem Header="导出"></MenuItem>
                     <MenuItem Header="打印"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="编辑">
+                    <MenuItem Header="撤销"></MenuItem>
+                    <MenuItem Header="重做"></MenuItem>
+                    <MenuItem Header="剪切"></MenuItem>
+                    <MenuItem Header="复制"></MenuItem>
+                    <MenuItem Header="粘贴"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="视图">
                     <MenuItem IsCheckable="True" Header="显示菜单栏" IsChecked="{Binding Path=MenuBarVisibility,Converter={StaticResource VisibilityToBoolConverter}}"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="设置">
+                    <MenuItem Header="快捷键"></MenuItem>
+                    <MenuItem Header="配置"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="关于">
                     <MenuItem Header="帮助"></MenuItem>
@@ -28,7 +38,7 @@
             <ToolBarTray IsLocked="True" DockPanel.Dock="Top">
                 <ToolBarTray.Resources>
                     <Style TargetType="Image">
-                        <Setter Property="Width" Value="13"></Setter>
+                        <Setter Property="Width" Value="16"></Setter>
                     </Style>
                 </ToolBarTray.Resources>
                 <ToolBarTray.ContextMenu>
@@ -46,7 +56,13 @@
                     <Button >
                         <Image Source="/resource/img/save-26.png" ></Image>
                     </Button>
-                    <Separator Margin="5,0"></Separator>
+                    <Separator Margin="7,0"></Separator>
+                    <Button >
+                        <Image Source="/resource/img/undo-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/redo-26.png" ></Image>
+                    </Button>
                     <Button >
                         <Image Source="/resource/img/bold-26.png" ></Image>
                     </Button>
@@ -54,13 +70,42 @@
                         <Image Source="/resource/img/italic-26.png" ></Image>
                     </Button>
                     <Button >
+                        <Image Source="/resource/img/left-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/center-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/right-26.png" ></Image>
+                    </Button>
+                    <Separator Margin="7,0"></Separator>
+                    <Button >
                         <Image Source="/resource/img/list-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/ordered_list-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/add_link-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/picture-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/google_code-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/math-26.png" ></Image>
+                    </Button>
+                    <Separator Margin="7,0"></Separator>
+                    <Button >
+                        <Image Source="/resource/img/left_array-26.png" ></Image>
+                    </Button>
+                    <Button >
+                        <Image Source="/resource/img/right_array-26.png" ></Image>
                     </Button>
                 </ToolBar>
             </ToolBarTray>
-            <StatusBar DockPanel.Dock="Bottom">
-                <StatusBarItem Name="stMain"></StatusBarItem>
-            </StatusBar>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50*" />
@@ -71,9 +116,7 @@
                          VerticalScrollBarVisibility="Auto"></RichTextBox>
                 </ScrollViewer>
                 <GridSplitter Width="2" Background="LightGray"></GridSplitter>
-                <ScrollViewer Grid.Column="1">
-                    <WebBrowser Name="wbViewer"></WebBrowser>
-                </ScrollViewer>
+                <WebBrowser Grid.Column="1" Name="wbViewer"></WebBrowser>
             </Grid>
         </DockPanel>
     </Grid>
