@@ -1,0 +1,38 @@
+﻿<Window x:Class="MarkTexEdt.view.Config"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="设置" Height="400" Width="500" Loaded="Window_Loaded">
+    <Grid>
+        <DockPanel Margin="5">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="15,0"></Setter>
+                        <Setter Property="Padding" Value="10,5"></Setter>
+                        <Setter Property="Margin" Value="10,5,0,0"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Click="Save_Click">保存</Button>
+                <Button Click="Reset_Click">全部重置</Button>
+                <Button Click="Cancel_Click">取消</Button>
+            </StackPanel>
+            <TabControl>
+                <TabItem Header="编辑器"></TabItem>
+                <TabItem Header="转换器">
+                    <StackPanel>
+                        <DockPanel>
+                            <Label DockPanel.Dock="Left">转换器</Label>
+                            <ComboBox HorizontalContentAlignment="Center" Width="200" 
+                                      SelectedIndex="{Binding Path=ConverterType}">
+                                <ComboBoxItem>MarkTex</ComboBoxItem>
+                                <ComboBoxItem>Markdown</ComboBoxItem>
+                                <ComboBoxItem>Github Flavored Markdown</ComboBoxItem>
+                            </ComboBox>
+                        </DockPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="高级"></TabItem>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>

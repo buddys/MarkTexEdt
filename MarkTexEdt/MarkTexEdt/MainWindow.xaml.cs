@@ -22,13 +22,14 @@ namespace MarkTexEdt
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// 前台窗口的配置接口
+        /// 配置接口
         /// </summary>
-        WindowConfig windowConfig;
+        util.Config config;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = config = util.Config.ConfigInstance;
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = windowConfig = new WindowConfig(this);
+            config.RestoreWindow(this);
         }
 
         /// <summary>
@@ -48,36 +49,8 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            window.About abt = new window.About();
+            view.About abt = new view.About();
             abt.ShowDialog();
-        }
-
-
-        /// <summary>
-        /// 管理MainWindow的配置
-        /// </summary>
-        public class WindowConfig : util.ObservableClass
-        {
-            public MainWindow mainWindow;
-
-            public WindowConfig(MainWindow w)
-            {
-                mainWindow = w;
-            }
-
-            /// <summary>
-            /// 菜单栏可见性
-            /// </summary>
-            Visibility menuBarVisibility = Visibility.Visible;
-            public Visibility MenuBarVisibility
-            {
-                get { return menuBarVisibility; }
-                set
-                {
-                    menuBarVisibility = value;
-                    NotifyPropertyChanged("MenuBarVisibility");
-                }
-            }
         }
 
         /// <summary>
@@ -116,7 +89,7 @@ namespace MarkTexEdt
         {
            OpenFileDialog ofd = new OpenFileDialog();
             ofd.CheckFileExists = true;
-            ofd.Filter = util.Config.MarkdownFileFilter;
+            ofd.Filter = config.MarkdownFileFilter;
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
@@ -143,12 +116,45 @@ namespace MarkTexEdt
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.CheckPathExists = true;
-            sfd.Filter = util.Config.MarkdownFileFilter;
+            sfd.Filter = config.MarkdownFileFilter;
             if ((bool)sfd.ShowDialog())
             {
                 //TODO: Save file sfd.FileName
             }
 
+        }
+
+        /// <summary>
+        /// 点击设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Config_Click(object sender, RoutedEventArgs e)
+        {
+            view.Config c = new view.Config();
+            c.Owner = this;
+            c.ShowDialog();
+        }
+
+        /// <summary>
+        /// 撤销
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// 窗口关闭事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            config.SaveWindow(this);
+            config.SaveToFile();
         }
 
     }

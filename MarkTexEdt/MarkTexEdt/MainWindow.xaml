@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:util="clr-namespace:MarkTexEdt.util" 
-        Title="MarkTexEdt" Height="600" Width="800" Loaded="Window_Loaded">
+        Title="MarkTexEdt" Height="600" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
     <Window.Resources>
         <util:VisibilityToBoolConverter x:Key="VisibilityToBoolConverter" />
     </Window.Resources>
@@ -28,7 +28,7 @@
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="设置">
                     <MenuItem Header="快捷键"></MenuItem>
-                    <MenuItem Header="配置"></MenuItem>
+                    <MenuItem Header="配置" Click="Config_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="关于">
                     <MenuItem Header="帮助"></MenuItem>
@@ -57,7 +57,7 @@
                         <Image Source="/resource/img/save-26.png" ></Image>
                     </Button>
                     <Separator Margin="7,0"></Separator>
-                    <Button >
+                    <Button Click="Undo_Click">
                         <Image Source="/resource/img/undo-26.png" ></Image>
                     </Button>
                     <Button >

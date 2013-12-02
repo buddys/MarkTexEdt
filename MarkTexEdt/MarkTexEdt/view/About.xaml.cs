@@ -12,13 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MarkTexEdt.window
+namespace MarkTexEdt.view
 {
     /// <summary>
     /// About.xaml 的交互逻辑
     /// </summary>
     public partial class About : Window
     {
+        /// <summary>
+        /// 初始化视图元素
+        /// </summary>
         public About()
         {
             InitializeComponent();
