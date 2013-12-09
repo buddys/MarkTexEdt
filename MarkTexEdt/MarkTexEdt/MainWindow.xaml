@@ -10,19 +10,20 @@
         <DockPanel>
             <Menu Visibility="{Binding Path=MenuBarVisibility}" Background="LightGray" DockPanel.Dock="Top">
                 <MenuItem Padding="10,3" Header="文件">
-                    <MenuItem Header="打开" Click="Open_Click"></MenuItem>
-                    <MenuItem Header="保存" Click="Save_Click"></MenuItem>
+                    <MenuItem Header="打开" Click="Open_Click" ></MenuItem>
+                    <MenuItem Header="保存" Click="Save_Click" ></MenuItem>
                     <MenuItem Header="另存为" Click="SaveAs_Click"></MenuItem>
                     <MenuItem Header="导出"></MenuItem>
                     <MenuItem Header="打印"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="编辑">
-                    <MenuItem Header="撤销"></MenuItem>
-                    <MenuItem Header="重做"></MenuItem>
-                    <MenuItem Header="剪切"></MenuItem>
-                    <MenuItem Header="复制"></MenuItem>
-                    <MenuItem Header="粘贴"></MenuItem>
-                </MenuItem>
+                    <MenuItem Header="撤销" Click="Undo_Click"></MenuItem>
+                    <MenuItem Header="重做" Click="Redo_Click"></MenuItem>
+                    <MenuItem Header="全选" Click="SelectAll_Click"></MenuItem>
+                    <MenuItem Header="剪切" Click="Cut_Click"></MenuItem>
+                    <MenuItem Header="复制" Click="Copy_Click"></MenuItem>
+                    <MenuItem Header="粘贴" Click="Paste_Click"></MenuItem>
+                </MenuItem> 
                 <MenuItem Header="视图">
                     <MenuItem IsCheckable="True" Header="显示菜单栏" IsChecked="{Binding Path=MenuBarVisibility,Converter={StaticResource VisibilityToBoolConverter}}"></MenuItem>
                 </MenuItem>
@@ -47,35 +48,35 @@
                     </ContextMenu>
                 </ToolBarTray.ContextMenu>
                 <ToolBar Band="1" BandIndex="1">
-                    <Button Click="Add_Click">
+                    <Button Click="Add_Click" ToolTip="新建">
                         <Image Source="/resource/img/add_file-26.png" ></Image>
                     </Button>
-                    <Button Click="Open_Click">
+                    <Button Click="Open_Click" ToolTip="打开">
                         <Image Source="/resource/img/folder-26.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button ToolTip="保存">
                         <Image Source="/resource/img/save-26.png" ></Image>
                     </Button>
                     <Separator Margin="7,0"></Separator>
-                    <Button Click="Undo_Click">
+                    <Button Click="Undo_Click" ToolTip="撤销">
                         <Image Source="/resource/img/undo-26.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Click="Redo_Click" ToolTip="重做">
                         <Image Source="/resource/img/redo-26.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Click="Bold_Click" ToolTip="加粗">
                         <Image Source="/resource/img/bold-26.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Click="Italic_Click" ToolTip="斜体">
                         <Image Source="/resource/img/italic-26.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Click="Left_Click" ToolTip="左对齐">
                         <Image Source="/resource/img/left-26.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Click="Center_Click" ToolTip="居中">
                         <Image Source="/resource/img/center-26.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Click="Right_Click"  ToolTip="右对齐">
                         <Image Source="/resource/img/right-26.png" ></Image>
                     </Button>
                     <Separator Margin="7,0"></Separator>
@@ -105,7 +106,10 @@
                         <Image Source="/resource/img/right_array-26.png" ></Image>
                     </Button>
                 </ToolBar>
-            </ToolBarTray>
+            </ToolBarTray>       
+            
+          
+            
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50*" />
