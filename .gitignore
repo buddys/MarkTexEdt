@@ -8,6 +8,9 @@
 
 /MarkTexEdt/MarkTexEdt/bin/Debug/*.pdb
 
-/MarkTexEdt/MarkTexEdt/bin/Debug
-/MarkTexEdt/MarkTexEdt/bin
 /MarkTexEdt/MarkTexEdt/obj
+/MarkTexEdt/MarkTexEdt/bin/Debug/marktex.exe.config
+/MarkTexEdt/MarkTexEdt/bin/Debug/marktex.pdb
+/MarkTexEdt/MarkTexEdt/bin/Debug/marktex.vshost.exe
+/MarkTexEdt/MarkTexEdt/bin/Debug/marktex.vshost.exe.config
+/MarkTexEdt/MarkTexEdt/bin/Debug/marktex.exe
