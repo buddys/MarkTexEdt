@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{ctex,graphicx,amsmath,listings,xcolor,geometry,bm}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green]{hyperref}
+
+\lstset{breaklines}%自动将长的代码行换行排版
+\lstset{
+%行号
+numbers=left,
+%背景框
+numberstyle=\tiny,
+keywordstyle=\color{blue!70},
+commentstyle=\color{red!50!green!50!blue!50},
+frame=shadowbox,
+framexleftmargin=1mm,
+rulesepcolor=\color{red!20!green!20!blue!20},
+escapeinside=``,
+xleftmargin=2em,
+xrightmargin=0em,
+aboveskip=1em
+}
+\geometry{top=2.54cm,bottom=2.54cm,left=2cm,right=2cm}
+
+\begin{document}
+\hypersetup{CJKbookmarks=true}
+\title{MarkTex：基于Markdown的可扩展引擎文档排版系统\\
+MarkTex：a document preparation system based on markdown}
+\author{buddys团队：杨珺~杜实现~张申~李淞毅~唐浩}
+\date{\today}
+\maketitle
+
+
+
+\part{需求说明部分}
+对系统有明确、详细的描述，画出相应的UML图
+
+Markdown是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）和亚伦·斯沃茨（Aaron Swartz）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML（或者HTML）文档”。
+这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。
+
+Markdown同时还是一个由Gruber编写的Perl脚本：\emph{Markdown.pl}。它把用markdown语法编写的内容转换成有效的、
+结构良好的XHTML或HTML内容，并将左尖括号('$<$')和\&号替换成它们各自的字符实体引用。它可以用作单独的脚本，
+Blosxom和Movable Type的插件又或者BBEdit的文本过滤器。
+
+Markdown也已经被其他人用Perl和别的编程语言重新实现，其中一个Perl模块放在了CPAN(Text::Markdown)上。
+它基于一个BSD风格的许可证分发并可以作为几个内容管理系统的插件。
+
+\part{分析部分}
+用建模的思想，画出相应的UML图
+
+实现的功能：
+\begin{itemize}
+  \item 编辑器：编辑markdown文本，包括工具栏、实时编译
+  \item 多样式支持：提供多种默认样式，支持自定义
+  \item 多引擎支持：支持多种markdown引擎，如GFM，markdown，etc
+  \item 通用文档引擎开发：对markdown进行扩展，开发一个用于生成通用文档的引擎，
+      包括复杂文档和演示文稿。
+  \item 多格式导出：HTML在线文档，PDF打印文档
+\end{itemize}
+
+
+
+
+
+\part{设计部分}
+应用设计原则及设计模式等，完成系统和对象的设计。
+
+\part{实现部分}
+用Java、C++或C\#等编程，说明使用的工具和环境，运行方式等
+
+所用的技术：
+\begin{itemize}
+  \item 托管于github，采用git协同开发
+  \item C\#为主体，WPF前端
+  \item markdown引擎源码分析（可用版本包括：python，ruby，C\#，javascript）
+\end{itemize}
+
+
+
+
+\part{附录}
+文档：各阶段的UML图，代码注释
+
+小组成员各自分担部分的概述
+\end{document} 
