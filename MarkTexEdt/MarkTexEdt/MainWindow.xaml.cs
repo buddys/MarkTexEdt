@@ -26,11 +26,13 @@ namespace MarkTexEdt
         /// 配置接口
         /// </summary>
         util.Config config;
+        util.Converter converter;
 
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = config = util.Config.ConfigInstance;
+            this.DataContext = this.config = util.Config.ConfigInstance;
+            this.converter = new util.Converter(this.wbViewer);
         }
 
         /// <summary>
@@ -61,11 +63,12 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void tbEditor_TextChanged(object sender, TextChangedEventArgs e)
         {
-           // Uri uri = new Uri(@"http://www.baidu.com", UriKind.Absolute);
+            //Uri uri = new Uri(@"http://www.baidu.com", UriKind.Absolute);
 
             //预览HTML页面
-          //  wbViewer.Navigate(uri);
-
+            //wbViewer.Navigate(uri);
+            Console.WriteLine(GetSource());
+            converter.Update(GetSource());
         }
 
 
@@ -160,6 +163,16 @@ namespace MarkTexEdt
             config.SaveWindow(this);
             config.SaveToFile();
         }
+
+        /// <summary>
+        /// 得到编辑框中的文本
+        /// </summary>
+        /// <returns>文本字符串</returns>
+        private string GetSource()
+        {
+            return (new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd)).Text.ToString();
+        }
+
         /// <summary>
         /// 对选择的文本进行加粗，若是没选择，则对接下去输入的字符加粗
         /// </summary>
@@ -185,13 +198,13 @@ namespace MarkTexEdt
                 selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Normal);
             }
 
-            TextRange a = new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd);           
-            String strText = a.Text.ToString();           
+            TextRange a = new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd);
+            String strText = a.Text.ToString();
             TextPointer tpEnd = tbEditor.Document.ContentStart.GetPositionAtOffset(strText.Length);
             TextRange b = new TextRange(tbEditor.Document.ContentStart, tpEnd);
             String strDes = "**" + b.Text + "**";
-            Console.WriteLine(strDes);   
-                   
+
+            Console.WriteLine(strDes);
             // 这个细节很关键，实现将焦点返回给文本框，这样用户将可以直接再更改设置的字体
             tbEditor.Focus();
         }
