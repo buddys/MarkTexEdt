@@ -1,6 +1,7 @@
 MarkTex
 =======
 
+<<<<<<< HEAD
 基于Markdown的可扩展引擎文档排版系统（a document preparation system based on markdown）
 
 ### 功能
@@ -26,3 +27,7 @@ MarkTex
 
 * 需求挖掘，功能提出与可行性讨论
 * 寻找感兴趣的模块，明确分工
+
+=======
+a document preparation system based on markdown
+>>>>>>> parent of 7f35fec... Update README.md
