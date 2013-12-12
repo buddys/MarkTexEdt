@@ -1,33 +1,55 @@
-﻿//$(function () {
-//    var $content = $('#content');
+﻿$(function () {
+    //custom renderer    
+    var r = new marked.Renderer();
+    
+    //code highlight
+    r.code = function(code, lang) {
+        if (lang) {
+            return '<pre><code class="hljs">'
+                + hljs.highlight(lang, code).value
+                + '\n</code></pre>';
+        }
+        else{
+            return '<pre><code>'
+                + code
+                + '\n</code></pre>\n';            
+        }
+    }
 
-//    var markedOptions = {
-//        gfm: true,
-//        pedantic: false,
-//        sanitize: false,
-//        tables: true,
-//        smartLists: true,
-//        breaks: true
-//        /*langPrefix: 'language-',
-//        math: mathify,
-//        highlight: function (codeText, codeLanguage) { return highlightSyntax(hljs, codeText, codeLanguage);*/
-//    };
-//    //$content.html( marked($content.html(), markedOptions));
-//});
-
-window.onload = function () {
-    var markedOptions = {
+    //markdown options
+    var mdOptions = {
+        //GFM
         gfm: true,
-        pedantic: false,
-        sanitize: false,
         tables: true,
+        breaks: true,
+        
+        //original markdown
+        pedantic: false,
+        sanitize: false,     //raw html
+        
+        //smarter list behavior
         smartLists: true,
-        breaks: true
-        /*langPrefix: 'language-',
-        math: mathify,
-        highlight: function (codeText, codeLanguage) { return highlightSyntax(hljs, codeText, codeLanguage);*/
+        
+        //typographic punctuation
+        smartypants: false,
+        
+        //renderer
+        renderer: r,
+            
+        //math: mathify
+        highlight: function(){
+            var a=1;
+        }
     };
-    var content = document.getElementById("src");
-    var content = content.textContent;
-    document.getElementById("dst").innerHTML = marked(content, markedOptions);
-};
+    
+    
+    
+    //renderer complete callback
+    mdComplete = function(err,content){
+        if (err) throw err;    
+        $('#dst').html(content);
+    }
+    
+    //do rendering
+    marked($('#src').text(), mdOptions, mdComplete);
+});

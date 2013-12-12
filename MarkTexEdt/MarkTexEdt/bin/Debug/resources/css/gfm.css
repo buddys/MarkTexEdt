@@ -1,4 +1,4 @@
-﻿/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
 /* Author: Nicolas Hery - http://nicolashery.com */
 /* Version: 29d1c5bc36da364ad5aa86946d420b7bbc54a253 */
 /* Source: https://github.com/nicolahery/markdownpad-github */
@@ -257,6 +257,56 @@ table tr {
 table tr:nth-child(2n) {
   background-color: #f8f8f8;
 }
+
+table {
+  margin: 1.2em 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+  font: inherit;
+  border: 0;
+}
+
+tbody {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+table tr {
+  border: 0;
+  border-top: 1px solid #CCC;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+table tr:nth-child(2n) {
+  background-color: #F8F8F8;
+}
+
+table tr th, table tr td {
+  font-size: 1em;
+  border: 1p
+
+table tr th {
+ font-weight: bold;
+  background-color: #F0F0F0;
+}
+
+table tr td[align="right"] {
+  text-align: right;
+}
+
+table tr td[align="left"] {
+  text-align: left;
+}
+
+table tr td[align="center"] {
+  text-align: center;
+}
+
 
 /* IMAGES
 =============================================================================*/

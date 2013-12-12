@@ -19,7 +19,11 @@ var block = {
   nptable: noop,
   lheading: /^([^\n]+)\n *(=|-){2,} *(?:\n+|$)/,
   blockquote: /^( *>[^\n]+(\n[^\n]+)*\n*)+/,
-  list: /^( *)(bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
+  
+  //smart list: empty line breaks list
+  list: /^( *)(bull) [\s\S]+?(?:hr|\n{1,}(?! )(?!\1bull )\n*|\s*$)/,
+  //list: /^( *)(bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
+
   html: /^ *(?:comment|closed|closing) *(?:\n{2,}|\s*$)/,
   def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
   table: noop,
@@ -28,6 +32,7 @@ var block = {
 };
 
 block.bullet = /(?:[*+-]|\d+\.)/;
+
 block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
 block.item = replace(block.item, 'gm')
   (/bull/g, block.bullet)
@@ -407,11 +412,31 @@ Lexer.prototype.token = function(src, top) {
     // top-level paragraph
     if (top && (cap = this.rules.paragraph.exec(src))) {
       src = src.substring(cap[0].length);
+      var text = cap[1].charAt(cap[1].length - 1) === '\n'
+          ? cap[1].slice(0, -1)
+          : cap[1];
+          
+      //smart align
+      var lines = text.split('\n');
+      var indent = '0em';
+      var align = 'left';
+      if( /[^\\]>>$/.exec(lines[0])){
+        align= 'right';
+        lines[0] = lines[0].slice(0,-2);
+      }
+      else if(/[^\\]>$/.exec(lines[0])){
+        align = 'center'
+        lines[0] = lines[0].slice(0,-1);
+      }
+      else if (/[^\\]>\d+$/.exec(lines[0])) {
+        indent = parseInt(/\d+$/.exec(lines[0]))*2+'em';
+        lines[0]=lines[0].replace(/>\d+$/,'');
+      }
       this.tokens.push({
         type: 'paragraph',
-        text: cap[1].charAt(cap[1].length - 1) === '\n'
-          ? cap[1].slice(0, -1)
-          : cap[1]
+        text: lines.join('\n'),
+        align: align,
+        indent: indent
       });
       continue;
     }
@@ -789,6 +814,24 @@ Renderer.prototype.paragraph = function(text) {
   return '<p>' + text + '</p>\n';
 };
 
+//smart align
+Renderer.prototype.paragraph = function(text, align, indent) {
+  var style = 'style="';
+  if (align != 'left') {
+    style += 'text-align:' + align + ';';
+  }
+  if (indent != '0em') {
+    style += 'text-indent:'+ indent + ';';
+  }
+  style += '"';
+  if (style != 'style=""') {
+    return '<p '+ style +'>' + text + '</p>\n';    
+  }
+  else{
+    return '<p>' + text + '</p>\n';    
+  }
+};
+
 Renderer.prototype.table = function(header, body) {
   return '<table>\n'
     + '<thead>\n'
@@ -1020,7 +1063,9 @@ Parser.prototype.tok = function() {
       return this.renderer.html(html);
     }
     case 'paragraph': {
-      return this.renderer.paragraph(this.inline.output(this.token.text));
+      //smart align
+      return this.renderer.paragraph(this.inline.output(this.token.text), this.token.align, this.token.indent);
+      //return this.renderer.paragraph(this.inline.output(this.token.text));
     }
     case 'text': {
       return this.renderer.paragraph(this.parseText());
