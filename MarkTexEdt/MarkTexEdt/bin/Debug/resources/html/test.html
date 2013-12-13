@@ -8,20 +8,24 @@
     </head>
     <body>
         <div id='dst'></div>
-<textarea id='src' style='display:none;'>
-   
-http://www.baidu.com `fas`
-   
-$\frac{inline}{math}$
+<textarea id='src' style='display:none;'>first line
+second line
 
-$$$
-\frac{block}{math}
-$$$
 
+> In markdown, list wouldn't break regardless how many `\n` inputed.
+> List rendering behavior is another annoying feature in markdown.
+
+> third line
 </textarea>
         <script src='js/jquery.min.js'></script>
         <script src='js/highlight.min.js'></script>
-        <script src='js/marked.js'></script>
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          skipStartupTypeset: true
+        });
+        </script>
+        <script type="text/javascript" src="mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src='js/marktex.js'></script>
         <script src='js/config.js'></script>
     </body>
 </html>

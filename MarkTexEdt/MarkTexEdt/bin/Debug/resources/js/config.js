@@ -1,27 +1,13 @@
 ﻿$(function () {
-    //custom renderer    
-    var r = new marked.Renderer();
-    
-    //code highlight
-    r.code = function(code, lang) {
-        if (lang) {
-            return '<pre><code class="hljs">'
-                + hljs.highlight(lang, code).value
-                + '\n</code></pre>';
-        }
-        else{
-            return '<pre><code>'
-                + code
-                + '\n</code></pre>\n';            
-        }
-    }
-
     //markdown options
     var mdOptions = {
         //GFM
         gfm: true,
         tables: true,
         breaks: true,
+        
+        //MarkTex
+        marktex: true,
         
         //original markdown
         pedantic: false,
@@ -32,24 +18,30 @@
         
         //typographic punctuation
         smartypants: false,
-        
-        //renderer
-        renderer: r,
             
-        //math: mathify
-        highlight: function(){
-            var a=1;
+        //code highlight
+        highlight: function(code, lang){
+            return hljs.highlight(lang, code).value;
+        },
+        
+        //math renderer
+        math: function(math,inline,lang){
+            if (inline) {
+                return '<span class="mathjax">\\('+math+'\\)</span>';
+            }
+            else
+                return '<div class="mathjax">\\['+math+'\\]</div>';
         }
     };
     
-    
-    
-    //renderer complete callback
-    mdComplete = function(err,content){
-        if (err) throw err;    
-        $('#dst').html(content);
-    }
-    
     //do rendering
-    marked($('#src').text(), mdOptions, mdComplete);
+    marktex($('#src').text(), mdOptions, function(err,content){
+        if (err) {
+            alert('parsing error: \n'+err);
+        }
+        $('#dst').html(content);
+        $('.mathjax').each(function(i,v){
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub,v]);            
+        })
+    });
 });

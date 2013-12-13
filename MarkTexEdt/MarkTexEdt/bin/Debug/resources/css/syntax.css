@@ -5,6 +5,7 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 */
 
 code {
+  overflow: auto;
   margin: 0 0.15em;
   padding: 0 0.3em;
   white-space: nowrap;

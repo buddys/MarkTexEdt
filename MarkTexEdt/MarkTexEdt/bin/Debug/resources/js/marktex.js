@@ -1,7 +1,7 @@
 /**
- * marked - a markdown parser
+ * marktex - a markdown parser
  * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)
- * https://github.com/chjj/marked
+ * https://github.com/chjj/marktex
  */
 
 ;(function() {
@@ -10,90 +10,98 @@
  * Block-Level Grammar
  */
 
-var block = {
-  newline: /^\n+/,
-  code: /^( {4}[^\n]+\n*)+/,
-  fences: noop,
-  hr: /^( *[-*_]){3,} *(?:\n+|$)/,
-  heading: /^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,
-  nptable: noop,
-  lheading: /^([^\n]+)\n *(=|-){2,} *(?:\n+|$)/,
-  blockquote: /^( *>[^\n]+(\n[^\n]+)*\n*)+/,
-  
-  //smart list: empty line breaks list
-  list: /^( *)(bull) [\s\S]+?(?:hr|\n{1,}(?! )(?!\1bull )\n*|\s*$)/,
-  //list: /^( *)(bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
+var block = {};
 
-  html: /^ *(?:comment|closed|closing) *(?:\n{2,}|\s*$)/,
-  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
-  table: noop,
-  paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
-  text: /^[^\n]+/
-};
-
-block.bullet = /(?:[*+-]|\d+\.)/;
-
-block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
-block.item = replace(block.item, 'gm')
-  (/bull/g, block.bullet)
-  ();
-
-block.list = replace(block.list)
-  (/bull/g, block.bullet)
-  ('hr', /\n+(?=(?: *[-*_]){3,} *(?:\n+|$))/)
-  ();
-
-block._tag = '(?!(?:'
-  + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
-  + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
-  + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|@)\\b';
-
-block.html = replace(block.html)
-  ('comment', /<!--[\s\S]*?-->/)
-  ('closed', /<(tag)[\s\S]+?<\/\1>/)
-  ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
-  (/tag/g, block._tag)
-  ();
-
-block.paragraph = replace(block.paragraph)
-  ('hr', block.hr)
-  ('heading', block.heading)
-  ('lheading', block.lheading)
-  ('blockquote', block.blockquote)
-  ('tag', '<' + block._tag)
-  ('def', block.def)
-  ();
 
 /**
  * Normal Block Grammar
  */
 
-block.normal = merge({}, block);
+block.normal = {
+  newline: /^\n+/,
+  code: /^( {4}[^\n]+\n*)+/,
+  fences: noop,
+  math_fences: noop,
+  hr: /^( *[-*_]){3,} *(?:\n+|$)/,
+  heading: /^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,
+  nptable: noop,
+  lheading: /^([^\n]+)\n *(=|-){2,} *(?:\n+|$)/,
+  blockquote: /^( *>[^\n]+(\n[^\n]+)*\n*)+/,
+  list: /^( *)(bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
+  html: /^ *(?:comment|closed|closing) *(?:\n{2,}|\s*$)/,
+  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
+  table: noop,
+  paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
+  aligned_paragraph: noop,
+  text: /^[^\n]+/,
+  bullet: /(?:[*+-]|\d+\.)/,
+  item: /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/,
+  
+  _tag: '(?!(?:'
+  + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
+  + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
+  + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|@)\\b',
+};
 
+block.normal.item = replace(block.normal.item, 'gm')
+  (/bull/g, block.normal.bullet)
+  ();
+block.normal.list = replace(block.normal.list)
+  (/bull/g, block.normal.bullet)
+  ('hr', /\n+(?=(?: *[-*_]){3,} *(?:\n+|$))/)
+  ();
+block.normal.html = replace(block.normal.html)
+  ('comment', /<!--[\s\S]*?-->/)
+  ('closed', /<(tag)[\s\S]+?<\/\1>/)
+  ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
+  (/tag/g, block.normal._tag)
+  ();
+block.normal.paragraph = replace(block.normal.paragraph)
+  ('hr', block.normal.hr)
+  ('heading', block.normal.heading)
+  ('lheading', block.normal.lheading)
+  ('blockquote', block.normal.blockquote)
+  ('tag', '<' + block.normal._tag)
+  ('def', block.normal.def)
+  ();
+
+  
 /**
  * GFM Block Grammar
  */
 
-block.gfm = merge({}, block.normal, {
+block.gfm = {
   fences: /^ *(`{3,}|~{3,}) *(\S+)? *\n([\s\S]+?)\s*\1 *(?:\n+|$)/,
-  paragraph: /^/
-});
+  paragraph: /^/,
+  nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
+  table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
+};
 
-block.gfm.paragraph = replace(block.paragraph)
+block.gfm.paragraph = replace(block.normal.paragraph)
   ('(?!', '(?!'
     + block.gfm.fences.source.replace('\\1', '\\2') + '|'
-    + block.list.source.replace('\\1', '\\3') + '|')
+    + block.normal.list.source.replace('\\1', '\\3') + '|')
   ();
 
 /**
- * GFM + Tables Block Grammar
+ * MarkTex Block Grammar
  */
 
-block.tables = merge({}, block.gfm, {
-  nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
-  table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
-});
+block.marktex={
+  //empty line breaks list
+  list: /^( *)(bull) [\s\S]+?(?:hr|\n{1,}(?! )(?!\1bull )\n*|\s*$)/,
+  //aligned paragraph
+  aligned_paragraph: /^([^\n>]*[^\n>\\])>(>|\d+|)(?:\n|$)((?:[^\n]+(?:\n|$))*)(?:\n+|$)/,
+  //math fences
+  math_fences: /^ *(\${2,}) *(\S+)? *\n([\s\S]+?)\s*\1 *(?:\n+|$)/,
+};
 
+block.marktex.list = replace(block.marktex.list)
+  (/bull/g, block.normal.bullet)
+  ('hr', /\n+(?=(?: *[-*_]){3,} *(?:\n+|$))/)
+  ();
+  
+  
 /**
  * Block Lexer
  */
@@ -101,15 +109,18 @@ block.tables = merge({}, block.gfm, {
 function Lexer(options) {
   this.tokens = [];
   this.tokens.links = {};
-  this.options = options || marked.defaults;
+  this.options = options || marktex.defaults;
   this.rules = block.normal;
 
   if (this.options.gfm) {
-    if (this.options.tables) {
-      this.rules = block.tables;
-    } else {
-      this.rules = block.gfm;
+    merge(this.rules,block.gfm);
+    if (!this.options.tables) {
+      delete this.rules.tables;
     }
+  }
+  
+  if (this.options.marktex) {
+    merge(this.rules, block.marktex);
   }
 }
 
@@ -187,6 +198,17 @@ Lexer.prototype.token = function(src, top) {
       src = src.substring(cap[0].length);
       this.tokens.push({
         type: 'code',
+        lang: cap[2],
+        text: cap[3]
+      });
+      continue;
+    }
+
+    // math fences (marktex)
+    if (cap = this.rules.math_fences.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'math',
         lang: cap[2],
         text: cap[3]
       });
@@ -315,7 +337,7 @@ Lexer.prototype.token = function(src, top) {
         // Determine whether the next list item belongs here.
         // Backpedal if it does not belong in this list.
         if (this.options.smartLists && i !== l - 1) {
-          b = block.bullet.exec(cap[i + 1])[0];
+          b = this.rules.bullet.exec(cap[i + 1])[0];
           if (bull !== b && !(bull.length > 1 && b.length > 1)) {
             src = cap.slice(i + 1).join('\n') + src;
             i = l - 1;
@@ -409,34 +431,46 @@ Lexer.prototype.token = function(src, top) {
       continue;
     }
 
+    // top-level aligned paragraph(marktex)
+    if (top && (cap = this.rules.aligned_paragraph.exec(src))) {
+      src = src.substring(cap[0].length);
+      var firstline = cap[1];
+      var flag = cap[2];
+      var following = cap[3].charAt(cap[3].length - 1) === '\n'
+          ? cap[3].slice(0, -1)
+          : cap[3];
+          
+      var indent = '0em';
+      var align = 'left';
+        
+      switch (flag) {
+        case '>':
+          align= 'right';
+          break;
+        case '':
+          align='center';
+          break;
+        default:
+          indent=parseInt(flag)*2+'em';
+      }
+      this.tokens.push({
+        type: 'aligned_paragraph',
+        text: firstline + '\n' + following,
+        align: align,
+        indent: indent
+      });
+      continue;
+    }
+
     // top-level paragraph
     if (top && (cap = this.rules.paragraph.exec(src))) {
       src = src.substring(cap[0].length);
       var text = cap[1].charAt(cap[1].length - 1) === '\n'
           ? cap[1].slice(0, -1)
           : cap[1];
-          
-      //smart align
-      var lines = text.split('\n');
-      var indent = '0em';
-      var align = 'left';
-      if( /[^\\]>>$/.exec(lines[0])){
-        align= 'right';
-        lines[0] = lines[0].slice(0,-2);
-      }
-      else if(/[^\\]>$/.exec(lines[0])){
-        align = 'center'
-        lines[0] = lines[0].slice(0,-1);
-      }
-      else if (/[^\\]>\d+$/.exec(lines[0])) {
-        indent = parseInt(/\d+$/.exec(lines[0]))*2+'em';
-        lines[0]=lines[0].replace(/>\d+$/,'');
-      }
       this.tokens.push({
         type: 'paragraph',
-        text: lines.join('\n'),
-        align: align,
-        indent: indent
+        text: text
       });
       continue;
     }
@@ -465,7 +499,13 @@ Lexer.prototype.token = function(src, top) {
  * Inline-Level Grammar
  */
 
-var inline = {
+var inline = {};
+
+/**
+ * Normal Inline Grammar
+ */
+
+inline.normal = {
   escape: /^\\([\\`*{}\[\]()#+\-.!_>])/,
   autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
   url: noop,
@@ -478,68 +518,82 @@ var inline = {
   code: /^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,
   br: /^ {2,}\n(?!\s*$)/,
   del: noop,
-  text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
+  text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/,
+  math: noop,
 };
 
-inline._inside = /(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;
-inline._href = /\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
+inline.normal._inside = /(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;
+inline.normal._href = /\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
 
-inline.link = replace(inline.link)
-  ('inside', inline._inside)
-  ('href', inline._href)
+inline.normal.link = replace(inline.normal.link)
+  ('inside', inline.normal._inside)
+  ('href', inline.normal._href)
   ();
 
-inline.reflink = replace(inline.reflink)
-  ('inside', inline._inside)
+inline.normal.reflink = replace(inline.normal.reflink)
+  ('inside', inline.normal._inside)
   ();
 
-/**
- * Normal Inline Grammar
- */
-
-inline.normal = merge({}, inline);
-
+  
 /**
  * Pedantic Inline Grammar
  */
 
-inline.pedantic = merge({}, inline.normal, {
+inline.pedantic = {
   strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
   em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
-});
+};
 
 /**
  * GFM Inline Grammar
  */
 
-inline.gfm = merge({}, inline.normal, {
-  escape: replace(inline.escape)('])', '~|])')(),
+inline.gfm = {
+  escape: replace(inline.normal.escape)('])', '~|])')(),
   url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
   del: /^~~(?=\S)([\s\S]*?\S)~~/,
-  text: replace(inline.text)
+  text: replace(inline.normal.text)
     (']|', '~]|')
     ('|', '|https?://|')
     ()
-});
+};
 
 /**
  * GFM + Line Breaks Inline Grammar
  */
 
-inline.breaks = merge({}, inline.gfm, {
-  br: replace(inline.br)('{2,}', '*')(),
+inline.breaks = {
+  br: replace(inline.normal.br)('{2,}', '*')(),
   text: replace(inline.gfm.text)('{2,}', '*')()
-});
+};
+
+/**
+ * Marktex Inline Grammar
+ */
+inline.marktex={
+  //'$' is new delimeter for math
+  escape: replace(inline.normal.escape)('])', '$])')(),
+  //inline math
+  math: /^(\$+)\s*([\s\S]*?[^$])\s*\1(?!\$)/,
+  //line break
+  br: inline.breaks.br,
+  //now '$' is not a normal text
+  text: replace(inline.breaks.text)
+    (']|', '$]|')
+    ()
+};
+
 
 /**
  * Inline Lexer & Compiler
  */
 
 function InlineLexer(links, options) {
-  this.options = options || marked.defaults;
+  this.options = options || marktex.defaults;
   this.links = links;
   this.rules = inline.normal;
   this.renderer = this.options.renderer || new Renderer;
+  this.renderer.options = this.options;
 
   if (!this.links) {
     throw new
@@ -547,13 +601,18 @@ function InlineLexer(links, options) {
   }
 
   if (this.options.gfm) {
+    merge(this.rules, inline.gfm);
     if (this.options.breaks) {
-      this.rules = inline.breaks;
-    } else {
-      this.rules = inline.gfm;
+      merge(this.rules, inline.breaks);
     }
-  } else if (this.options.pedantic) {
-    this.rules = inline.pedantic;
+  }
+  
+  if (this.options.marktex) {
+    merge(this.rules, inline.marktex);
+  }
+  
+  if (this.options.pedantic) {
+    merge(this.rules, inline.pedantic);
   }
 }
 
@@ -671,6 +730,13 @@ InlineLexer.prototype.output = function(src) {
       continue;
     }
 
+    // math(marktex)
+    if (cap = this.rules.math.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += this.renderer.mathspan(escape(cap[2], true));
+      continue;
+    }
+
     // br
     if (cap = this.rules.br.exec(src)) {
       src = src.substring(cap[0].length);
@@ -765,18 +831,24 @@ InlineLexer.prototype.mangle = function(text) {
 function Renderer() {}
 
 Renderer.prototype.code = function(code, lang) {
-  if (!lang) {
+  if (!lang || !this.options.highlight) {
     return '<pre><code>'
       + escape(code, true)
       + '\n</code></pre>';
   }
 
-  return '<pre><code class="'
-    + 'lang-'
-    + lang
-    + '">'
-    + escape(code)
-    + '\n</code></pre>\n';
+  return '<pre><code>'
+    + this.options.highlight(code, lang)
+    + '\n</code></pre>';
+};
+
+Renderer.prototype.math = function(math, lang) {
+  if (!this.options.math) {
+    return '<pre><code>'
+      + escape(math, true)
+      + '\n</code></pre>';
+  }
+  return this.options.math(math,false, lang);
 };
 
 Renderer.prototype.blockquote = function(quote) {
@@ -814,8 +886,7 @@ Renderer.prototype.paragraph = function(text) {
   return '<p>' + text + '</p>\n';
 };
 
-//smart align
-Renderer.prototype.paragraph = function(text, align, indent) {
+Renderer.prototype.aligned_paragraph = function(text, align, indent) {
   var style = 'style="';
   if (align != 'left') {
     style += 'text-align:' + align + ';';
@@ -868,6 +939,13 @@ Renderer.prototype.codespan = function(text) {
   return '<code>' + text + '</code>';
 };
 
+Renderer.prototype.mathspan = function(text) {
+  if (!this.options.math) {
+    return '<code>' + text + '</code>';
+  }
+  return this.options.math(text, true);
+};
+
 Renderer.prototype.br = function() {
   return '<br>';
 };
@@ -901,7 +979,7 @@ Renderer.prototype.image = function(href, title, text) {
 function Parser(options) {
   this.tokens = [];
   this.token = null;
-  this.options = options || marked.defaults;
+  this.options = options || marktex.defaults;
   this.options.renderer = this.options.renderer || new Renderer;
   this.renderer = this.options.renderer;
 }
@@ -911,7 +989,7 @@ function Parser(options) {
  */
 
 Parser.parse = function(src, options, renderer) {
-  var parser = new Parser(options, renderer);
+  var parser = new Parser(options);
   return parser.parse(src);
 };
 
@@ -981,6 +1059,9 @@ Parser.prototype.tok = function() {
     }
     case 'code': {
       return this.renderer.code(this.token.text, this.token.lang);
+    }
+    case 'math':{
+      return this.renderer.math(this.token.text, this.token.lang);
     }
     case 'table': {
       var header = ''
@@ -1062,10 +1143,11 @@ Parser.prototype.tok = function() {
         : this.token.text;
       return this.renderer.html(html);
     }
+    case 'aligned_paragraph': {
+      return this.renderer.aligned_paragraph(this.inline.output(this.token.text), this.token.align, this.token.indent);
+    }
     case 'paragraph': {
-      //smart align
-      return this.renderer.paragraph(this.inline.output(this.token.text), this.token.align, this.token.indent);
-      //return this.renderer.paragraph(this.inline.output(this.token.text));
+      return this.renderer.paragraph(this.inline.output(this.token.text));
     }
     case 'text': {
       return this.renderer.paragraph(this.parseText());
@@ -1114,36 +1196,29 @@ function merge(obj) {
       }
     }
   }
-
   return obj;
 }
 
 
 /**
- * Marked
+ * Marktex
  */
 
-function marked(src, opt, callback) {
+function marktex(src, opt, callback) {
   if (callback || typeof opt === 'function') {
     if (!callback) {
       callback = opt;
       opt = null;
     }
 
-    opt = merge({}, marked.defaults, opt || {});
+    opt = merge({}, marktex.defaults, opt || {});
 
-    var highlight = opt.highlight
-      , tokens
-      , pending
-      , i = 0;
-
+    var tokens;
     try {
       tokens = Lexer.lex(src, opt)
     } catch (e) {
       return callback(e);
     }
-
-    pending = tokens.length;
 
     var done = function() {
       var out, err;
@@ -1154,8 +1229,6 @@ function marked(src, opt, callback) {
         err = e;
       }
 
-      opt.highlight = highlight;
-
       return err
         ? callback(err)
         : callback(null, out);
@@ -1164,11 +1237,11 @@ function marked(src, opt, callback) {
     return done();
   }
   try {
-    if (opt) opt = merge({}, marked.defaults, opt);
+    if (opt) opt = merge({}, marktex.defaults, opt);
     return Parser.parse(Lexer.lex(src, opt), opt);
   } catch (e) {
-    e.message += '\nPlease report this to https://github.com/chjj/marked.';
-    if ((opt || marked.defaults).silent) {
+    e.message += '\nPlease report this to https://github.com/chjj/marktex.';
+    if ((opt || marktex.defaults).silent) {
       return '<p>An error occured:</p><pre>'
         + escape(e.message + '', true)
         + '</pre>';
@@ -1181,16 +1254,17 @@ function marked(src, opt, callback) {
  * Options
  */
 
-marked.options =
-marked.setOptions = function(opt) {
-  merge(marked.defaults, opt);
-  return marked;
+marktex.options =
+marktex.setOptions = function(opt) {
+  merge(marktex.defaults, opt);
+  return marktex;
 };
 
-marked.defaults = {
+marktex.defaults = {
   gfm: true,
   tables: true,
   breaks: false,
+  marktex: true,
   pedantic: false,
   sanitize: false,
   smartLists: false,
@@ -1203,25 +1277,25 @@ marked.defaults = {
  * Expose
  */
 
-marked.Parser = Parser;
-marked.parser = Parser.parse;
+marktex.Parser = Parser;
+marktex.parser = Parser.parse;
 
-marked.Renderer = Renderer;
+marktex.Renderer = Renderer;
 
-marked.Lexer = Lexer;
-marked.lexer = Lexer.lex;
+marktex.Lexer = Lexer;
+marktex.lexer = Lexer.lex;
 
-marked.InlineLexer = InlineLexer;
-marked.inlineLexer = InlineLexer.output;
+marktex.InlineLexer = InlineLexer;
+marktex.inlineLexer = InlineLexer.output;
 
-marked.parse = marked;
+marktex.parse = marktex;
 
 if (typeof exports === 'object') {
-  module.exports = marked;
+  module.exports = marktex;
 } else if (typeof define === 'function' && define.amd) {
-  define(function() { return marked; });
+  define(function() { return marktex; });
 } else {
-  this.marked = marked;
+  this.marktex = marktex;
 }
 
 }).call(function() {

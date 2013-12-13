@@ -1,0 +1,213 @@
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <meta name='description' content='Rendered by MarkTex'/>
+        <base href='file:///D:/git/MarkTex/MarkTexEdt/MarkTexEdt/bin/Debug/resources/' />
+        <link rel='stylesheet' href='css/gfm.css' />
+        <link rel='stylesheet' href='css/syntax.css' />       
+    </head>
+    <body>
+        <div id='dst'></div>
+        <textarea id='src' style='display:none;'>
+# MarkTex Syntax Guide
+
+Marktex combined markdown and GFM, with unpleasant features removed, and some new added. The following is demos with markdown code.>1
+
+## MarkTex Features
+
+> Here we fixed markdown features and added ours.
+
+### alignment
+ 
+> There is no alignment in markdown, which is annoying.
+            
+```
+center aligned>
+
+right aligned>>
+the lines in the same para are aligned too.
+
+this line is indented by 1 tab. >1
+```
+        
+center aligned>
+
+right aligned>>
+the lines in the same para are aligned too.
+
+this line is indented by 1 tab, useful in normal articles. >1
+
+
+
+### list break
+
+> In markdown, list wouldn't break regardless how many `\n` inputed.
+> List rendering behavior is another annoying feature in markdown.
+
+```
+* ul1 item1
+* ul1 item2
+  paragraph below item2
+* ul1 item3
+  
+1. ol1 item1
+1. ol1 item2
+
+2. ol2 item1
+```
+
+* ul1 item1
+* ul1 item2
+  paragraph below item2
+* ul1 item3
+  
+1. ol1 item1
+1. ol1 item2
+
+2. ol2 item1
+
+
+
+### code highlight
+
+> we enabled code hilight, as pretty code is for geeks' favorite.
+
+    this is `inline code`.
+    
+    ```cpp
+    //bubble sort in cpp
+    void bubbleSort(int arr[], int n)
+    {
+        bool swapped = true;
+        int j = 0;
+        int tmp;
+        while (swapped)
+        {
+            swapped = false;
+            j++;
+            for (int i = 0; i < n - j; i++)
+            {
+                if (arr[i] > arr[i + 1])
+                {
+                    tmp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = tmp;
+                    swapped = true;
+                }
+            }
+        }
+    }
+    ```
+    
+        indented by 4 spaces also makes code
+
+
+this is `inline code`.
+
+```cpp
+//bubble sort in cpp
+void bubbleSort(int arr[], int n)
+{
+    bool swapped = true;
+    int j = 0;
+    int tmp;
+    while (swapped)
+    {
+        swapped = false;
+        j++;
+        for (int i = 0; i < n - j; i++)
+        {
+            if (arr[i] > arr[i + 1])
+            {
+                tmp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = tmp;
+                swapped = true;
+            }
+        }
+    }
+}
+```
+
+    indented by 4 spaces also makes code
+
+
+
+### math
+
+> Sometimes, we need some math.
+
+```
+This is inline math: $mr\omega^2 = F$, and the following is blocked math.
+
+$$$
+f(a) = \frac{1}{2\pi i}\oint_\gamma \frac{f(z)  }{z-a}dz
+$$$
+
+$$$
+J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}
+$$$
+```
+
+This is inline math: $mr\omega^2 = F$, and the following is blocked math.
+
+$$$
+f(a) = \frac{1}{2\pi i}\oint_\gamma \frac{f(z)  }{z-a}dz
+$$$
+
+$$$
+J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}
+$$$
+
+
+
+## GFM Features
+
+> Most GFM features are integrated in MarkTex, especially the wonderful ones following.
+
+### table
+
+    |h1|h2|h3|
+    |:---|:---:|---:|
+    |this is the GFM table|following line is multi-aligned|isn't it cute?|
+    |left|center|right|
+
+|h1|h2|h3|
+|:---|:---:|---:|
+|this is the GFM table|following line is multi-aligned|isn't it cute?|
+|left|center|right|
+
+
+
+
+### line break
+
+> GFM line break is enabled by default.
+    
+    first line
+    second line
+    
+    third line
+
+first line
+second line
+
+third line
+
+---
+
+> For a complete syntax for GFM, please visit: http://harttle.duapp.com/help/
+
+        </textarea>
+        <script src='js/jquery.min.js'></script>
+        <script src='js/marktex.js'></script>
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          skipStartupTypeset: true
+        });
+        </script>
+        <script type="text/javascript" src="mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src='js/highlight.min.js'></script>
+        <script src='js/config.js'></script>
+    </body>
+</html>
