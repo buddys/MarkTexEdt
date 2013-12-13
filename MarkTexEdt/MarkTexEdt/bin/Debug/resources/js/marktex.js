@@ -20,8 +20,6 @@ var block = {};
 block.normal = {
   newline: /^\n+/,
   code: /^( {4}[^\n]+\n*)+/,
-  fences: noop,
-  math_fences: noop,
   hr: /^( *[-*_]){3,} *(?:\n+|$)/,
   heading: /^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,
   nptable: noop,
@@ -30,12 +28,15 @@ block.normal = {
   list: /^( *)(bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
   html: /^ *(?:comment|closed|closing) *(?:\n{2,}|\s*$)/,
   def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
-  table: noop,
   paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
-  aligned_paragraph: noop,
   text: /^[^\n]+/,
   bullet: /(?:[*+-]|\d+\.)/,
   item: /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/,
+  aligned_paragraph: noop,
+  math_fences: noop,
+  fences: noop,
+  table: noop,
+  todo: noop,
   
   _tag: '(?!(?:'
   + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
@@ -94,10 +95,17 @@ block.marktex={
   aligned_paragraph: /^([^\n>]*[^\n>\\])>(>|\d+|)(?:\n|$)((?:[^\n]+(?:\n|$))*)(?:\n+|$)/,
   //math fences
   math_fences: /^ *(\${2,}) *(\S+)? *\n([\s\S]+?)\s*\1 *(?:\n+|$)/,
+  //todo list
+  todo: /^( *)(?:bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
+  todo_bullet: /(?:- *\[)([x ])(?:\])/,
 };
 
 block.marktex.list = replace(block.marktex.list)
   (/bull/g, block.normal.bullet)
+  ('hr', /\n+(?=(?: *[-*_]){3,} *(?:\n+|$))/)
+  ();
+block.marktex.todo = replace(block.marktex.todo)
+  (/bull/g, block.marktex.todo_bullet)
   ('hr', /\n+(?=(?: *[-*_]){3,} *(?:\n+|$))/)
   ();
   
@@ -295,6 +303,79 @@ Lexer.prototype.token = function(src, top) {
 
       this.tokens.push({
         type: 'blockquote_end'
+      });
+
+      continue;
+    }
+
+    // todo(gfm)
+    if (cap = this.rules.todo.exec(src)) {
+      src = src.substring(cap[0].length);
+      bull = cap[2];
+
+      this.tokens.push({
+        type: 'todo_start',
+      });
+
+      // Get each top-level item.
+      cap = cap[0].match(this.rules.item);
+
+      next = false;
+      l = cap.length;
+      i = 0;
+
+      for (; i < l; i++) {
+        item = cap[i];
+
+        // Remove the list item's bullet
+        // so it is seen as the next token.
+        space = item.length;
+        item = item.replace(/^ *([*+-]|\d+\.) +/, '');
+
+        // Outdent whatever the
+        // list item contains. Hacky.
+        if (~item.indexOf('\n ')) {
+          space -= item.length;
+          item = !this.options.pedantic
+            ? item.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
+            : item.replace(/^ {1,4}/gm, '');
+        }
+
+        // Determine whether the next list item belongs here.
+        // Backpedal if it does not belong in this list.
+        if (this.options.smartLists && i !== l - 1) {
+          b = this.rules.bullet.exec(cap[i + 1])[0];
+          if (bull !== b && !(bull.length > 1 && b.length > 1)) {
+            src = cap.slice(i + 1).join('\n') + src;
+            i = l - 1;
+          }
+        }
+
+        // Determine whether item is loose or not.
+        // Use: /(^|\n)(?! )[^\n]+\n\n(?!\s*$)/
+        // for discount behavior.
+        loose = next || /\n\n(?!\s*$)/.test(item);
+        if (i !== l - 1) {
+          next = item.charAt(item.length - 1) === '\n';
+          if (!loose) loose = next;
+        }
+
+        this.tokens.push({
+          type: loose
+            ? 'loose_item_start'
+            : 'list_item_start'
+        });
+
+        // Recurse.
+        this.token(item, false);
+
+        this.tokens.push({
+          type: 'list_item_end'
+        });
+      }
+
+      this.tokens.push({
+        type: 'list_end'
       });
 
       continue;

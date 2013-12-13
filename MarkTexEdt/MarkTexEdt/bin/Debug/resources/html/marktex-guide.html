@@ -15,56 +15,52 @@ Marktex combined markdown and GFM, with unpleasant features removed, and some ne
 
 ## MarkTex Features
 
-> Here we fixed markdown features and added ours.
+We fixed markdown features and added ours.
 
 ### alignment
  
-> There is no alignment in markdown, which is annoying.
+> There is no alignment in markdown, added in marktex.
             
 ```
 center aligned>
 
 right aligned>>
-the lines in the same para are aligned too.
+useful in signatures.
 
-this line is indented by 1 tab. >1
+para can be indented by 1 tab. >1
 ```
-        
+       
+becomes
+
 center aligned>
 
 right aligned>>
-the lines in the same para are aligned too.
+useful in signatures.
 
-this line is indented by 1 tab, useful in normal articles. >1
+para can be indented by 1 tab. >1
 
 
+### list
 
-### list break
-
-> In markdown, list wouldn't break regardless how many `\n` inputed.
-> List rendering behavior is another annoying feature in markdown.
+> List rendering is another annoying feature in markdown, we fixed it someway.
 
 ```
-* ul1 item1
-* ul1 item2
-  paragraph below item2
-* ul1 item3
-  
-1. ol1 item1
-1. ol1 item2
+1. item one
+  additional `\n` is not required
+1. arbitrary number works
+  > blockquote bug with list is also fixed
 
-2. ol2 item1
+1. successive `\n` split lists
 ```
 
-* ul1 item1
-* ul1 item2
-  paragraph below item2
-* ul1 item3
-  
-1. ol1 item1
-1. ol1 item2
+becomes
 
-2. ol2 item1
+1. item one
+  additional `\n` is not required
+1. arbitrary number works
+  > blockquote bug with list is also fixed
+
+1. successive `\n` split lists
 
 
 
@@ -74,59 +70,23 @@ this line is indented by 1 tab, useful in normal articles. >1
 
     this is `inline code`.
     
-    ```cpp
-    //bubble sort in cpp
-    void bubbleSort(int arr[], int n)
-    {
-        bool swapped = true;
-        int j = 0;
-        int tmp;
-        while (swapped)
-        {
-            swapped = false;
-            j++;
-            for (int i = 0; i < n - j; i++)
-            {
-                if (arr[i] > arr[i + 1])
-                {
-                    tmp = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = tmp;
-                    swapped = true;
-                }
-            }
-        }
-    }
+    ```javascript
+    // hello world
+    var a='hello world';
+    alert(a);
     ```
     
         indented by 4 spaces also makes code
 
+       
+becomes
 
 this is `inline code`.
 
-```cpp
-//bubble sort in cpp
-void bubbleSort(int arr[], int n)
-{
-    bool swapped = true;
-    int j = 0;
-    int tmp;
-    while (swapped)
-    {
-        swapped = false;
-        j++;
-        for (int i = 0; i < n - j; i++)
-        {
-            if (arr[i] > arr[i + 1])
-            {
-                tmp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = tmp;
-                swapped = true;
-            }
-        }
-    }
-}
+```javascript
+// hello world
+var a='hello world';
+alert(a);
 ```
 
     indented by 4 spaces also makes code
@@ -148,6 +108,8 @@ $$$
 J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}
 $$$
 ```
+       
+becomes
 
 This is inline math: $mr\omega^2 = F$, and the following is blocked math.
 
@@ -171,6 +133,8 @@ $$$
     |:---|:---:|---:|
     |this is the GFM table|following line is multi-aligned|isn't it cute?|
     |left|center|right|
+       
+becomes
 
 |h1|h2|h3|
 |:---|:---:|---:|
@@ -186,17 +150,15 @@ $$$
     
     first line
     second line
-    
-    third line
+       
+becomes
 
 first line
 second line
 
-third line
-
 ---
 
-> For a complete syntax for GFM, please visit: http://harttle.duapp.com/help/
+> For a complete syntax, please refere to: [GFM](https://help.github.com/articles/github-flavored-markdown) , or [Markdown](http://daringfireball.net/projects/markdown/syntax).
 
         </textarea>
         <script src='js/jquery.min.js'></script>
