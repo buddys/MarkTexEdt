@@ -289,6 +289,7 @@ table tr:nth-child(2n) {
 table tr th, table tr td {
   font-size: 1em;
   border: 1p
+}
 
 table tr th {
  font-weight: bold;
@@ -313,4 +314,49 @@ table tr td[align="center"] {
 
 img {
   max-width: 100%
+}
+
+/* Todo
+=============================================================================*/
+.todo{
+  margin-left: 11px;
+}
+.todoitem {
+  position: relative;
+}
+.todoitem span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 5;
+  left: 0;
+  background: #fafafa;
+  border:1px solid #ddd;
+}
+.todoitem span:after {
+  opacity: 0;
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  border: 2px solid #333;
+  border-top: none;
+  border-right: none;
+
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.todoitem span.checked:after {
+  opacity: 1;
+}
+.todoitem label{
+  margin-left: 25px;
+}
+.todoitem ul,.todoitem ol{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
