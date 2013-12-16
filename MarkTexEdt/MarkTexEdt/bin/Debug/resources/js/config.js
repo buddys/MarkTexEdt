@@ -38,6 +38,7 @@ var mdOptions = {
 
 //do rendering
 function update(mdContent){
+    mdContent = decodeURI(mdContent);
     marktex(mdContent, mdOptions, function(err,content){
         if (err) {
             alert('parsing error: \n'+err);

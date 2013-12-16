@@ -5,35 +5,29 @@ using System.Text;
 using System.Windows.Controls;
 using mshtml;
 using System.Reflection;
+using Awesomium.Core;
+using Awesomium.Web;
+using Awesomium.Windows.Controls;
 
 namespace MarkTexEdt.util
 {
     public class Converter
     {
-        WebBrowser w;
+        WebControl w;
 
-        public Converter(WebBrowser _w)
+        public Converter(WebControl _w)
         {
             this.w = _w;
-
+            w.Source = new Uri("file:///resources/html/template.html");
         }
-
-
-
         public void Update(string src="")
         {
-            /*string html = "<html><head><meta charset='utf-8'><meta name='description' content='Rendered by MarkTex'><base href='file:///" +
-                AppDomain.CurrentDomain.BaseDirectory.Replace('\\','/') +
-                "resources/' /><link href='css/gfm.css' /></head><body><div id='dst'></div>" +
-                "<textarea id='src' style='display:none;'>" +
-                System.Security.SecurityElement.Escape(src.Replace("\r", "")) +
-                "</textarea>" +
-                "<script src='js/marked.js'></script>"+
-                "<script src='js/config.js'></script>" +
-                "</body></html>";
-            w.NavigateToString(html);*/
-            string url = "file:///" + AppDomain.CurrentDomain.BaseDirectory.Replace('\\', '/') + "resources/html/standard.html";
-            w.Navigate(url);
+            JSObject jsobject = w.CreateGlobalJavascriptObject("jsobject");
+            //src = src.Replace("\n", @"\n").Replace("\r", "").Replace("'", @"\'");
+            string source = "func('" + Uri.EscapeUriString(src) + "')";
+            Console.WriteLine(source);
+            w.ExecuteJavascript(source);
+            
         }
     }
 }

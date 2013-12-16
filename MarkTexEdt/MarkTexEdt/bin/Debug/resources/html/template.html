@@ -2,27 +2,30 @@
     <head>
         <meta charset='utf-8'/>
         <meta name='description' content='Rendered by MarkTex'/>
-        <base href='file:///D:/git/MarkTexEdt/MarkTexEdt/MarkTexEdt/bin/Debug/resources/' />
-        <link rel='stylesheet' href='css/gfm.css' />
-        <link rel='stylesheet' href='css/syntax.css' />
+        
+        <link rel='stylesheet' href='../css/gfm.css' />
+        <link rel='stylesheet' href='../css/syntax.css' />
     </head>
     <body>
         <div id='content'></div>
-        <script src='js/jquery.min.js'></script>
-        <script src='js/highlight.min.js'></script>
+        <script src='../js/jquery.min.js'></script>
+        <script src='../js/highlight.min.js'></script>
         <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
           skipStartupTypeset: true
         });
         </script>
-        <script type="text/javascript" src="mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script src='js/marktex.js'></script>
-        <script src='js/config.js'></script>
+        <script type="text/javascript" src="../mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src='../js/marktex.js'></script>
+        <script src='../js/config.js'></script>
         <script>
             $(function(){
-                update('#header1\n > this is blockquote\n\n'+
-                       '$$$J_\\alpha(x) = \\sum\\limits_{m=0}^\\infty \\frac{(-1)^m}{m! \\, \\Gamma(m + \\alpha + 1)}{\\left({\\frac{x}{2}}\\right)}^{2 m + \\alpha}$$$');
+                //update('#header1\n > this is blockquote\n\n'+
+                       //'$$$J_\\alpha(x) = \\sum\\limits_{m=0}^\\infty \\frac{(-1)^m}{m! \\, \\Gamma(m + \\alpha + 1)}{\\left({\\frac{x}{2}}\\right)}^{2 m + \\alpha}$$$');
             });
+            function func(str) {
+                update(str);
+            }
         </script>
     </body>
 </html>

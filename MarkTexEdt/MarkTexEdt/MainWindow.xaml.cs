@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 //using System.Windows.Forms
+using Awesomium.Core;
+using Awesomium.Web;
 
 namespace MarkTexEdt
 {
@@ -32,7 +34,9 @@ namespace MarkTexEdt
         {
             InitializeComponent();
             this.DataContext = this.config = util.Config.ConfigInstance;
-            this.converter = new util.Converter(this.wbViewer);
+            this.converter = new util.Converter(this.browser);
+            
+            //browser.Source = new Uri("file:///test.html");
         }
 
         /// <summary>
@@ -44,7 +48,7 @@ namespace MarkTexEdt
         {
             config.RestoreWindow(this);
         }
-
+       
         /// <summary>
         /// 点击关于
         /// </summary>
@@ -67,10 +71,17 @@ namespace MarkTexEdt
 
             //预览HTML页面
             //wbViewer.Navigate(uri);
-            Console.WriteLine(GetSource());
+            //Console.WriteLine(GetSource());
             converter.Update(GetSource());
         }
-
+        private void Update(string src)
+        {
+            JSObject jsobject = browser.CreateGlobalJavascriptObject("jsobject");
+            src = src.Replace("\n", @"\n").Replace("\r", "").Replace("'", @"\'");
+            string source = "func('" + src + "')";
+            Console.WriteLine(source);
+            browser.ExecuteJavascript(source);
+        }
 
         /// <summary>
         /// 新建文件
