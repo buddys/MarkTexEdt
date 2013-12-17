@@ -115,12 +115,12 @@
                     <ColumnDefinition Width="50*" />
                     <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0">
+                <ScrollViewer Name ="scrollView" VerticalScrollBarVisibility="Auto" ScrollChanged="scrollViewer_ScrollChanged"  Grid.Column="0">
                     <RichTextBox Name="tbEditor" TextChanged="tbEditor_TextChanged" AcceptsReturn="True" FontFamily="Microsoft YaHei" FontSize="14"
                          VerticalScrollBarVisibility="Auto"></RichTextBox>
                 </ScrollViewer>
                 <GridSplitter Width="2" Background="LightGray"></GridSplitter>
-                <my:WebControl Grid.Column="1"  Name="browser"/>
+                <my:WebControl Grid.Column="1"  Name="browser"/>                
             </Grid>
         </DockPanel>
     </Grid>

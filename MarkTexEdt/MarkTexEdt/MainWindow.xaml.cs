@@ -12,10 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Win32;
-//using System.Windows.Forms
 using Awesomium.Core;
 using Awesomium.Web;
+using Microsoft.Win32;
 
 namespace MarkTexEdt
 {
@@ -67,20 +66,28 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void tbEditor_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //Uri uri = new Uri(@"http://www.baidu.com", UriKind.Absolute);
-
-            //预览HTML页面
-            //wbViewer.Navigate(uri);
             //Console.WriteLine(GetSource());
             converter.Update(GetSource());
         }
-        private void Update(string src)
+        
+        /// <summary>
+        /// 编辑窗口滚动状态发生变化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void scrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            JSObject jsobject = browser.CreateGlobalJavascriptObject("jsobject");
-            src = src.Replace("\n", @"\n").Replace("\r", "").Replace("'", @"\'");
-            string source = "func('" + src + "')";
-            Console.WriteLine(source);
-            browser.ExecuteJavascript(source);
+            double offset = scrollView.ContentVerticalOffset;
+            Console.WriteLine(offset);
+            double height = scrollView.ExtentHeight;
+            Console.WriteLine(height);
+            double vertical = scrollView.ScrollableHeight;
+            Console.WriteLine(vertical);
+           // string source = GetSource();
+            //string temp = source.Replace("\n","");
+            //int line = source.Count() - temp.Count();
+            int firstIndex = (Int32)offset / (Int32)(height + vertical + 1) - 1;
+            Console.WriteLine(vertical);
         }
 
         /// <summary>
@@ -337,5 +344,6 @@ namespace MarkTexEdt
             tbEditor.Paste();
         }
 
+                
     }
 }
