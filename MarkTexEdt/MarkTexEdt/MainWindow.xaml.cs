@@ -51,6 +51,7 @@ namespace MarkTexEdt
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             config.RestoreWindow(this);
+            tbEditor.Focus();   //窗口载入后，左边的编辑框获得焦点
         }
        
         /// <summary>
@@ -78,6 +79,7 @@ namespace MarkTexEdt
             //Console.WriteLine(GetSource());
             //converter.Update(GetSource());
             converter.Update(GetSource());
+         
         }
        /* private void Update(string src)
         {
@@ -116,14 +118,7 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.CheckPathExists = true;
-            sfd.Filter = config.MarkdownFileFilter;
-            if ((bool)sfd.ShowDialog())
-            {
-                //TODO: Save file sfd.FileName
-            }
-
+            edit.Save_File();
         }
 
         /// <summary>
@@ -239,6 +234,11 @@ namespace MarkTexEdt
         private void tbEditor_KeyUp(object sender, KeyEventArgs e)
         {
             highLight.HighLight5();
-        }        
+        }
+
+        private void Print_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Print();
+        }
     }
 }
