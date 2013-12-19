@@ -25,7 +25,7 @@ namespace MarkTexEdt.util
             JSObject jsobject = w.CreateGlobalJavascriptObject("jsobject");
             //src = src.Replace("\n", @"\n").Replace("\r", "").Replace("'", @"\'");
             string source = "func('" + Uri.EscapeUriString(src) + "')";
-            Console.WriteLine(source);
+         //   Console.WriteLine(source);
             w.ExecuteJavascript(source);
             
         }

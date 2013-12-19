@@ -19,6 +19,7 @@ namespace MarkTexEdt.util
         public EditBasicFuction(RichTextBox tb)
         {
             Out_tbEditor = tb;
+            //TextPointer tp = 
         }
 
         /// <summary>
@@ -26,8 +27,9 @@ namespace MarkTexEdt.util
         /// </summary>
         public void Bold()
         {
+            Regex reg = new Regex(@"\*\*.*\*\*");
             TextSelection selection = Out_tbEditor.Selection;
-            String before_Click_Text = "  ", click_Again_Text = "  ";
+            String before_Click_Text = "    ", click_Again_Text = "  ";
             // 如果没有选择文本，则按选取了一个普通字体的文本来处理
             FontWeight currentState = FontWeights.Normal;
             // 尝试获取所选文本的粗体状态
@@ -38,15 +40,26 @@ namespace MarkTexEdt.util
             }
             if (currentState == FontWeights.Normal)
             {
-                before_Click_Text = "**" + selection.Text + "**";
-                selection.Text = before_Click_Text;
+                before_Click_Text = selection.Text;
+                selection.Text = "**" + before_Click_Text + "**";
                 selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Bold);
+                //selection.Text = before_Click_Text;
+
             }
-            else
+            else if(currentState == FontWeights.Bold)
             {
-                click_Again_Text = selection.Text.Substring(2, selection.Text.Length - 4);
-                selection.Text = click_Again_Text;
-                selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Normal);
+                if (reg.Match(selection.Text).Success)
+                {
+                    click_Again_Text = selection.Text.Substring(2, selection.Text.Length - 4);
+                    selection.Text = click_Again_Text;
+                    selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Normal);
+                }
+                else
+                {
+                    selection.Text = "**" + selection.Text + "**";
+                    selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Bold);
+                }
+               
             }
 
             Out_tbEditor.Focus();
@@ -57,7 +70,7 @@ namespace MarkTexEdt.util
         /// </summary>
         public void Italic()
         {
-
+            Regex reg = new Regex(@"\*.*\*");
             TextSelection selection = Out_tbEditor.Selection;
             String before_Click_Text = "  ", click_Again_Text = "  ";
             // 如果没有选择文本，则按选取了一个普通字体的文本来处理
@@ -65,21 +78,29 @@ namespace MarkTexEdt.util
             // 尝试获取所选文本的粗体状态
             if (selection.GetPropertyValue(Run.FontStyleProperty) !=
                DependencyProperty.UnsetValue)
-            {
-                
+            {                
                 currentState = (FontStyle)selection.GetPropertyValue(Run.FontStyleProperty);
             }
             if (currentState == FontStyles.Normal)
-            {
-                before_Click_Text = "*" + selection.Text + "*";
-                selection.Text = before_Click_Text;
-                selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Italic);
+            {              
+                    before_Click_Text = "*" + selection.Text + "*";
+                    selection.Text = before_Click_Text;
+                    selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Italic);              
             }
             else if(currentState == FontStyles.Italic)
             {
-                click_Again_Text = selection.Text.Substring(1, selection.Text.Length - 2);
-                selection.Text = click_Again_Text;
-                selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Normal);
+                if (reg.Match(selection.Text).Success)
+                {
+                    click_Again_Text = selection.Text.Substring(1, selection.Text.Length - 2);
+                    selection.Text = click_Again_Text;
+                    selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Normal);
+                }
+                else
+                {
+                    selection.Text = "*" + selection.Text + "*";
+                    selection.ApplyPropertyValue(Run.FontStyleProperty,FontStyles.Italic);
+                }
+               
             }
             Out_tbEditor.Focus();
         }
@@ -158,7 +179,6 @@ namespace MarkTexEdt.util
                         {
                             fs = new FileStream(open.FileName, FileMode.Open, FileAccess.Read);
                             StreamReader streamReader = new StreamReader(fs, System.Text.Encoding.UTF8);
-
                             using (fs)
                             {
                                 TextRange text = new TextRange(Out_tbEditor.Document.ContentStart, Out_tbEditor.Document.ContentEnd);
@@ -242,6 +262,26 @@ namespace MarkTexEdt.util
                 pd.PrintVisual(Out_tbEditor as Visual, "printing as visual");
                 pd.PrintDocument((((IDocumentPaginatorSource)Out_tbEditor.Document).DocumentPaginator), "printing as paginator");
             }
+        }
+
+        public void Get_Current_Time()
+        {
+            String dayAndTime = "";
+            //获得星期几
+            //dayAndTime =  DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            //获得年/月/日
+            dayAndTime += DateTime.Now.ToString("yyyy/MM/dd");   //yyyy年MM月dd日
+            dayAndTime += " ";
+            //获得时:分:秒
+            dayAndTime += DateTime.Now.ToString("HH:mm:ss ");
+            Out_tbEditor.CaretPosition.InsertTextInRun(dayAndTime);
+            //return dayAndTime;
+        }
+
+        public void Add_Link()
+        {
+            String link = "[urlName](http:// \"title\")";
+            Out_tbEditor.CaretPosition.InsertTextInRun(link);
         }
 
     }

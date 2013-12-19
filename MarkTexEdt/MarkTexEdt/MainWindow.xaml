@@ -5,25 +5,128 @@
         Title="MarkTexEdt" Height="600" Width="800" Loaded="Window_Loaded" Closing="Window_Closing" xmlns:my="http://schemas.awesomium.com/winfx">
     <Window.Resources>
         <util:VisibilityToBoolConverter x:Key="VisibilityToBoolConverter" />
+        <RoutedUICommand x:Key="IncreaseFontSize" Text="Increase Font Size" />
+        <RoutedUICommand x:Key="DecreaseFontSize" Text="Decrease Font Size" />
+        <RoutedUICommand x:Key="Bold" Text="Text Bold" />
+        <RoutedUICommand x:Key="Italic" Text="Text Italic" />
+        <RoutedUICommand x:Key="Code" Text="Add Code"/>
+        <RoutedUICommand x:Key="HeadLine1" Text="Add HeadLine1"/>
+        <RoutedUICommand x:Key="HeadLine2" Text="Add HeadLine2"/>
+        <RoutedUICommand x:Key="HeadLine3" Text="Add HeadLine3"/>
+        <RoutedUICommand x:Key="HeadLine4" Text="Add HeadLine4"/>
+        <RoutedUICommand x:Key="HyperLink" Text="Add HyperLink"/>
+        <RoutedUICommand x:Key="Time" Text="Add Time"/>
+        <RoutedUICommand x:Key="Horizontal_Scale" Text="Add Horizontal_Scale"/>
+        <RoutedUICommand x:Key="Undo" Text="Undo"/>
+        <RoutedUICommand x:Key="Open_File" Text="Open New File"/>
+        <RoutedUICommand x:Key="Save_File" Text="Save File"/>
     </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl+Shift" Key="I" Command="{StaticResource IncreaseFontSize}"/>
+        <KeyBinding Gesture="Ctrl+D" Command="{StaticResource DecreaseFontSize}"/>
+        <KeyBinding Gesture="Ctrl+Alt+B" Command="{StaticResource Bold}"/>
+        <KeyBinding Gesture="Ctrl+Alt+I" Command="{StaticResource Italic}"/>
+        <KeyBinding Gesture="Ctrl+K" Command="{StaticResource Code}"/>
+        <KeyBinding Gesture="Ctrl+Alt+1" Command="{StaticResource HeadLine1}"/>
+        <KeyBinding Gesture="Ctrl+Alt+2" Command="{StaticResource HeadLine2}"/>
+        <KeyBinding Gesture="Ctrl+3" Command="{StaticResource HeadLine3}"/>
+        <KeyBinding Gesture="Ctrl+4" Command="{StaticResource HeadLine4}"/>
+        <KeyBinding Gesture="Ctrl+Alt+L" Command="{StaticResource HyperLink}"/>
+        <KeyBinding Gesture="Ctrl+Alt+T" Command="{StaticResource Time}"/>
+        <KeyBinding Gesture="Ctrl+Alt+R" Command="{StaticResource Horizontal_Scale}"/>
+        <KeyBinding Gesture="Ctrl+Alt+Z" Command="{StaticResource Undo}"/>
+        <KeyBinding Gesture="Ctrl+O" Command="{StaticResource Open_File}"/>
+        <KeyBinding Gesture="Ctrl+S" Command="{StaticResource Save_File}"/>
+    </Window.InputBindings>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource IncreaseFontSize}"
+                        CanExecute="CommandBinding_Increase_CanExecute"
+                        Executed="CommandBinding_Increase_Executed"/>
+        <CommandBinding Command="{StaticResource DecreaseFontSize}"
+                        CanExecute="CommandBinding_Decrease_CanExecute"
+                        Executed="CommandBinding_Decrease_Executed"/>
+        <CommandBinding Command="{StaticResource Bold}"
+                        CanExecute="CommandBinding_Bold_CanExecute"
+                        Executed="CommandBinding_Bold_Execute"/>
+        <CommandBinding Command="{StaticResource Italic}"
+                        CanExecute="CommandBinding_Italic_CanExecute"
+                        Executed="CommandBinding_Italic_Execute"/>
+        <CommandBinding Command="{StaticResource Code}"
+                        CanExecute="CommandBinding_Code_CanExecute"
+                        Executed="CommandBinding_Code_Execute"/>
+        <CommandBinding Command="{StaticResource HeadLine1}"
+                        CanExecute="CommandBinding_HeadLine1_CanExecute"
+                        Executed="CommandBinding_HeadLine1_Execute"/>
+        <CommandBinding Command="{StaticResource HeadLine2}"
+                        CanExecute="CommandBinding_HeadLine2_CanExecute"
+                        Executed="CommandBinding_HeadLine2_Execute"/>
+        <CommandBinding Command="{StaticResource HeadLine3}"
+                        CanExecute="CommandBinding_HeadLine3_CanExecute"
+                        Executed="CommandBinding_HeadLine3_Execute"/>
+        <CommandBinding Command="{StaticResource HeadLine4}"
+                        CanExecute="CommandBinding_HeadLine4_CanExecute"
+                        Executed="CommandBinding_HeadLine4_Execute"/>
+        <CommandBinding Command="{StaticResource HyperLink}"
+                        CanExecute="CommandBinding_HyperLink_CanExecute"
+                        Executed="CommandBinding_HyperLink_Execute"/>
+        <CommandBinding Command="{StaticResource Time}"
+                        CanExecute="CommandBinding_Time_CanExecute"
+                        Executed="CommandBinding_Time_Execute"/>
+        <CommandBinding Command="{StaticResource Horizontal_Scale}"
+                        CanExecute="CommandBinding_Horizontal_Scale_CanExecute"
+                        Executed="CommandBinding_Horizontal_Scale_Execute"/>
+        <CommandBinding Command="{StaticResource Undo}"
+                        CanExecute="CommandBinding_Undo_CanExecute"
+                        Executed="CommandBinding_Undo_Execute"/>
+        <CommandBinding Command="{StaticResource Open_File}"
+                        CanExecute="CommandBinding_Open_File_CanExecute"
+                        Executed="CommandBinding_Open_File_Execute"/>
+        <CommandBinding Command="{StaticResource Save_File}"
+                        CanExecute="CommandBinding_Save_File_CanExecute"
+                        Executed="CommandBinding_Save_File_Execute"/>
+
+    </Window.CommandBindings>
+    
     <Grid>
         <DockPanel>
             <Menu Visibility="{Binding Path=MenuBarVisibility}" Background="LightGray" DockPanel.Dock="Top">
                 <MenuItem Padding="10,3" Header="文件">
-                    <MenuItem Header="打开" Click="Open_Click" ></MenuItem>
-                    <MenuItem Header="保存" Click="Save_Click" ></MenuItem>
+                    <MenuItem Header="打开 (Ctrl+O)" Click="Open_Click"></MenuItem>
+                    <MenuItem Header="保存 (Ctrl+S)" Click="Save_Click" ></MenuItem>
                     <MenuItem Header="另存为" Click="SaveAs_Click"></MenuItem>
+                    <Separator Margin="7,0"></Separator>
                     <MenuItem Header="导出"></MenuItem>
                     <MenuItem Header="打印" Click="Print_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="编辑">
-                    <MenuItem Header="撤销" Click="Undo_Click"></MenuItem>
-                    <MenuItem Header="重做 Ctrl+Z" Click="Redo_Click" ></MenuItem>
-                    <MenuItem Header="全选 Ctrl+A" Click="SelectAll_Click"></MenuItem>
-                    <MenuItem Header="剪切 Ctrl+X" Click="Cut_Click"></MenuItem>
-                    <MenuItem Header="复制 Ctrl+C" Click="Copy_Click"></MenuItem>
-                    <MenuItem Header="粘贴 Ctrl+V" Click="Paste_Click"></MenuItem>
-                </MenuItem> 
+                    <MenuItem Header="撤销    Ctrl+Alt+Z" Click="Undo_Click"></MenuItem>
+                    <MenuItem Header="重做    Ctrl+Z" Click="Redo_Click" ></MenuItem>
+                    <MenuItem Header="全选    Ctrl+A" Click="SelectAll_Click"></MenuItem>
+                    <Separator Margin="7,0"></Separator>
+                    <MenuItem Header="剪切    Ctrl+X" Click="Cut_Click"></MenuItem>
+                    <MenuItem Header="复制    Ctrl+C" Click="Copy_Click"></MenuItem>
+                    <MenuItem Header="粘贴    Ctrl+V" Click="Paste_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem Padding="10,3" Header="插入">
+                    <MenuItem Header="增大字体  Ctrl+Shift+I" Click="Increase_Font_Size_Click"></MenuItem>
+                    <MenuItem Header="缩小字体  Ctrl+D" Click="Decrease_Font_Size_Click"></MenuItem>
+                    <MenuItem Header="粗体    Ctrl+Alt+B" Click="Bold_Click"></MenuItem>
+                    <MenuItem Header="斜体    Ctrl+Alt+I" Click="Italic_Click"></MenuItem>
+                    <MenuItem Header="代码    Ctrl+K" Click="Code_Click"></MenuItem>
+                    <Separator Margin="7,0"></Separator>
+                    <MenuItem Header="标题1   Ctrl+1" Click="HeadLine1_Click"></MenuItem>
+                    <MenuItem Header="标题2   Ctrl+2" Click="HeadLine2_Click"></MenuItem>
+                    <MenuItem Header="标题3   Ctrl+3" Click="HeadLine3_Click"></MenuItem>
+                    <MenuItem Header="标题4   Ctrl+4" Click="HeadLine4_Click"></MenuItem>
+                    <Separator Margin="7,0"></Separator>
+                    <MenuItem Header="超链接   Ctrl+L" Click="Add_Link_Click"></MenuItem>
+                    <MenuItem Header="图片    Ctrl+G"  Click="Graphic_Click"></MenuItem>
+                    <Separator Margin="7,0"></Separator>
+                    <MenuItem Header="水平标尺  Ctrl+R" Click="Horizontal_Scale_Click"></MenuItem>
+                    <MenuItem Header="时间戳   Ctrl+T" Click="Time_Click"></MenuItem>
+                </MenuItem>
                 <MenuItem Header="视图">
                     <MenuItem IsCheckable="True" Header="显示菜单栏" IsChecked="{Binding Path=MenuBarVisibility,Converter={StaticResource VisibilityToBoolConverter}}"></MenuItem>
                 </MenuItem>
@@ -48,23 +151,23 @@
                     </ContextMenu>
                 </ToolBarTray.ContextMenu>
                 <ToolBar Band="1" BandIndex="1">
-                    <Button Click="Open_Click" ToolTip="打开">
+                    <Button Click="Open_Click" ToolTip="打开 (Ctrl+O)">
                         <Image Source="/resource/img/folder-26.png" ></Image>
                     </Button>
-                    <Button Click="Save_Click" ToolTip="保存">
+                    <Button Click="Save_Click" ToolTip="保存 (Ctrl+S)">
                         <Image Source="/resource/img/save-26.png" ></Image>
                     </Button>
                     <Separator Margin="7,0"></Separator>
-                    <Button Click="Undo_Click" ToolTip="撤销">
+                    <Button Click="Undo_Click" ToolTip="撤销 (Ctrl+Alt+Z)">
                         <Image Source="/resource/img/undo-26.png" ></Image>
                     </Button>
-                    <Button Click="Redo_Click" ToolTip="重做">
+                    <Button Click="Redo_Click" ToolTip="重做 (Ctrl+Z)">
                         <Image Source="/resource/img/redo-26.png" ></Image>
                     </Button>
-                    <Button Click="Bold_Click" ToolTip="加粗">
+                    <Button Click="Bold_Click" ToolTip="加粗 (Ctrl+Alt+B)">
                         <Image Source="/resource/img/bold-26.png" ></Image>
                     </Button>
-                    <Button Click="Italic_Click" ToolTip="斜体">
+                    <Button Click="Italic_Click" ToolTip="斜体 (Ctrl+Alt+I)">
                         <Image Source="/resource/img/italic-26.png" ></Image>
                     </Button>
                     <Button Command="EditingCommands.AlignLeft" ToolTip="左对齐">
@@ -82,9 +185,8 @@
                     </Button>
                     <Button Command="EditingCommands.ToggleNumbering" ToolTip="有序列表">
                         <Image Source="/resource/img/ordered_list-26.png" ></Image>
-                    </Button>
-                  
-                    <Button >
+                    </Button>                  
+                    <Button Click="Add_Link_Click" ToolTip="超链接(Ctrl+L)">
                         <Image Source="/resource/img/add_link-26.png" ></Image>
                     </Button>
                     <Button >

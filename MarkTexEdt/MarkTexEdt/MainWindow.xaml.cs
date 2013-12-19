@@ -31,6 +31,7 @@ namespace MarkTexEdt
         util.Converter converter;
         util.EditBasicFuction edit;
         util.HighLight highLight;
+        util.CommandAndInsert commandAndInsert;
 
         public MainWindow()
         {
@@ -40,6 +41,7 @@ namespace MarkTexEdt
 
             this.edit = new util.EditBasicFuction(tbEditor);
             this.highLight = new util.HighLight(tbEditor);
+            this.commandAndInsert = new util.CommandAndInsert(tbEditor);
             //browser.Source = new Uri("file:///test.html");
         }
 
@@ -240,5 +242,247 @@ namespace MarkTexEdt
         {
             edit.Print();
         }
+
+        private void Time_Click(object sender, RoutedEventArgs e)
+        {           
+            edit.Get_Current_Time();
+        }
+
+        private void Add_Link_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Add_Link();
+        }
+
+        private void CommandBinding_Increase_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (tbEditor.FontSize > 50)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void CommandBinding_Increase_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            tbEditor.FontSize += 5;
+        }
+
+        private void CommandBinding_Decrease_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (tbEditor.FontSize <= 5)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void CommandBinding_Decrease_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            tbEditor.FontSize -= 5;
+        }
+
+        private void CommandBinding_Bold_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Bold_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            edit.Bold();
+        }
+
+        private void CommandBinding_Italic_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Italic_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            edit.Italic();
+        }
+
+        private void Code_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_Code();
+
+        }
+
+        private void HeadLine1_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine1();
+        }
+
+        private void HeadLine2_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine2();
+        }
+
+        private void HeadLine3_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine3();
+        }
+
+        private void HeadLine4_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine4();
+        }
+
+       
+        private void Graphic_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Horizontal_Scale_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_Horizontal_Scale();
+        }
+
+        private void CommandBinding_Code_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Code_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            commandAndInsert.Add_Code();
+        }
+
+        private void CommandBinding_HeadLine1_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_HeadLine1_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine1();
+        }
+
+        private void CommandBinding_HeadLine2_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_HeadLine2_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine2();
+        }
+
+        private void CommandBinding_HeadLine3_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_HeadLine3_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine3();
+        }
+
+        private void CommandBinding_HeadLine4_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_HeadLine4_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine4();
+        }
+
+        private void CommandBinding_HyperLink_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_HyperLink_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            edit.Add_Link();
+        }
+
+        private void CommandBinding_Time_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Time_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            edit.Get_Current_Time();
+        }
+
+        private void CommandBinding_Horizontal_Scale_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Horizontal_Scale_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            commandAndInsert.Add_Horizontal_Scale();
+        }
+
+        private void CommandBinding_Undo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Undo_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            edit.Redo();
+        }
+
+        private void Increase_Font_Size_Click(object sender, RoutedEventArgs e)
+        {
+            //commandAndInsert.Increase_Font_Size();
+            if (tbEditor.FontSize < 50)
+            {
+                tbEditor.FontSize += 5;
+                if (tbEditor.FontSize > 50)
+                {
+                    tbEditor.FontSize = 50;
+                }
+            }
+            else
+            {
+                tbEditor.FontSize = 50;
+            }
+        }
+
+        private void Decrease_Font_Size_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbEditor.FontSize > 5)
+            {
+                tbEditor.FontSize -= 5;
+            }
+            else
+            {
+                tbEditor.FontSize = 5;
+            }
+        }
+
+        private void CommandBinding_Open_File_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Open_File_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            edit.Open_File();
+        }
+
+        private void CommandBinding_Save_File_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Save_File_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            edit.Save_File();           
+        }
+
+       
     }
 }

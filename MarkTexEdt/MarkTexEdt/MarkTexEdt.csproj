@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="util\CommandAndInsert.cs" />
     <Compile Include="util\Config.cs" />
     <Compile Include="util\Converter.cs" />
     <Compile Include="util\EditorBasicFunction.cs" />
