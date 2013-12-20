@@ -22,7 +22,7 @@ namespace MarkTexEdt.util
         }
         public void Update(string src="")
         {
-            JSObject jsobject = w.CreateGlobalJavascriptObject("jsobject");
+            JSObject jsobject = w.CreateGlobalJavascriptObject("jsobject"); 
             //src = src.Replace("\n", @"\n").Replace("\r", "").Replace("'", @"\'");
             string source = "func('" + Uri.EscapeUriString(src) + "')";
          //   Console.WriteLine(source);

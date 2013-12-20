@@ -9,7 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.Windows.Media.Imaging; 
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
@@ -222,6 +222,7 @@ namespace MarkTexEdt
         {
             edit.Cut();
         }
+
         /// <summary>
         /// 粘贴
         /// </summary>
@@ -236,7 +237,8 @@ namespace MarkTexEdt
         private void tbEditor_KeyUp(object sender, KeyEventArgs e)
         {
             highLight.HighLight5();
-        }
+            highLight.HighLightMultiLines();
+         }
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {

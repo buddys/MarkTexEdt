@@ -17,48 +17,151 @@ namespace MarkTexEdt.util
         {
             Out_tbEditor = tb;
         }
-
+        public void highLightAll()
+        {
+            TextRange text = new TextRange(Out_tbEditor.Document.ContentStart,Out_tbEditor.Document.ContentEnd);
+            text.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Red));
+        }
         public void HighLightMultiLines()
         {
-            /*else if(match9.Success) 
-                       {
-                           int count;
-                           String temp2;
-                           TextPointer matchStart, matchCurrent, matchEnd;
-                           matchStart = navigator;
-                           matchCurrent = navigator;
-                           matchEnd = navigator;
-                        //   while (matchEnd.CompareTo(document.ContentEnd)<0)
-                           while (true)                           
-                           {
-                               matchCurrent = matchCurrent.GetLineStartPosition(1, out count);
-                               Console.WriteLine(matchCurrent.GetTextInRun(LogicalDirection.Forward));
-                               temp2 = matchCurrent.GetTextInRun(LogicalDirection.Forward);
-                               Console.WriteLine(temp2);
-                               if (reg10.Match(temp2).Success)
-                               {
-                                   matchLength = reg10.Match(temp2).Length;
-                                   matchEnd = matchCurrent.GetPositionAtOffset(3);
-                                   TextRange textrange = new TextRange(matchStart,matchEnd);
-                                   textrange.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Green));
+            Regex reg1 = new Regex(@"^```.*$|^\$\$\$.*$");
+            Regex reg2 = new Regex(@"^```|^\$\$\$");
 
-                                   TextRange t3 = new TextRange(matchEnd, matchEnd.GetPositionAtOffset(temp2.Length-3));
-                                   t3.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Black));
-
-                                   break;
-                               }
-                               if (count != 1)
+            FlowDocument document = Out_tbEditor.Document;
+            StringBuilder buffer = new StringBuilder();
+            for (TextPointer navigator = document.ContentStart;
+               navigator.CompareTo(document.ContentEnd) < 0;
+               navigator = navigator.GetNextContextPosition(LogicalDirection.Forward))
+            {
+                switch (navigator.GetPointerContext(LogicalDirection.Forward))
+                {
+                    case TextPointerContext.ElementStart:
+                        // Output opening tag of a TextElement
+                        buffer.AppendFormat("<{0}>", navigator.GetAdjacentElement(LogicalDirection.Forward).GetType().Name);
+                        // Console.WriteLine("ElementStart" + buffer.ToString());
+                        break;
+                    case TextPointerContext.ElementEnd:
+                        // Output closing tag of a TextElement
+                        buffer.AppendFormat("</{0}>", navigator.GetAdjacentElement(LogicalDirection.Forward).GetType().Name);
+                        // Console.WriteLine("ElementEnd" + buffer.ToString());
+                        break;
+                    case TextPointerContext.EmbeddedElement:
+                        // Output simple tag for embedded element
+                        buffer.AppendFormat("<{0}/>", navigator.GetAdjacentElement(LogicalDirection.Forward).GetType().Name);
+                        break;
+                    case TextPointerContext.Text:
+                        //  while(navigator.GetPointerContext(LogicalDirection.Forward) != TextPointerContext.Text)
+                        string tmp = navigator.GetTextInRun(LogicalDirection.Forward);
+                        String temp2 = "";
+                        buffer.Append(tmp);
+                        Match match1 = reg1.Match(tmp);
+                        int flag = 0, flag2 = 0;                           //flag标记是否最终匹配成功， flag2标识是否 reg1匹配成功。
+                        TextPointer matchStart, matchCurrent, matchEnd, high1, high2;
+                        matchStart = navigator;
+                        matchCurrent = navigator.GetPositionAtOffset(tmp.Length, LogicalDirection.Forward);
+                        if (match1.Success)                     // Regex reg1 = new Regex(@"^```.*$|^\$\$\$.*$");
+                        {
+                            flag2 = 1;                              //成功匹配 reg1
+                            int count, count2;                          
+                           
+                           // TextPointer matchStart, matchCurrent, matchEnd, high1, high2;
+                            //matchStart = navigator;
+                          //  matchCurrent = navigator.GetPositionAtOffset(tmp.Length, LogicalDirection.Forward);
+                            String test2 = matchCurrent.GetTextInRun(LogicalDirection.Forward).ToString();
+                            matchEnd = navigator;
+                            //   while (matchEnd.CompareTo(document.ContentEnd)<0)
+                            while (matchCurrent.CompareTo(document.ContentEnd) < 0)
+                            {
+                                if (matchCurrent.GetPointerContext(LogicalDirection.Forward) != TextPointerContext.Text)
                                 {
-                                    matchEnd = document.ContentEnd ;
-                                  break;
-                                } 
-                           }
-                           navigator = matchEnd.GetNextContextPosition(LogicalDirection.Backward);
-                           break;                           
+                                    matchCurrent = matchCurrent.GetNextContextPosition(LogicalDirection.Forward);
+                                }
+                                else
+                                {
+                                    temp2 = matchCurrent.GetTextInRun(LogicalDirection.Forward);
+                                    Match match2 = reg2.Match(temp2);  
+                                    if (match2.Success)
+                                    {
+                                        matchEnd = matchCurrent.GetPositionAtOffset(match2.Length, LogicalDirection.Forward);
+                                        TextRange textRange = new TextRange(matchStart, matchEnd);
+                                        String test11 = matchStart.GetTextInRun(LogicalDirection.Forward).ToString();
+                                        String test12 = matchEnd.GetTextInRun(LogicalDirection.Forward).ToString();
+                                        String test15 = textRange.Text.ToString();
 
-                       }*/
+                                        high1 = matchStart.GetLineStartPosition(1, out count);
+                                        while (high1.GetPointerContext(LogicalDirection.Forward) != TextPointerContext.Text)
+                                        {
+                                            high1 = high1.GetNextContextPosition(LogicalDirection.Forward);
+                                        }
+                                        String test9 = high1.GetTextInRun(LogicalDirection.Forward).ToString();
+                                        high2 = high1.GetLineStartPosition(1, out count2);
+                                        while (high2.GetPointerContext(LogicalDirection.Forward) != TextPointerContext.Text)
+                                        {
+                                            high2 = high2.GetNextContextPosition(LogicalDirection.Forward);
+                                        }
+                                        String test10 = high2.GetTextInRun(LogicalDirection.Forward).ToString();
+                                        while (true)
+                                        {
+                                            if (count2 == 0)
+                                                break;
+                                          //  high1.GetTextInRun(LogicalDirection.Forward).ToString().Length;
+                                            TextRange t5 = new TextRange(high1, high1.GetPositionAtOffset(high1.GetTextInRun(LogicalDirection.Forward).ToString().Length));
+                                            String test8 = t5.Text.ToString();
+                                            t5.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Green));
+                                            high1 = high2;
+                                            high2 = high2.GetLineStartPosition(1,out count2);
+ 
+                                        }
+                                       
+                                       /* textRange.ClearAllProperties();
+                                        textRange.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Green));
+                                     // textrange.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Red));
+                                        String test3 = textRange.Text.ToString();*/
+                                       
+
+                                        TextRange t1 = new TextRange(matchEnd, matchEnd.GetPositionAtOffset(temp2.Length - match2.Length));
+                                        String test4 = t1.Text.ToString();
+                                        t1.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Black));
+                                        flag = 1;
+                                    }
+                                   
+                                    matchCurrent = matchCurrent.GetPositionAtOffset(temp2.Length);
+                                    String test7 = matchCurrent.GetTextInRun(LogicalDirection.Forward).ToString();
+                                     if (flag == 1)
+                                    {
+                                        navigator = matchCurrent;         //开始下一次判断，看是否有新的同时匹配reg1、reg2的区间
+                                        String test6 = navigator.GetTextInRun(LogicalDirection.Forward).ToString();
+                                        break;
+                                    }
+                                    matchCurrent = matchCurrent.GetNextContextPosition(LogicalDirection.Forward);
+                                    String test5 = matchCurrent.GetTextInRun(LogicalDirection.Forward).ToString();
+                                }
+                            }
+                            
+                        }
+                       /* if (flag2 == 0)
+                        {
+                            navigator = navigator.GetPositionAtOffset(tmp.Length, LogicalDirection.Forward);
+                        }
+                        else if (flag2 == 1)
+                        {
+                            if (flag == 0)
+                            {
+ 
+                            } 
+                        }
+                        */
+                        if (flag != 1)
+                        {
+                            navigator = navigator.GetPositionAtOffset(tmp.Length, LogicalDirection.Forward);
+                            String test1 = navigator.GetTextInRun(LogicalDirection.Forward).ToString();
+                        }
+                        break;
+                }
+            }
         }
-
+                
+      
         public void HighLight5()
         {
             Regex reg = new Regex("^ *#.*$");       //高亮一级标题、二级标题   => 红色           
@@ -70,13 +173,7 @@ namespace MarkTexEdt.util
             Regex reg7 = new Regex(@"\[.*\]\(.*\)");  //高亮超链接 => 蓝色
             //GFM syntex highlight
             Regex reg8 = new Regex(@"^- \[[x ]\] |^[0-9][\.] |^[-+*] ");    // 出现复选框， => 蓝色
-         
-            //自定义 syntex highlight
-          //  Regex reg9 = new Regex("\\$.*\\$");
-            //Regex reg9 = new Regex(@"(\n|^)\s*``` *\S*\r?\n[\s\S]*```[ \t]*(\r?\n|$)");
-         //   Regex reg9 = new Regex(@"^```.*$");   
-          //  Regex reg10 = new Regex(@"^```\s*$");
-            //Regex reg = new Regex("(?:^|\n)    (.*)(?:\n|$)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
             FlowDocument document = Out_tbEditor.Document;
             StringBuilder buffer = new StringBuilder();
             for (TextPointer navigator = document.ContentStart;
