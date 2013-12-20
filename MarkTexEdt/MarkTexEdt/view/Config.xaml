@@ -17,13 +17,16 @@
                 <Button Click="Cancel_Click">取消</Button>
             </StackPanel>
             <TabControl>
-                <TabItem Header="编辑器"></TabItem>
+                <TabItem Header="编辑器">
+                    <CheckBox Content="同步显示" Height="16" Name="SynchroScroll" Click ="SynchroScroll_Click" 
+                              Width="233" IsChecked="{Binding Path=SynchroScroll}" />
+                </TabItem>
                 <TabItem Header="转换器">
                     <StackPanel>
                         <DockPanel>
                             <Label DockPanel.Dock="Left">转换器</Label>
                             <ComboBox HorizontalContentAlignment="Center" Width="200" 
-                                      SelectedIndex="{Binding Path=ConverterType}">
+                                      SelectedIndex="{Binding Path=ConverterType}" SelectionChanged="ComboBox_SelectionChanged">
                                 <ComboBoxItem>MarkTex</ComboBoxItem>
                                 <ComboBoxItem>Markdown</ComboBoxItem>
                                 <ComboBoxItem>Github Flavored Markdown</ComboBoxItem>

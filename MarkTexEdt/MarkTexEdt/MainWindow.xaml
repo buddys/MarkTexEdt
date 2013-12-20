@@ -48,13 +48,10 @@
                     </ContextMenu>
                 </ToolBarTray.ContextMenu>
                 <ToolBar Band="1" BandIndex="1">
-                    <Button Click="Add_Click" ToolTip="新建">
-                        <Image Source="/resource/img/add_file-26.png" ></Image>
-                    </Button>
                     <Button Click="Open_Click" ToolTip="打开">
                         <Image Source="/resource/img/folder-26.png" ></Image>
                     </Button>
-                    <Button ToolTip="保存">
+                    <Button Click="Save_Click" ToolTip="保存">
                         <Image Source="/resource/img/save-26.png" ></Image>
                     </Button>
                     <Separator Margin="7,0"></Separator>
@@ -70,20 +67,20 @@
                     <Button Click="Italic_Click" ToolTip="斜体">
                         <Image Source="/resource/img/italic-26.png" ></Image>
                     </Button>
-                    <Button Click="Left_Click" ToolTip="左对齐">
+                    <Button Command="EditingCommands.AlignLeft" ToolTip="左对齐">
                         <Image Source="/resource/img/left-26.png" ></Image>
                     </Button>
-                    <Button Click="Center_Click" ToolTip="居中">
+                    <Button  Command="EditingCommands.AlignCenter" ToolTip="居中">
                         <Image Source="/resource/img/center-26.png" ></Image>
                     </Button>
-                    <Button Click="Right_Click"  ToolTip="右对齐">
+                    <Button Command="EditingCommands.AlignRight" ToolTip="右对齐">
                         <Image Source="/resource/img/right-26.png" ></Image>
                     </Button>
                     <Separator Margin="7,0"></Separator>
-                    <Button >
+                    <Button Command="EditingCommands.ToggleBullets" ToolTip="无序列表">
                         <Image Source="/resource/img/list-26.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Command="EditingCommands.ToggleNumbering" ToolTip="有序列表">
                         <Image Source="/resource/img/ordered_list-26.png" ></Image>
                     </Button>
                     <Button >
@@ -106,8 +103,7 @@
                         <Image Source="/resource/img/right_array-26.png" ></Image>
                     </Button>
                 </ToolBar>
-            </ToolBarTray>       
-            
+            </ToolBarTray>                
           
             
             <Grid>
@@ -117,10 +113,16 @@
                 </Grid.ColumnDefinitions>
                 <ScrollViewer Name ="scrollView" VerticalScrollBarVisibility="Auto" ScrollChanged="scrollViewer_ScrollChanged"  Grid.Column="0">
                     <RichTextBox Name="tbEditor" TextChanged="tbEditor_TextChanged" AcceptsReturn="True" FontFamily="Microsoft YaHei" FontSize="14"
-                         VerticalScrollBarVisibility="Auto"></RichTextBox>
+                         VerticalScrollBarVisibility="Auto" KeyUp="tbEditor_KeyUp" >
+                        <RichTextBox.Resources>
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="1"/>
+                            </Style>
+                        </RichTextBox.Resources>
+                    </RichTextBox>
                 </ScrollViewer>
                 <GridSplitter Width="2" Background="LightGray"></GridSplitter>
-                <my:WebControl Grid.Column="1"  Name="browser"/>                
+                <my:WebControl Grid.Column="1"  AddressChanged="browser_AddressChanged" Name="browser"/>                
             </Grid>
         </DockPanel>
     </Grid>

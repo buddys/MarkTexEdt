@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Awesomium.Core;
 using Awesomium.Web;
 using Microsoft.Win32;
+using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace MarkTexEdt
 {
@@ -28,14 +30,19 @@ namespace MarkTexEdt
         /// </summary>
         util.Config config;
         util.Converter converter;
+        util.EditBasicFuction edit;
+        util.HighLight highLight;
+        
 
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = this.config = util.Config.ConfigInstance;
             this.converter = new util.Converter(this.browser);
-            
-            //browser.Source = new Uri("file:///test.html");
+
+            this.edit = new util.EditBasicFuction(tbEditor);
+            this.highLight = new util.HighLight(tbEditor);
+            //WebCore.HomeURL = "file:///resources/html/template.html".ToUri();
         }
 
         /// <summary>
@@ -46,6 +53,26 @@ namespace MarkTexEdt
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             config.RestoreWindow(this);
+            config.PropertyChanged+=new System.ComponentModel.PropertyChangedEventHandler(config_PropertyChanged);
+        }
+        /// <summary>
+        /// 设置项改变时触发
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void config_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SynchroScroll")
+            {
+                if (config.SynchroScroll)
+                {
+                    converter.Source = getDisplaying();
+                }
+                else
+                {
+                    converter.Update(GetSource());
+                }
+            }
         }
        
         /// <summary>
@@ -66,8 +93,38 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void tbEditor_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //Console.WriteLine(GetSource());
-            converter.Update(GetSource());
+            if(config.SynchroScroll == true){
+                converter.Source = getDisplaying();
+            }
+            else{
+                converter.Update(GetSource());
+            }
+            
+        }
+        /// <summary>
+        /// 得到编辑框内当前显示的内容
+        /// </summary>
+        /// <returns>stringToDisplay</returns>
+        private string getDisplaying(){
+            string stringToDisplay = null;
+            double offset = scrollView.ContentVerticalOffset;           
+            double height = scrollView.ExtentHeight;            
+            double vertical = scrollView.ScrollableHeight;            
+            string source = GetSource();            
+            if (source != null && source != "" && source != "\r\n")
+            {
+                string temp = source.Replace("\n", "");
+                int line = source.Count() - temp.Count();
+                int firstIndex = (Int32)(line * offset / (height + 0.00001));
+                if (firstIndex == -1) firstIndex = 0;
+                int lastIndex = (Int32)(line * (offset + height - vertical) / (height + 0.00001)) + 1;
+                string[] split = source.Split(new Char[] { '\n' });
+                for (int i = firstIndex; i <= lastIndex; i++)
+                {
+                    stringToDisplay = stringToDisplay + split[i] + "\n";
+                }                
+            }
+            return stringToDisplay;
         }
         
         /// <summary>
@@ -77,19 +134,34 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void scrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            double offset = scrollView.ContentVerticalOffset;
-            Console.WriteLine(offset);
-            double height = scrollView.ExtentHeight;
-            Console.WriteLine(height);
-            double vertical = scrollView.ScrollableHeight;
-            Console.WriteLine(vertical);
-           // string source = GetSource();
-            //string temp = source.Replace("\n","");
-            //int line = source.Count() - temp.Count();
-            int firstIndex = (Int32)offset / (Int32)(height + vertical + 1) - 1;
-            Console.WriteLine(vertical);
+            if(config.SynchroScroll == true){
+                converter.Source = getDisplaying();
+            }
         }
-
+        private void browser_AddressChanged(object sender, UrlEventArgs e) {
+            string currentUrl = browser.Source.ToString();
+            //Console.WriteLine(currentUrl);
+            
+            converter.Source = getDisplaying();
+            if (currentUrl != "file:///resources/html/template.html")
+            {
+                RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\");
+                string s = key.GetValue("").ToString();
+                Regex reg = new Regex("\"([^\"]+)\"");
+                MatchCollection matchs = reg.Matches(s);
+                string filename = "";
+                if (matchs.Count > 0)
+                {
+                    filename = matchs[0].Groups[1].Value;
+                    System.Diagnostics.Process.Start(filename, currentUrl); 
+                }
+            }
+            browser.Source = new Uri("file:///resources/html/template.html");
+            //browser.Reload(false);
+            
+        }
+        
+        
         /// <summary>
         /// 新建文件
         /// </summary>
@@ -102,6 +174,9 @@ namespace MarkTexEdt
         }
 
 
+
+        
+
         /// <summary>
         /// 打开文件
         /// </summary>
@@ -109,14 +184,7 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-           OpenFileDialog ofd = new OpenFileDialog();
-            ofd.CheckFileExists = true;
-            ofd.Filter = config.MarkdownFileFilter;
-            ofd.Multiselect = false;
-            if ((bool)ofd.ShowDialog())
-            {
-                //TODO: Open file ofd.FileName                
-            }
+            edit.Open_File();
         }
 
         /// <summary>
@@ -127,6 +195,7 @@ namespace MarkTexEdt
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             //TODO: save current file
+            edit.Save_File();
         }
 
         /// <summary>
@@ -165,12 +234,17 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Undo_Click(object sender, RoutedEventArgs e)
         {
-            if (tbEditor.CanUndo == true)
-            {
-                tbEditor.Undo();
-            }
+            edit.Undo();
         }
-
+        /// <summary>
+        /// 重做
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Redo_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Redo();
+        }
         /// <summary>
         /// 窗口关闭事件
         /// </summary>
@@ -188,43 +262,20 @@ namespace MarkTexEdt
         /// <returns>文本字符串</returns>
         private string GetSource()
         {
-            return (new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd)).Text.ToString();
+            if ((new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd)).Text.ToString() != "")
+                return (new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd)).Text.ToString();
+            else
+                return "";
         }
 
         /// <summary>
-        /// 对选择的文本进行加粗，若是没选择，则对接下去输入的字符加粗
+        /// 加粗
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Bold_Click(object sender, RoutedEventArgs e)
         {
-            TextSelection selection = tbEditor.Selection;
-            // 如果没有选择文本，则按选取了一个普通字体的文本来处理
-            FontWeight currentState = FontWeights.Normal;
-            // 尝试获取所选文本的粗体状态
-            if (selection.GetPropertyValue(Run.FontWeightProperty) !=
-              DependencyProperty.UnsetValue)
-            {
-                currentState = (FontWeight)selection.GetPropertyValue(Run.FontWeightProperty);
-            }
-            if (currentState == FontWeights.Normal)
-            {
-                selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Bold);
-            }
-            else
-            {
-                selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Normal);
-            }
-
-            TextRange a = new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd);
-            String strText = a.Text.ToString();
-            TextPointer tpEnd = tbEditor.Document.ContentStart.GetPositionAtOffset(strText.Length);
-            TextRange b = new TextRange(tbEditor.Document.ContentStart, tpEnd);
-            String strDes = "**" + b.Text + "**";
-
-            Console.WriteLine(strDes);
-            // 这个细节很关键，实现将焦点返回给文本框，这样用户将可以直接再更改设置的字体
-            tbEditor.Focus();
+            edit.Bold();
         }
         /// <summary>
         /// 对选择的文本进行斜体，若是没选择，则接下去输入的字符会是斜体
@@ -233,79 +284,9 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Italic_Click(object sender, RoutedEventArgs e)
         {
-            TextSelection selection = tbEditor.Selection;
-            // 如果没有选择文本，则按选取了一个普通字体的文本来处理
-            //FontWeight currentState = FontWeights.Normal;
-            FontStyle currentState = FontStyles.Normal;
-            // 尝试获取所选文本的粗体状态
-           if (selection.GetPropertyValue(Run.FontStyleProperty) !=
-              DependencyProperty.UnsetValue)
-            {
-                  currentState = (FontStyle)selection.GetPropertyValue(Run.FontStyleProperty);  
-                //currentState = (FontWeight)selection.GetPropertyValue(Run.FontWeightProperty);
-            }
-            if (currentState == FontStyles.Normal)
-            {
-                selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Italic);
-            }
-            else
-            {
-                selection.ApplyPropertyValue(Run.FontStyleProperty, FontStyles.Normal);
-               // selection.ApplyPropertyValue(Run.FontWeightProperty, FontWeights.Normal);
-            }
-
-            TextRange a = new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd);
-            String strText = a.Text.ToString();
-            TextPointer tpEnd = tbEditor.Document.ContentStart.GetPositionAtOffset(strText.Length);
-            TextRange b = new TextRange(tbEditor.Document.ContentStart, tpEnd);
-            String strDes = "*" + b.Text + "*";
-            Console.WriteLine(strDes);   
-
-            // 这个细节很关键，实现将焦点返回给文本框，这样用户将可以直接再更改设置的字体
-            tbEditor.Focus();
+            edit.Italic();
         }
 
-        private void Left_Click(object sender, RoutedEventArgs e)
-        {/*
-            tbEditor.LineLeft();
-            Console.Write("left");
-            tbEditor.Focus();*/
-        }
-
-        private void Center_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void Right_Click(object sender, RoutedEventArgs e)
-        {
-          //  TextSelection selection = tbEditor.Selection;
-           // tbEditor.HorizontalContentAlignment = HorizontalAlignment.Right;
-        /*    if (tbEditor.HorizontalContentAlignment == HorizontalAlignment.Right)
-            {
-                tbEditor.HorizontalContentAlignment = HorizontalAlignment.Left;
-                //  tbEditor.Content = "Control horizontal alignment changes from left to right.";
-
-            }
-            else
-            {
-                tbEditor.HorizontalContentAlignment = HorizontalAlignment.Right;
-                // tbEditor.Content = "HorizontalContentAlignment";
-            }*/
-
-          //  tbEditor.Focus();
-        }
-        /// <summary>
-        /// 重做
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Redo_Click(object sender, RoutedEventArgs e)
-        {
-            if (tbEditor.CanRedo == true)
-            {
-                tbEditor.Redo();
-            }
-        }
         /// <summary>
         /// 实现全选功能
         /// </summary>
@@ -313,8 +294,7 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void SelectAll_Click(object sender, RoutedEventArgs e)
         {
-            //TextSelection selection = tbEditor.Selection;
-            tbEditor.SelectAll();
+            edit.SelectAll();
         }
         /// <summary>
         ///  复制
@@ -323,7 +303,7 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Copy_Click(object sender, RoutedEventArgs e)
         {
-            tbEditor.Copy();
+            edit.Copy();
         }
         /// <summary>
         /// 剪切
@@ -332,7 +312,7 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Cut_Click(object sender, RoutedEventArgs e)
         {
-            tbEditor.Cut();
+            edit.Cut();
         }
         /// <summary>
         /// 粘贴
@@ -341,9 +321,20 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Paste_Click(object sender, RoutedEventArgs e)
         {
-            tbEditor.Paste();
+            edit.Paste();
         }
 
+
+
+        private void tbEditor_KeyUp(object sender, KeyEventArgs e)
+        {
+            highLight.HighLight5();
+        }
+
+        
+
                 
+
     }
+
 }

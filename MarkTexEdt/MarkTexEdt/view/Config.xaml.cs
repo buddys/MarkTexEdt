@@ -23,7 +23,7 @@ namespace MarkTexEdt.view
         /// 配置接口
         /// </summary>
         util.Config config;
-
+        
         /// <summary>
         /// 初始化视图元素
         /// </summary>
@@ -73,5 +73,20 @@ namespace MarkTexEdt.view
         {
             Settings.Default.Reset();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void SynchroScroll_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        
+
+
+        
     }
 }

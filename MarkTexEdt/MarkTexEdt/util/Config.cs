@@ -66,6 +66,7 @@ namespace MarkTexEdt.util
             get { return menuBarVisibility; }
             set { menuBarVisibility = value; }
         }
+        
 
         /// <summary>
         /// 恢复窗口状态
@@ -135,6 +136,15 @@ namespace MarkTexEdt.util
             set
             {
                 Settings.Default.ConverterType = value;
+            }
+        }
+
+        public bool SynchroScroll {
+            get {
+                return Settings.Default.SynchroScroll;
+            }
+            set {
+                Settings.Default.SynchroScroll = value;
             }
         }
 

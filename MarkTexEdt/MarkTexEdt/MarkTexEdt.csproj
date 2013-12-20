@@ -85,6 +85,8 @@
     </ApplicationDefinition>
     <Compile Include="util\Config.cs" />
     <Compile Include="util\Converter.cs" />
+    <Compile Include="util\EditorBasicFunction.cs" />
+    <Compile Include="util\HighLight.cs" />
     <Compile Include="util\ObservableClass.cs" />
     <Compile Include="util\VisibilityToBoolConverter.cs" />
     <Compile Include="view\About.xaml.cs">
