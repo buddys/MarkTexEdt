@@ -8,6 +8,7 @@ using System.Reflection;
 using Awesomium.Core;
 using Awesomium.Web;
 using Awesomium.Windows.Controls;
+using System.IO;
 
 namespace MarkTexEdt.util
 {
@@ -48,6 +49,16 @@ namespace MarkTexEdt.util
             string inputString = "func('" + Uri.EscapeUriString(src) + "'," + options + ")";
             Console.WriteLine(inputString);
             webControl.ExecuteJavascript(inputString);
+        }
+
+        public void SaveAsHtml(string filename)
+        {
+            JSObject jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
+            string result = webControl.ExecuteJavascriptWithResult("$('html').html()");
+            //Console.WriteLine(result);
+            StreamWriter sw = new StreamWriter(filename);
+            sw.Write(result);
+            sw.Close();
         }
 
         private string GetOptions()

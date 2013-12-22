@@ -94,8 +94,9 @@
             <Menu Visibility="{Binding Path=MenuBarVisibility}" Background="LightGray" DockPanel.Dock="Top">
                 <MenuItem Padding="10,3" Header="文件">
                     <MenuItem Click="Open_Click" InputGestureText="Ctrl+F" Header=" 打开"></MenuItem>
+                    <MenuItem Click="PreviewInBrowser_Click" InputGestureText="" Header=" 预览"></MenuItem>
                     <MenuItem Click="Save_Click" Header=" 保存" InputGestureText="Ctrl+S"></MenuItem>
-                    <MenuItem  Click="SaveAs_Click" Header=" 另存为" InputGestureText=""></MenuItem>
+                    <MenuItem  Click="SaveAs_Click" Header=" 另存为" InputGestureText="Ctrl+Shift+S"></MenuItem>
                     <Separator Margin="7,0"></Separator>
                     <MenuItem Header=" 导出为">
                         <MenuItem Click="SaveAsHtml" Header=" HTML 页面"></MenuItem>
@@ -215,7 +216,7 @@
                         <Image Source="/resource/img/toolbar/superscript.png" ></Image>
                     </Button>
                     <Separator Margin="3,0"></Separator>
-                    <Button ToolTip="在浏览器中打开">
+                    <Button ToolTip="在浏览器中预览" Click="PreviewInBrowser_Click">
                         <Image Source="/resource/img/toolbar/external-link.png" ></Image>
                     </Button>
                 </ToolBar>

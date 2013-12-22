@@ -99,8 +99,7 @@ namespace MarkTexEdt.util
                 {
                     selection.Text = "*" + selection.Text + "*";
                     selection.ApplyPropertyValue(Run.FontStyleProperty,FontStyles.Italic);
-                }
-               
+                }               
             }
             Out_tbEditor.Focus();
         }
@@ -154,113 +153,25 @@ namespace MarkTexEdt.util
         {
             Out_tbEditor.Cut();
         }
+
         /// <summary>
-        /// 打开文件
+        /// 执行文件写入
         /// </summary>
-        bool isOpen = false;
-        public void Open_File()
+        /// <param name="path"></param>
+        public void SaveFile(String path)
         {
-            OpenFileDialog open = new OpenFileDialog();
-            open.FileName = "";
-            //open.DefaultExt = ".rtf";
-            open.DefaultExt = ".md";
-            open.Filter = "markdown文件(.md)|*.md|txt文件(.txt)|*.txt|rtf文件(.rtf)|*.rtf|doc文件(.doc)|*.doc";
-            Stream checkStream = null;
-
-            if ((bool)open.ShowDialog())
-            {
-                try
-                {
-                    if ((checkStream = open.OpenFile()) != null)
-                    {
-                        isOpen = true;
-                        FileStream fs;
-                        if (File.Exists(open.FileName))
-                        {
-                            fs = new FileStream(open.FileName, FileMode.Open, FileAccess.Read);
-                            StreamReader streamReader = new StreamReader(fs, System.Text.Encoding.UTF8);
-                            using (fs)
-                            {
-                                TextRange text = new TextRange(Out_tbEditor.Document.ContentStart, Out_tbEditor.Document.ContentEnd);
-                                // if (!open.FileName.Substring(open.FileName.Length - 4, 4).Contains(".txt"))
-                                if (!open.FileName.Substring(open.FileName.Length - 4, 4).Contains(".md"))
-                                {
-                                    //text.Load(fs, DataFormats.Rtf);
-                                    text.Load(fs, DataFormats.Rtf);
-                                }
-                                else
-                                {
-                                    text.Load(fs, DataFormats.Text);
-                                    //text.Load(fs, DataFormats.Xaml);                                                                            
-                                }
-                                isOpen = false;
-                            }
-
-                            streamReader.Dispose();
-                            streamReader.Close();
-                            fs.Dispose();
-                            fs.Close();
-                        }
-                        checkStream.Dispose();
-                        checkStream.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("错误: 无法从磁盘读取文件。原始错误: " + ex.Message);
-                }
-            }
-            else
-            {
-
-            }
-        }
-        /// <summary>
-        /// 保存文件
-        /// </summary>
-        public void Save_File()
-        {
-            //TODO: save current file
-            SaveFileDialog save = new SaveFileDialog();
-            //  save.Filter = "txt文件(.txt)|*.txt|rtf文件(.rtf)|*.rtf|doc文件(.doc)|*.doc";
-            save.Filter = "markdown文件(.md)|*.md|markdown文件(.md)|*.markdown|markdown文件(.md)|*.mkd|txt文件(.txt)|*.txt|rtf文件(.rtf)|*.rtf|doc文件(.doc)|*.doc";
             try
             {
-                if ((bool)save.ShowDialog())
-                {
-                    SaveFile(save.FileName);
-                    MessageBox.Show("保存成功");
-                }
+                FileStream fs = new FileStream(path, FileMode.Create);
+
+                TextRange range = new TextRange(Out_tbEditor.Document.ContentStart, Out_tbEditor.Document.ContentEnd);
+                range.Save(fs, DataFormats.Text);
+
+                fs.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }
-        }
-
-        public void SaveFile(String path)
-        {
-            FileStream fs = new FileStream(path, FileMode.Create);
-
-            TextRange range = new TextRange(Out_tbEditor.Document.ContentStart, Out_tbEditor.Document.ContentEnd);
-            if (!path.Substring(path.Length - 4, 4).Contains(".md"))
-                range.Save(fs, DataFormats.Rtf);//DataFormats.Xaml 或者 DataFormats.XamlPackage  
-            else
-                range.Save(fs, DataFormats.Text);
-
-            fs.Close();
-        }
-        /// <summary>
-        /// 打印操作
-        /// </summary>
-        public void Print()
-        {
-            PrintDialog pd = new PrintDialog();
-            if ((pd.ShowDialog() == true))
-            {
-                //use either one of the below      
-                pd.PrintVisual(Out_tbEditor as Visual, "printing as visual");
-                pd.PrintDocument((((IDocumentPaginatorSource)Out_tbEditor.Document).DocumentPaginator), "printing as paginator");
             }
         }
 

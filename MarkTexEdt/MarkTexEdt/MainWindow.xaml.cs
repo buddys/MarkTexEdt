@@ -18,6 +18,7 @@ using Microsoft.Win32;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.IO;
+using MarkTexEdt.util;
 
 namespace MarkTexEdt
 {
@@ -169,19 +170,6 @@ namespace MarkTexEdt
             //browser.Reload(false);
             
         }
-        
-        
-        /// <summary>
-        /// 新建文件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: clear current content
-            tbEditor.IsEnabled = true;
-        }
-
 
         /// <summary>
         /// 打开文件
@@ -190,7 +178,27 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            edit.Open_File();
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = Config.MarkdownFileFilter;
+            open.Multiselect = false;
+
+            if ((bool)open.ShowDialog())
+            {                
+                try
+                {
+                    FileStream fs = open.OpenFile() as FileStream;
+
+                    TextRange text = new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd);
+                    text.Load(fs, DataFormats.Text);
+                    fs.Close();
+
+                    config.CurrentFileName = open.FileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         /// <summary>
@@ -200,8 +208,21 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: save current file
-            edit.Save_File();
+            if (config.CurrentFileName != null && config.CurrentFileName != "")
+            {
+                edit.SaveFile(config.CurrentFileName);
+            }
+            else
+            {
+                SaveFileDialog save = new SaveFileDialog();
+                save.Filter = Config.MarkdownFileFilter;
+                save.FileName = Config.DefaultFileName;
+                if ((bool)save.ShowDialog())
+                {
+                    edit.SaveFile(save.FileName);
+                    config.CurrentFileName = save.FileName;
+                }
+            }
         }
 
         /// <summary>
@@ -211,7 +232,13 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            edit.Save_File();
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = Config.MarkdownFileFilter;
+            save.FileName = Config.DefaultFileName;
+            if ((bool)save.ShowDialog())
+            {
+                edit.SaveFile(save.FileName);
+            }
         }
 
         /// <summary>
@@ -261,10 +288,7 @@ namespace MarkTexEdt
         /// <returns>文本字符串</returns>
         private string GetSource()
         {
-            if ((new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd)).Text.ToString() != "")
-                return (new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd)).Text.ToString();
-            else
-                return "";
+            return new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd).Text.ToString();
         }
 
         /// <summary>
@@ -287,7 +311,7 @@ namespace MarkTexEdt
         }
 
         /// <summary>
-        /// 实现全选功能
+        /// 全选
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -371,7 +395,13 @@ namespace MarkTexEdt
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
-            edit.Print();
+            PrintDialog pd = new PrintDialog();
+            if ((pd.ShowDialog() == true))
+            {
+                //use either one of the below      
+                //pd.PrintVisual(Out_tbEditor as Visual, "printing as visual");
+                //pd.PrintDocument((((IDocumentPaginatorSource)Out_tbEditor.Document).DocumentPaginator), "printing as paginator");
+            }
         }
 
         private void Time_Click(object sender, RoutedEventArgs e)
@@ -566,7 +596,7 @@ namespace MarkTexEdt
 
         private void CommandBinding_Open_File_Execute(object sender, ExecutedRoutedEventArgs e)
         {
-            edit.Open_File();
+            Open_Click(sender, e);
         }
 
         private void CommandBinding_Save_File_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -576,40 +606,35 @@ namespace MarkTexEdt
 
         private void CommandBinding_Save_File_Execute(object sender, ExecutedRoutedEventArgs e)
         {
-            edit.Save_File();           
+            Save_Click(sender, e);      
         }
 
         #endregion
 
         /// <summary>
-        /// 另存为 PDF
+        /// 导出为 PDF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SaveAsPdf(object sender, RoutedEventArgs e)
         {
-            browser.PrintToFile(config.CachePath, PrintConfig.Default);              
+            browser.PrintToFile(Config.CachePath, PrintConfig.Default);              
         }
 
         /// <summary>
-        /// 另存为HTML
+        /// 导出为 HTML
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SaveAsHtml(object sender, RoutedEventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
-            save.Filter = config.HtmlFileFilter;
-            save.FileName = "MarkTex 文档";
+            save.Filter = Config.HtmlFileFilter;
+            save.FileName = config.SafeFileName;
 
             if ((bool)save.ShowDialog())
             {
-                JSObject jsobject = browser.CreateGlobalJavascriptObject("jsobject");
-                string result = browser.ExecuteJavascriptWithResult("$('html').html()");
-                //Console.WriteLine(result);
-                StreamWriter sw = new StreamWriter(save.FileName);
-                sw.Write(result);
-                sw.Close();
+                converter.SaveAsHtml(save.FileName);
             }            
         }
 
@@ -621,8 +646,9 @@ namespace MarkTexEdt
         private void browser_PrintComplete(object sender, PrintCompleteEventArgs e)
         {            
             FileInfo temp = new FileInfo(e.Files[0]);
-            SaveFileDialog save = new SaveFileDialog();            
-            save.Filter = "PDF文件(.pdf)|*.pdf";
+            SaveFileDialog save = new SaveFileDialog();
+            save.FileName = Config.DefaultFileName;
+            save.Filter = Config.PdfFileFilter;
             if ((bool)save.ShowDialog())
             {
                 temp.CopyTo(save.FileName,true);
@@ -653,6 +679,17 @@ namespace MarkTexEdt
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// 使用默认浏览器预览
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PreviewInBrowser_Click(object sender, RoutedEventArgs e)
+        {
+            converter.SaveAsHtml(Config.CacheFilePath);
+            System.Diagnostics.Process.Start( Config.CacheFilePath );  
         }       
     }
 }

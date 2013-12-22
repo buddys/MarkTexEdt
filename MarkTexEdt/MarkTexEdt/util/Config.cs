@@ -68,7 +68,7 @@ namespace MarkTexEdt.util
         /// <summary>
         /// 缓存目录
         /// </summary>
-        public string CachePath
+        public static string CachePath
         {
             get
             {
@@ -76,35 +76,81 @@ namespace MarkTexEdt.util
             }
         }
 
-        //markdown后缀
-        string[] markdownFilter = new string[] { ".md", ".markdown" };
-
-        //markdown过滤器
-        public string MarkdownFileFilter
+        /// <summary>
+        /// 缓存文件名
+        /// </summary>
+        public static string CacheFileName
         {
             get
             {
-                string str = "Markdown文件|";
-                foreach (string s in markdownFilter)
-                    str += "*" + s + ";";
-                str += @"|所有文件|*.*";
-                return str;
+                return "marktex_tmp.html";
             }
         }
 
-        //html后缀
-        string[] htmlFilter = new string[] { ".html", ".htm" };
-
-        //html过滤器
-        public string HtmlFileFilter
+        /// <summary>
+        /// 缓存路径
+        /// </summary>
+        public static string CacheFilePath
         {
             get
             {
-                string str = "HTML 文件|";
-                foreach (string s in markdownFilter)
-                    str += "*" + s + ";";
-                str += @"|所有文件|*.*";
-                return str;
+                return Config.CachePath + "\\" + Config.CacheFileName;
+            }
+        }
+
+        //安全的文件名
+        public string SafeFileName
+        {
+            get
+            {
+                if (CurrentFileName != null && CurrentFileName != "")
+                    return CurrentFileName;
+                else
+                    return DefaultFileName;
+            }
+        }
+
+        //当前文件名
+        string currentFileName;
+        public string CurrentFileName
+        {
+            get
+            {
+                return currentFileName;
+            }
+            set { currentFileName = value; }
+        }
+
+        //默认文件名
+        public static string DefaultFileName
+        {
+            get { return "MarkTex 文档"; }
+        }
+
+        //html过滤器
+        public static string HtmlFileFilter
+        {
+            get
+            {
+                return "HTML 文件|*.html;*.htm;|所有文件|*.*";
+            }
+        }
+
+        //markdown过滤器
+        public static string MarkdownFileFilter
+        {
+            get
+            {
+                return "Markdown文件|*.md;*.markdown;*.mkd;|所有文件|*.*";
+            }
+        }
+
+        //markdown过滤器
+        public static string PdfFileFilter
+        {
+            get
+            {
+                return "PDF 文档|*.pdf;|所有文件|*.*";
             }
         }
 
