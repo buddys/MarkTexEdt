@@ -43,10 +43,8 @@ namespace MarkTexEdt.util
         {
             string options = this.GetOptions();
             JSObject jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
-            //src不能为空 否则报错
-            if ( src == "") src = " ";
+            if ( src ==null ) src = "";
             string inputString = "update('" + Uri.EscapeUriString(src) + "'," + options + ")";
-            //Console.WriteLine(inputString);
             webControl.ExecuteJavascript(inputString);
         }
 

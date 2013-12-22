@@ -390,8 +390,8 @@ namespace MarkTexEdt
             if ((pd.ShowDialog() == true))
             {
                 //use either one of the below      
-                //pd.PrintVisual(Out_tbEditor as Visual, "printing as visual");
-                //pd.PrintDocument((((IDocumentPaginatorSource)Out_tbEditor.Document).DocumentPaginator), "printing as paginator");
+                pd.PrintVisual(tbEditor as Visual, "printing as visual");
+                pd.PrintDocument((((IDocumentPaginatorSource)tbEditor.Document).DocumentPaginator), "printing as paginator");
             }
         }
 
