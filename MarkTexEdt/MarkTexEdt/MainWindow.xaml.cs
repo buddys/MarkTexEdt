@@ -183,9 +183,6 @@ namespace MarkTexEdt
         }
 
 
-
-        
-
         /// <summary>
         /// 打开文件
         /// </summary>
@@ -255,7 +252,7 @@ namespace MarkTexEdt
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             config.SaveWindow(this);
-            config.SaveToFile();
+            config.Save();
         }
 
         /// <summary>
@@ -327,6 +324,43 @@ namespace MarkTexEdt
             edit.Paste();
         }
 
+        private void Code_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_Code();
+
+        }
+
+        private void HeadLine1_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine1();
+        }
+
+        private void HeadLine2_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine2();
+        }
+
+        private void HeadLine3_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine3();
+        }
+
+        private void HeadLine4_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_HeadLine4();
+        }
+
+
+        private void Graphic_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Horizontal_Scale_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_Horizontal_Scale();
+        }
+
 
 
         private void tbEditor_KeyUp(object sender, KeyEventArgs e)
@@ -349,6 +383,37 @@ namespace MarkTexEdt
         {
             edit.Add_Link();
         }
+
+        private void Decrease_Font_Size_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbEditor.FontSize > 5)
+            {
+                tbEditor.FontSize -= 5;
+            }
+            else
+            {
+                tbEditor.FontSize = 5;
+            }
+        }
+
+        private void Increase_Font_Size_Click(object sender, RoutedEventArgs e)
+        {
+            //commandAndInsert.Increase_Font_Size();
+            if (tbEditor.FontSize < 50)
+            {
+                tbEditor.FontSize += 5;
+                if (tbEditor.FontSize > 50)
+                {
+                    tbEditor.FontSize = 50;
+                }
+            }
+            else
+            {
+                tbEditor.FontSize = 50;
+            }
+        }
+
+        #region Command
 
         private void CommandBinding_Increase_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -402,43 +467,6 @@ namespace MarkTexEdt
         private void CommandBinding_Italic_Execute(object sender, ExecutedRoutedEventArgs e)
         {
             edit.Italic();
-        }
-
-        private void Code_Click(object sender, RoutedEventArgs e)
-        {
-            commandAndInsert.Add_Code();
-
-        }
-
-        private void HeadLine1_Click(object sender, RoutedEventArgs e)
-        {
-            commandAndInsert.Add_HeadLine1();
-        }
-
-        private void HeadLine2_Click(object sender, RoutedEventArgs e)
-        {
-            commandAndInsert.Add_HeadLine2();
-        }
-
-        private void HeadLine3_Click(object sender, RoutedEventArgs e)
-        {
-            commandAndInsert.Add_HeadLine3();
-        }
-
-        private void HeadLine4_Click(object sender, RoutedEventArgs e)
-        {
-            commandAndInsert.Add_HeadLine4();
-        }
-
-       
-        private void Graphic_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Horizontal_Scale_Click(object sender, RoutedEventArgs e)
-        {
-            commandAndInsert.Add_Horizontal_Scale();
         }
 
         private void CommandBinding_Code_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -531,35 +559,6 @@ namespace MarkTexEdt
             edit.Redo();
         }
 
-        private void Increase_Font_Size_Click(object sender, RoutedEventArgs e)
-        {
-            //commandAndInsert.Increase_Font_Size();
-            if (tbEditor.FontSize < 50)
-            {
-                tbEditor.FontSize += 5;
-                if (tbEditor.FontSize > 50)
-                {
-                    tbEditor.FontSize = 50;
-                }
-            }
-            else
-            {
-                tbEditor.FontSize = 50;
-            }
-        }
-
-        private void Decrease_Font_Size_Click(object sender, RoutedEventArgs e)
-        {
-            if (tbEditor.FontSize > 5)
-            {
-                tbEditor.FontSize -= 5;
-            }
-            else
-            {
-                tbEditor.FontSize = 5;
-            }
-        }
-
         private void CommandBinding_Open_File_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -580,37 +579,47 @@ namespace MarkTexEdt
             edit.Save_File();           
         }
 
+        #endregion
+
+        /// <summary>
+        /// 另存为 PDF
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveAsPdf(object sender, RoutedEventArgs e)
         {
-            browser.PrintToFile("C:/", PrintConfig.Default);   
-            
+            browser.PrintToFile(config.CachePath, PrintConfig.Default);              
         }
 
+        /// <summary>
+        /// 另存为HTML
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveAsHtml(object sender, RoutedEventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "html文件(.html)|*.html";
+            save.Filter = config.HtmlFileFilter;
+            save.FileName = "MarkTex 文档";
 
             if ((bool)save.ShowDialog())
             {
                 JSObject jsobject = browser.CreateGlobalJavascriptObject("jsobject");
-                string js = "$('html').html()";
-                string result = browser.ExecuteJavascriptWithResult(js);
-                Console.WriteLine(result);
+                string result = browser.ExecuteJavascriptWithResult("$('html').html()");
+                //Console.WriteLine(result);
                 StreamWriter sw = new StreamWriter(save.FileName);
                 sw.Write(result);
                 sw.Close();
-            }
-            
-            
+            }            
         }
 
+        /// <summary>
+        /// 导出PDF完成，移动至指定位置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void browser_PrintComplete(object sender, PrintCompleteEventArgs e)
-        {
-            
-            //FileInfo temp = new FileInfo(e.Files[0]);
-            //Console.WriteLine(temp.FullName);              
-            //temp.MoveTo(file.FullName);
+        {            
             FileInfo temp = new FileInfo(e.Files[0]);
             SaveFileDialog save = new SaveFileDialog();            
             save.Filter = "PDF文件(.pdf)|*.pdf";
@@ -621,7 +630,29 @@ namespace MarkTexEdt
             }
         }
 
-       
-    }
+        /// <summary>
+        /// 去除toolbar右侧的溢出按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            ToolBar toolBar = sender as ToolBar;
+            var overflowGrid = toolBar.Template.FindName("OverflowGrid", toolBar) as FrameworkElement;
+            if (overflowGrid != null)
+            {
+                overflowGrid.Visibility = Visibility.Collapsed;
+            }
+        }
 
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }       
+    }
 }

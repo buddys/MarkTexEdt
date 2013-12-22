@@ -40,7 +40,7 @@ namespace MarkTexEdt.view
         /// <param name="e"></param>
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Settings.Default.Save();
+            config.Save();
             this.Close();
         }
 
@@ -51,7 +51,7 @@ namespace MarkTexEdt.view
         /// <param name="e"></param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Settings.Default.Reload();
+            config.Revert();
             this.Close();
         }
 
@@ -62,6 +62,7 @@ namespace MarkTexEdt.view
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            config.Save();
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace MarkTexEdt.view
         /// <param name="e"></param>
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            Settings.Default.Reset();
+            config.RestoreDefault();
         }        
     }
 }

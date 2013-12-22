@@ -64,7 +64,7 @@ namespace MarkTexEdt.util
             options += ("pedantic:" + config.Pedantic.ToString().ToLower() + ",");
             options += ("sanitize:" + config.Sanitize.ToString().ToLower() + ",");
             options += ("smartypants:" + config.SmartyPants.ToString().ToLower() + ",");
-            options += Properties.Resources.footer + "}";
+            options += Properties.Resources.options + "}";
             return options;
         }
     }

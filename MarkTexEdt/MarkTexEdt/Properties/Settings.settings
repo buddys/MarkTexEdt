@@ -50,5 +50,8 @@
     <Setting Name="SmartyPants" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="menuBarVisibility" Type="System.Windows.Visibility" Scope="User">
+      <Value Profile="(Default)">Visible</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

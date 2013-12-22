@@ -92,264 +92,71 @@
     <Grid>
         <DockPanel>
             <Menu Visibility="{Binding Path=MenuBarVisibility}" Background="LightGray" DockPanel.Dock="Top">
-                <Menu.Resources>
-                    <Style x:Key="header1" TargetType="Label">
-                        <Setter Property="Width" Value="80"></Setter>
-                    </Style>
-                    <Style x:Key="header2" TargetType="Label">
-                        <Setter Property="Width" Value="85"></Setter>
-                    </Style>
-                    <Style x:Key="header3" TargetType="Label">
-                        <Setter Property="Width" Value="70"></Setter>
-                    </Style>
-
-                </Menu.Resources>
                 <MenuItem Padding="10,3" Header="文件">
-                    <MenuItem Click="Open_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">打开</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+O</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
+                    <MenuItem Click="Open_Click" InputGestureText="Ctrl+F" Header=" 打开"></MenuItem>
+                    <MenuItem Click="Save_Click" Header=" 保存" InputGestureText="Ctrl+S"></MenuItem>
+                    <MenuItem  Click="SaveAs_Click" Header=" 另存为" InputGestureText=""></MenuItem>
+                    <Separator Margin="7,0"></Separator>
+                    <MenuItem Header=" 导出为">
+                        <MenuItem Click="SaveAsHtml" Header=" HTML 页面"></MenuItem>
+                        <MenuItem Click="SaveAsPdf" Header=" PDF 文档"></MenuItem>
                     </MenuItem>
-                    <MenuItem Click="Save_Click" >
-                    <MenuItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">保存</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+S</Label>
-                        </StackPanel>
-                    </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem  Click="SaveAs_Click">
-                    <MenuItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">另存为</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}"></Label>
-                        </StackPanel>
-                    </MenuItem.Header>
-                    </MenuItem>
-                <Separator Margin="7,0"></Separator>
-                    <MenuItem >
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">导出</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}"></Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                        <MenuItem Click="SaveAsHtml">
-                            <MenuItem.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Style="{StaticResource ResourceKey= header1}">导出到HTML</Label>
-                                    <Label Style="{StaticResource ResourceKey= header2}"></Label>
-                                </StackPanel>
-                            </MenuItem.Header>
-                        </MenuItem>
-                        <MenuItem Click="SaveAsPdf">
-                            <MenuItem.Header >
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Style="{StaticResource ResourceKey= header1}">导出到PDF</Label>
-                                    <Label Style="{StaticResource ResourceKey= header2}"></Label>
-                                </StackPanel>
-                            </MenuItem.Header>
-                        </MenuItem>
-                    </MenuItem>
-                    <MenuItem Click="Print_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">打印</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+P</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
+                    <MenuItem Click="Print_Click" Header=" 打印" InputGestureText="Ctrl+P"></MenuItem>
+                    <MenuItem Click="Close_Click" Header=" 退出"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="编辑">
-                    <MenuItem Click="Undo_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">撤销</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+Alt+Z</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Click="Redo_Click" >
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">重做</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+Z</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Click="SelectAll_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">全选</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+A</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
+                    <MenuItem Click="Undo_Click" Header=" 撤销" InputGestureText="Ctrl+Alt+Z"></MenuItem>
+                    <MenuItem Click="Redo_Click" Header=" 重做" InputGestureText="Ctrl+Z"></MenuItem>
                     <Separator Margin="7,0"></Separator>
-                    <MenuItem Click="Cut_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">剪切</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+X</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Click="Copy_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">复制</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+C</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Click="Paste_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header1}">粘贴</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+V</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
+                    <MenuItem Click="SelectAll_Click" Header=" 全选" InputGestureText="Ctrl+A"></MenuItem>
+                    <MenuItem Click="Copy_Click" Header=" 复制" InputGestureText="Ctrl+C"></MenuItem>
+                    <MenuItem Click="Cut_Click" Header=" 剪切" InputGestureText="Ctrl+X"></MenuItem>
+                    <MenuItem Click="Paste_Click" Header=" 粘贴" InputGestureText="Ctrl+V"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="插入">
-                    <MenuItem Click="Increase_Font_Size_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">增大字体</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+Shift+I</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Click="Decrease_Font_Size_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">缩小字体</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+D</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Click="Bold_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">粗体</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+Alt+B</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Click="Italic_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">斜体</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+Alt+I</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem  Click="Code_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">代码</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+K</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
+                    <MenuItem Click="Increase_Font_Size_Click" Header=" 增大字体" InputGestureText="Ctrl+Shift+I"></MenuItem>
+                    <MenuItem Click="Decrease_Font_Size_Click" Header=" 缩小字体" InputGestureText="Ctrl+D"></MenuItem>
+                    <MenuItem Click="Bold_Click" Header=" 粗体" InputGestureText="Ctrl+Alt+B"></MenuItem>
+                    <MenuItem Click="Italic_Click" Header=" 斜体" InputGestureText="Ctrl+Alt+I"></MenuItem>
+                    <MenuItem  Click="Code_Click" Header=" 代码" InputGestureText="Ctrl+K"></MenuItem>
                     <Separator Margin="7,0"></Separator>
-                    <MenuItem  Click="HeadLine1_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">标题1</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+Alt+1</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem  Click="HeadLine2_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">标题2</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+Alt+2</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem  Click="HeadLine3_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">标题3</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+3</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem  Click="HeadLine4_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">标题4</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+4</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
+                    <MenuItem  Click="HeadLine1_Click" Header=" 一级标题" InputGestureText="Ctrl+Alt+1"></MenuItem>
+                    <MenuItem  Click="HeadLine2_Click" Header=" 二级标题" InputGestureText="Ctrl+Alt+2"></MenuItem>
+                    <MenuItem  Click="HeadLine3_Click" Header=" 三级标题" InputGestureText="Ctrl+3"></MenuItem>
+                    <MenuItem  Click="HeadLine4_Click" Header=" 四级标题" InputGestureText="Ctrl+4"></MenuItem>
                     <Separator Margin="7,0"></Separator>
-                    <MenuItem  Click="Add_Link_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">超链接</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+L</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem  Click="Graphic_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">图片</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+G</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
+                    <MenuItem  Click="Add_Link_Click" Header=" 超链接" InputGestureText="Ctrl+L"></MenuItem>
+                    <MenuItem  Click="Graphic_Click" Header=" 图片" InputGestureText="Ctrl+G"></MenuItem>
                     <Separator Margin="7,0"></Separator>
-                    <MenuItem  Click="Horizontal_Scale_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">水平标尺</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+R</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Click="Time_Click">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource ResourceKey= header3}">时间戳</Label>
-                                <Label Style="{StaticResource ResourceKey= header2}">Ctrl+T</Label>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
+                    <MenuItem  Click="Horizontal_Scale_Click" Header=" 水平标尺" InputGestureText="Ctrl+R"></MenuItem>
+                    <MenuItem Click="Time_Click" Header=" 时间戳" InputGestureText="Ctrl+T"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="视图">
-                    <MenuItem IsCheckable="True" Header="显示菜单栏" IsChecked="{Binding Path=MenuBarVisibility,Converter={StaticResource VisibilityToBoolConverter}}"></MenuItem>
+                    <MenuItem IsCheckable="True" Header=" 显示菜单栏" IsChecked="{Binding Path=MenuBarVisibility,Converter={StaticResource VisibilityToBoolConverter}}"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="设置">
-                    <MenuItem Header="快捷键"></MenuItem>
-                    <MenuItem Header="配置" Click="Config_Click"></MenuItem>
+                    <MenuItem Header=" 系统配置" Click="Config_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="关于">
-                    <MenuItem Header="帮助"></MenuItem>
-                    <MenuItem Header="关于" Click="About_Click"></MenuItem>
+                    <MenuItem Header=" 帮助"></MenuItem>
+                    <MenuItem Header=" 关于" Click="About_Click"></MenuItem>
                 </MenuItem>
             </Menu>
             <ToolBarTray IsLocked="True" DockPanel.Dock="Top">
                 <ToolBarTray.Resources>
                     <Style TargetType="Image">
-                        <Setter Property="Width" Value="18"></Setter>
-                        <Setter Property="Height" Value="18"></Setter>
+                        <Setter Property="Width" Value="15"></Setter>
+                        <Setter Property="Height" Value="15"></Setter>
                     </Style>
                 </ToolBarTray.Resources>
                 <ToolBarTray.ContextMenu>
                     <ContextMenu>
-                        <MenuItem IsCheckable="True" Header="显示菜单栏" IsChecked="{Binding Path=MenuBarVisibility,Converter={StaticResource VisibilityToBoolConverter}}"></MenuItem>
+                        <MenuItem IsCheckable="True" Header=" 显示菜单栏" IsChecked="{Binding Path=MenuBarVisibility,Converter={StaticResource VisibilityToBoolConverter}}"></MenuItem>
                     </ContextMenu>
                 </ToolBarTray.ContextMenu>
-                <ToolBar Band="1" BandIndex="1">
+                <ToolBar Band="1" BandIndex="1" ToolBarTray.IsLocked="True" Loaded="ToolBar_Loaded">
                     <Button Click="Open_Click" ToolTip="打开 (Ctrl+O)">
-                        <Image Source="/resource/img/toolbar/folder-open.png" ></Image>
+                        <Image Source="/resource/img/toolbar/folder-open.png"></Image>
                     </Button>
                     <Button Click="Save_Click" ToolTip="保存 (Ctrl+S)">
                         <Image Source="/resource/img/toolbar/save.png" ></Image>

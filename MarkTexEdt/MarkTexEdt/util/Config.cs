@@ -19,7 +19,7 @@ namespace MarkTexEdt.util
         private Config()
         {
             //设置发生改变时通知视图元素
-            Settings.Default.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(Default_PropertyChanged);
+            Settings.Default.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(Config_PropertyChanged);
         }
 
         /// <summary>
@@ -28,7 +28,8 @@ namespace MarkTexEdt.util
         static Config configInstance;
         static public Config ConfigInstance
         {
-            get {
+            get
+            {
                 if (configInstance == null)
                 {
                     configInstance = new Config();
@@ -40,10 +41,75 @@ namespace MarkTexEdt.util
         /// <summary>
         /// 保存配置到文件
         /// </summary>
-        public void SaveToFile()
+        public void Save()
         {
             Settings.Default.Save();
         }
+
+        /// <summary>
+        /// 从文件恢复配置
+        /// </summary>
+        public void Revert()
+        {
+            Settings.Default.Reload();
+        }
+
+        /// <summary>
+        /// 恢复初始设置
+        /// </summary>
+        public void RestoreDefault()
+        {
+            Settings.Default.Reset();
+        }
+
+
+        #region 工具
+
+        /// <summary>
+        /// 缓存目录
+        /// </summary>
+        public string CachePath
+        {
+            get
+            {
+                return System.Environment.GetFolderPath(System.Environment.SpecialFolder.InternetCache);
+            }
+        }
+
+        //markdown后缀
+        string[] markdownFilter = new string[] { ".md", ".markdown" };
+
+        //markdown过滤器
+        public string MarkdownFileFilter
+        {
+            get
+            {
+                string str = "Markdown文件|";
+                foreach (string s in markdownFilter)
+                    str += "*" + s + ";";
+                str += @"|所有文件|*.*";
+                return str;
+            }
+        }
+
+        //html后缀
+        string[] htmlFilter = new string[] { ".html", ".htm" };
+
+        //html过滤器
+        public string HtmlFileFilter
+        {
+            get
+            {
+                string str = "HTML 文件|";
+                foreach (string s in markdownFilter)
+                    str += "*" + s + ";";
+                str += @"|所有文件|*.*";
+                return str;
+            }
+        }
+
+        #endregion
+
 
         #region 视图
 
@@ -52,7 +118,7 @@ namespace MarkTexEdt.util
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void Default_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             NotifyPropertyChanged(e.PropertyName);
         }
@@ -60,13 +126,12 @@ namespace MarkTexEdt.util
         /// <summary>
         /// 菜单栏可见性
         /// </summary>
-        Visibility menuBarVisibility = Visibility.Visible;
         public Visibility MenuBarVisibility
         {
-            get { return menuBarVisibility; }
-            set { menuBarVisibility = value; }
-        }
-        
+            get { return Settings.Default.menuBarVisibility; }
+            set { Settings.Default.menuBarVisibility = value; 
+            }
+        }        
 
         /// <summary>
         /// 恢复窗口状态
@@ -103,50 +168,26 @@ namespace MarkTexEdt.util
 
         #region 编辑器
 
-        #endregion
-
-
-        #region 转换器
-
-        //文件后缀
-        string[] markdownFilter = new string[]{".md",".markdown"};
-
-        //文件后缀过滤器，用于文件对话空
-        public string MarkdownFileFilter
-        {
-            get
-            {
-                string str = "Markdown文件|";
-                foreach (string s in markdownFilter)
-                    str += "*" + s + ";";
-                str += @"|所有文件|*.*";
-                return str;
-            }
-        }
-
         /// <summary>
-        /// 默认转换器
+        /// 是否同步滚动
         /// </summary>
-        public int ConverterType
+        public bool SynchroScroll
         {
             get
             {
-                return Settings.Default.ConverterType;
+                return Settings.Default.SynchroScroll;
             }
             set
             {
-                Settings.Default.ConverterType = value;
-            }
-        }
-
-        public bool SynchroScroll {
-            get {
-                return Settings.Default.SynchroScroll;
-            }
-            set {
                 Settings.Default.SynchroScroll = value;
             }
         }
+
+        #endregion
+
+
+        #region 编译器
+
 
         public bool Gfm
         {

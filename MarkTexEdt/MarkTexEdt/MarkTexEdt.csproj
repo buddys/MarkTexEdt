@@ -138,9 +138,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="bin\Debug\marktex.exe.config" />
-    <None Include="bin\Debug\marktex.vshost.exe.config" />
-    <None Include="bin\Debug\marktex.vshost.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -151,26 +148,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resource\img\add_file-26.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resource\img\bold-26.png" />
-    <Resource Include="resource\img\folder-26.png" />
-    <Resource Include="resource\img\italic-26.png" />
-    <Resource Include="resource\img\list-26.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resource\img\save-26.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resource\img\add_link-26.png" />
-    <Resource Include="resource\img\cllipboard-26.png" />
-    <Resource Include="resource\img\copy-26.png" />
-    <Resource Include="resource\img\cut-26.png" />
-    <Resource Include="resource\img\google_code-26.png" />
-    <Resource Include="resource\img\math-26.png" />
-    <Resource Include="resource\img\picture-26.png" />
-    <Resource Include="resource\img\redo-26.png" />
     <Resource Include="resource\img\toolbar\align-center-64.png" />
     <Resource Include="resource\img\toolbar\align-left-64.png" />
     <Resource Include="resource\img\toolbar\align-right-64.png" />
@@ -194,27 +171,11 @@
     <Resource Include="resource\img\toolbar\strikethrough-64.png" />
     <Resource Include="resource\img\toolbar\superscript-64.png" />
     <Resource Include="resource\img\toolbar\time-64.png" />
-    <Resource Include="resource\img\undo-26.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resource\img\center-26.png" />
-    <Resource Include="resource\img\left-26.png" />
-    <Resource Include="resource\img\right-26.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resource\img\ordered_list-26.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resource\img\left_array-26.png" />
-    <Resource Include="resource\img\right_array-26.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\resources\html\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\marktex.exe" />
-    <Content Include="bin\Debug\marktex.pdb" />
-    <Content Include="bin\Debug\marktex.vshost.exe" />
     <Content Include="bin\Debug\resources\css\dark.css" />
     <Content Include="bin\Debug\resources\css\gfm.css" />
     <Content Include="bin\Debug\resources\css\markdown.css" />
@@ -241,7 +202,7 @@
     <Resource Include="resource\img\logo\MarkTex-Logo.ico" />
     <Resource Include="resource\img\logo\MarkTex-Logo.png" />
     <Resource Include="MarkTex-Logo.ico" />
-    <Resource Include="resource\script\footer.txt" />
+    <Content Include="resource\script\options.js" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
