@@ -1,6 +1,5 @@
 *.suo
-/marktex/marktex/bin
-/marktex/marktex/obj
+*.log
 
 /MarkTexEdt/MarkTexEdt/*.user
 

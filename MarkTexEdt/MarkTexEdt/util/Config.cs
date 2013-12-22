@@ -66,6 +66,7 @@ namespace MarkTexEdt.util
             get { return menuBarVisibility; }
             set { menuBarVisibility = value; }
         }
+        
 
         /// <summary>
         /// 恢复窗口状态
@@ -137,6 +138,147 @@ namespace MarkTexEdt.util
                 Settings.Default.ConverterType = value;
             }
         }
+
+        public bool SynchroScroll {
+            get {
+                return Settings.Default.SynchroScroll;
+            }
+            set {
+                Settings.Default.SynchroScroll = value;
+            }
+        }
+
+        public bool Gfm
+        {
+            get
+            {
+                return Settings.Default.Gfm;
+            }
+            set
+            {
+                Settings.Default.Gfm = value;
+            }
+        }
+
+        public bool Tables
+        {
+            get
+            {
+                return Settings.Default.Tables;
+            }
+            set
+            {
+                Settings.Default.Tables = value;
+            }
+        }
+        public bool Todo
+        {
+            get
+            {
+                return Settings.Default.Todo;
+            }
+            set
+            {
+                Settings.Default.Todo = value;
+            }
+        }
+
+        public bool Breaks
+        {
+            get
+            {
+                return Settings.Default.Breaks;
+            }
+            set
+            {
+                Settings.Default.Breaks = value;
+            }
+        }
+
+        public bool MarkTex
+        {
+            get
+            {
+                return Settings.Default.MarkTex;
+            }
+            set
+            {
+                Settings.Default.MarkTex = value;
+            }
+        }
+
+        public bool SmartList
+        {
+            get
+            {
+                return Settings.Default.SmartList;
+            }
+            set
+            {
+                Settings.Default.SmartList = value;
+            }
+        }
+
+        public bool SmartQuote
+        {
+            get
+            {
+                return Settings.Default.SmartQuote;
+            }
+            set
+            {
+                Settings.Default.SmartQuote = value;
+            }
+        }
+
+        public bool Align
+        {
+            get
+            {
+                return Settings.Default.Align;
+            }
+            set
+            {
+                Settings.Default.Align = value;
+            }
+        }
+
+        public bool Pedantic
+        {
+            get
+            {
+                return Settings.Default.Pedantic;
+            }
+            set
+            {
+                Settings.Default.Pedantic = value;
+            }
+        }
+
+        public bool Sanitize
+        {
+            get
+            {
+                return Settings.Default.Sanitize;
+            }
+            set
+            {
+                Settings.Default.Sanitize = value;
+            }
+        }
+
+        public bool SmartyPants
+        {
+            get
+            {
+                return Settings.Default.SmartyPants;
+            }
+            set
+            {
+                Settings.Default.SmartyPants = value;
+            }
+        }
+
 
         #endregion
 
