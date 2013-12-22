@@ -46,23 +46,24 @@ namespace MarkTexEdt.util
             if (src == null || src == "")
                 src = " ";
             string inputString = "func('" + Uri.EscapeUriString(src) + "'," + options + ")";
+            Console.WriteLine(inputString);
             webControl.ExecuteJavascript(inputString);
         }
 
         private string GetOptions()
         {
             string options = "{";
-            options = "gfm:" + config.Gfm.ToString() + ",";
-            options += ("tables:" + config.Tables.ToString() + ",");
-            options += ("breaks:" + config.Breaks.ToString() + ",");
-            options += ("todo:" + config.Todo.ToString() + ",");
-            options += ("marktex:" + config.MarkTex.ToString() + ",");
-            options += ("smartlist:" + config.SmartList.ToString() + ",");
-            options += ("smartquote:" + config.SmartQuote.ToString() + ",");
-            options += ("align:" + config.Align.ToString() + ",");
-            options += ("pedantic:" + config.Pedantic.ToString() + ",");
-            options += ("sanitize:" + config.Sanitize.ToString() + ",");
-            options += ("smartypants:" + config.SmartyPants.ToString() + ",");
+            options += "gfm:" + config.Gfm.ToString().ToLower() + ",";
+            options += ("tables:" + config.Tables.ToString().ToLower() + ",");
+            options += ("breaks:" + config.Breaks.ToString().ToLower() + ",");
+            options += ("todo:" + config.Todo.ToString().ToLower() + ",");
+            options += ("marktex:" + config.MarkTex.ToString().ToLower() + ",");
+            options += ("smartlist:" + config.SmartList.ToString().ToLower() + ",");
+            options += ("smartquote:" + config.SmartQuote.ToString().ToLower() + ",");
+            options += ("align:" + config.Align.ToString().ToLower() + ",");
+            options += ("pedantic:" + config.Pedantic.ToString().ToLower() + ",");
+            options += ("sanitize:" + config.Sanitize.ToString().ToLower() + ",");
+            options += ("smartypants:" + config.SmartyPants.ToString().ToLower() + ",");
             options += Properties.Resources.footer + "}";
             return options;
         }

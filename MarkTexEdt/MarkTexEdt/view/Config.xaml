@@ -1,7 +1,7 @@
 ﻿<Window x:Class="MarkTexEdt.view.Config"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="设置" Height="400" Width="500" Loaded="Window_Loaded" Icon="/MarkTexEdt;component/MarkTex-Logo.ico">
+        Title="设置" Height="480" Width="500" Loaded="Window_Loaded" Icon="/MarkTexEdt;component/MarkTex-Logo.ico">
     <Grid>
         <DockPanel Margin="5">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
@@ -18,37 +18,57 @@
             </StackPanel>
             <TabControl>
                 <TabItem Header="编辑器">
-                    
+                    <TabItem.Resources>
+                        <Style TargetType="CheckBox">
+                            <Setter Property="Margin" Value="15"></Setter>
+                        </Style>
+                    </TabItem.Resources>
+                    <StackPanel>
+                        <CheckBox Content="同步滚动" Height="16" Name="SynchroScroll" IsChecked="{Binding Path=SynchroScroll}" />
+                    </StackPanel>
                 </TabItem>
                 <TabItem Header="转换器">
-                    
+                    <TabItem.Resources>
+                        <Style TargetType="CheckBox">
+                            <Setter Property="Margin" Value="5"></Setter>
+                        </Style>
+                        <Style TargetType="GroupBox">
+                            <Setter Property="Margin" Value="5,5"></Setter>
+                        </Style>
+                    </TabItem.Resources>
                     <StackPanel>
-                        <DockPanel>
-                            <Label DockPanel.Dock="Left">转换器</Label>
-                            
-                            <ComboBox HorizontalContentAlignment="Center" Width="200" 
-                                      SelectedIndex="{Binding Path=ConverterType}" SelectionChanged="ComboBox_SelectionChanged">
-                                <ComboBoxItem>MarkTex</ComboBoxItem>
-                                <ComboBoxItem>Markdown</ComboBoxItem>
-                                <ComboBoxItem>Github Flavored Markdown</ComboBoxItem>
-                            </ComboBox>
-                        </DockPanel>
-                        <CheckBox Content="同步滚动" Height="16" Name="SynchroScroll" IsChecked="{Binding Path=SynchroScroll}" />
-                        <CheckBox Content="使用GFM引擎" Height="16" Name="Gfm" IsChecked="{Binding Path=Gfm}"/>
-                        <CheckBox Content="GFM表格" Height="16" Name="Tables" IsChecked="{Binding Path=Tables}"/>
-                        <CheckBox Content="GFM Todo" Height="16" Name="Todo" IsChecked="{Binding Path=Todo}"/>
-                        <CheckBox Content="GFM Line Breaks" Height="16" Name="Breaks" IsChecked="{Binding Path=Breaks}"/>
-                        <CheckBox Content="MarkTex特性应用" Height="16" Name="MarkTex" IsChecked="{Binding Path=MarkTex}"/>
-                        <CheckBox Content="智能列表" Height="16" Name="SmartList" IsChecked="{Binding Path=SmartList}"/>
-                        <CheckBox Content="SmartQuote" Height="16" Name="SmartQuote" IsChecked="{Binding Path=SmartQuote}"/>
-                        <CheckBox Content="Paragraph Alignment" Height="16" Name="Align" IsChecked="{Binding Path=Align}"/>
-                        <CheckBox Content="恢复Markdown初始版本" Height="16" Name="Pedantic" IsChecked="{Binding Path=Pedantic}"/>
-                        <CheckBox Content="过滤输入的HTML" Height="16" Name="Sanitize" IsChecked="{Binding Path=Sanitize}"/>
-                        <CheckBox Content="标点智能排版" Height="16" Name="SmartyPants" IsChecked="{Binding Path=SmartyPants}"/>
-                    </StackPanel>
-                    
+                        <GroupBox>
+                            <GroupBox.Header>
+                                <CheckBox FontWeight="Bold" Content="GFM" Name="Gfm" IsChecked="{Binding Path=Gfm}"/>
+                            </GroupBox.Header>
+                            <StackPanel IsEnabled="{Binding ElementName=Gfm, Path=IsChecked}">
+                                <CheckBox Content="表格" Name="Tables" IsChecked="{Binding Path=Tables}"/>
+                                <CheckBox Content="换行" Name="Breaks" IsChecked="{Binding Path=Breaks}"/>
+                                <CheckBox Content="任务列表" Name="Todo" IsChecked="{Binding Path=Todo}"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <GroupBox.Header>
+                                <CheckBox FontWeight="Bold" Content="MarkTex" Name="MarkTex" IsChecked="{Binding Path=MarkTex}"/>
+                            </GroupBox.Header>
+                            <StackPanel  IsEnabled="{Binding ElementName=MarkTex, Path=IsChecked}">
+                                <CheckBox Content="智能列表" Name="SmartList" IsChecked="{Binding Path=SmartList}"/>
+                                <CheckBox Content="智能引文"  Name="SmartQuote" IsChecked="{Binding Path=SmartQuote}"/>
+                                <CheckBox Content="段落对齐" Name="Align" IsChecked="{Binding Path=Align}"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <GroupBox.Header>
+                                <Label  FontWeight="Bold">Markdown</Label>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <CheckBox Content="原始 Markdown" Name="Pedantic" IsChecked="{Binding Path=Pedantic}"/>
+                                <CheckBox Content="转义 HTML" Name="Sanitize" IsChecked="{Binding Path=Sanitize}"/>
+                                <CheckBox Content="智能标点排版" Name="SmartyPants" IsChecked="{Binding Path=SmartyPants}"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>                    
                 </TabItem>
-                <TabItem Header="高级"></TabItem>
             </TabControl>
         </DockPanel>
     </Grid>

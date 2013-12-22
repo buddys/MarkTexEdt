@@ -72,17 +72,6 @@ namespace MarkTexEdt.view
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             Settings.Default.Reset();
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-              
-
-        
-
-
-        
+        }        
     }
 }
