@@ -17,6 +17,8 @@ namespace MarkTexEdt.util
         WebControl webControl;
         util.Config config;
 
+        JSObject jsobject;
+
         string source;
         public string Source
         {
@@ -37,21 +39,20 @@ namespace MarkTexEdt.util
             this.webControl = _w;
             this.config = util.Config.ConfigInstance;
             webControl.Source = new Uri(Config.TemplateUrl);
+            jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
         }
 
         public void Update(string src)
         {
             string options = this.GetOptions();
-            JSObject jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
             if ( src ==null ) src = "";
             string inputString = "update(" + EncodeJsString(src) + "," + options + ")";
-            Console.WriteLine(inputString);
+            //Console.WriteLine(inputString);
             webControl.ExecuteJavascript(inputString);
         }
 
         public void SaveAsHtml(string filename)
         {
-            JSObject jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
             string result = webControl.ExecuteJavascriptWithResult("exportHTML()");
             //Console.WriteLine(result);
             StreamWriter sw = new StreamWriter(filename);

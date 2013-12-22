@@ -40,7 +40,6 @@ namespace MarkTexEdt
         {
             InitializeComponent();
             this.DataContext = this.config = util.Config.ConfigInstance;
-            this.converter = new util.Converter(this.browser);
 
             this.edit = new util.EditBasicFuction(tbEditor);
             this.highLight = new util.HighLight(tbEditor);
@@ -57,7 +56,8 @@ namespace MarkTexEdt
         {
             config.RestoreWindow(this);
             tbEditor.Focus();   //窗口载入后，左边的编辑框获得焦点
-            config.PropertyChanged+=new System.ComponentModel.PropertyChangedEventHandler(config_PropertyChanged);
+            config.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(config_PropertyChanged);
+            this.converter = new util.Converter(this.browser);
         }
         /// <summary>
         /// 设置项改变时触发
