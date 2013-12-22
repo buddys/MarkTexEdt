@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ApplicationIcon>MarkTex-Logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,7 +11,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MarkTexEdt</RootNamespace>
-    <AssemblyName>marktex</AssemblyName>
+    <AssemblyName>MarkTexEdt</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -168,6 +171,29 @@
     <Resource Include="resource\img\math-26.png" />
     <Resource Include="resource\img\picture-26.png" />
     <Resource Include="resource\img\redo-26.png" />
+    <Resource Include="resource\img\toolbar\align-center-64.png" />
+    <Resource Include="resource\img\toolbar\align-left-64.png" />
+    <Resource Include="resource\img\toolbar\align-right-64.png" />
+    <Resource Include="resource\img\toolbar\bold-64.png" />
+    <Resource Include="resource\img\toolbar\check-64.png" />
+    <Resource Include="resource\img\toolbar\code-64.png" />
+    <Resource Include="resource\img\toolbar\external-link-64.png" />
+    <Resource Include="resource\img\toolbar\folder-open-64.png" />
+    <Resource Include="resource\img\toolbar\folder-open.png" />
+    <Resource Include="resource\img\toolbar\h-sign-64.png" />
+    <Resource Include="resource\img\toolbar\italic-64.png" />
+    <Resource Include="resource\img\toolbar\link-64.png" />
+    <Resource Include="resource\img\toolbar\list-ol-64.png" />
+    <Resource Include="resource\img\toolbar\list-ul-64.png" />
+    <Resource Include="resource\img\toolbar\picture-64.png" />
+    <Resource Include="resource\img\toolbar\quote-left-64.png" />
+    <Resource Include="resource\img\toolbar\reply-64.png" />
+    <Resource Include="resource\img\toolbar\save-64.png" />
+    <Resource Include="resource\img\toolbar\save.png" />
+    <Resource Include="resource\img\toolbar\share-64.png" />
+    <Resource Include="resource\img\toolbar\strikethrough-64.png" />
+    <Resource Include="resource\img\toolbar\superscript-64.png" />
+    <Resource Include="resource\img\toolbar\time-64.png" />
     <Resource Include="resource\img\undo-26.png" />
   </ItemGroup>
   <ItemGroup>
@@ -182,7 +208,9 @@
     <Resource Include="resource\img\left_array-26.png" />
     <Resource Include="resource\img\right_array-26.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\Debug\resources\html\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\marktex.exe" />
     <Content Include="bin\Debug\marktex.pdb" />
@@ -190,9 +218,29 @@
     <Content Include="bin\Debug\resources\css\dark.css" />
     <Content Include="bin\Debug\resources\css\gfm.css" />
     <Content Include="bin\Debug\resources\css\markdown.css" />
-    <Content Include="bin\Debug\resources\html\standard.html" />
     <Content Include="bin\Debug\resources\js\config.js" />
-    <Content Include="bin\Debug\resources\js\marked.js" />
+    <Resource Include="resource\img\toolbar\align-center.png" />
+    <Resource Include="resource\img\toolbar\align-left.png" />
+    <Resource Include="resource\img\toolbar\align-right.png" />
+    <Resource Include="resource\img\toolbar\bold.png" />
+    <Resource Include="resource\img\toolbar\check.png" />
+    <Resource Include="resource\img\toolbar\code.png" />
+    <Resource Include="resource\img\toolbar\external-link.png" />
+    <Resource Include="resource\img\toolbar\h-sign.png" />
+    <Resource Include="resource\img\toolbar\italic.png" />
+    <Resource Include="resource\img\toolbar\link.png" />
+    <Resource Include="resource\img\toolbar\list-ol.png" />
+    <Resource Include="resource\img\toolbar\list-ul.png" />
+    <Resource Include="resource\img\toolbar\picture.png" />
+    <Resource Include="resource\img\toolbar\quote-left.png" />
+    <Resource Include="resource\img\toolbar\reply.png" />
+    <Resource Include="resource\img\toolbar\share.png" />
+    <Resource Include="resource\img\toolbar\strikethrough.png" />
+    <Resource Include="resource\img\toolbar\superscript.png" />
+    <Resource Include="resource\img\toolbar\time.png" />
+    <Resource Include="resource\img\logo\MarkTex-Logo.ico" />
+    <Resource Include="resource\img\logo\MarkTex-Logo.png" />
+    <Resource Include="MarkTex-Logo.ico" />
     <Resource Include="resource\script\footer.txt" />
   </ItemGroup>
   <ItemGroup>

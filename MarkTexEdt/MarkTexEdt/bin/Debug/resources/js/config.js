@@ -1,7 +1,7 @@
 ﻿//do rendering
 function update(mdContent,Options){
     mdContent = decodeURI(mdContent);
-	Options = decodeURI(Options);
+	Options = Options;
     marktex(mdContent, Options, function(err,content){
         if (err) {
 			return;

@@ -13,16 +13,15 @@ namespace MarkTexEdt.util
 {
     public class Converter
     {
-        WebControl w;
+        WebControl webControl;
         util.Config config;
-        
 
         string source;
-
         public string Source
         {
             get { return source; }
-            set {
+            set
+            {
                 if (value == source) return;
                 else
                 {
@@ -34,45 +33,38 @@ namespace MarkTexEdt.util
 
         public Converter(WebControl _w)
         {
-            this.w = _w;            
-            this.DataContext = this.config = util.Config.ConfigInstance;
-            w.Source = new Uri("file:///resources/html/template.html");
-        }
-        public void Update(string src="")
-        {
-            string options = this.SetOptions();
-            JSObject jsobject = w.CreateGlobalJavascriptObject("jsobject");
-            if (src == null || src == "")
-            src = " " + src;                        //src不能为空 否则报错
-            string inputString = "func('" + Uri.EscapeUriString(src) + "'," + '"' + Uri.EscapeUriString(options) + '"' + ")";
-            //Console.WriteLine(inputString);
-            w.ExecuteJavascript(inputString);
-            
-        }
-        private string ReturnTrueOrFalse(bool option) {
-            if (option)
-            {
-                return "true";
-            }
-            return "false";
-        }
-        private string SetOptions() { 
-            string options;
-            options = "gfm:" + ReturnTrueOrFalse(config.Gfm) + ",";
-            options += ("tables:" + ReturnTrueOrFalse(config.Tables) + ",");
-            options += ("breaks:" + ReturnTrueOrFalse(config.Breaks) + ",");
-            options += ("todo:" + ReturnTrueOrFalse(config.Todo) + ",");
-            options += ("marktex:" + ReturnTrueOrFalse(config.MarkTex) + ",");
-            options += ("smartlist:" + ReturnTrueOrFalse(config.SmartList) + ",");
-            options += ("smartquote:" + ReturnTrueOrFalse(config.SmartQuote) + ",");
-            options += ("align:" + ReturnTrueOrFalse(config.Align) + ",");
-            options += ("pedantic:" + ReturnTrueOrFalse(config.Pedantic) + ",");
-            options += ("sanitize:" + ReturnTrueOrFalse(config.Sanitize) + ",");
-            options += ("smartypants:" + ReturnTrueOrFalse(config.SmartyPants) + ",");
-            options += Properties.Resources.footer;
-            return options;
+            this.webControl = _w;
+            this.config = util.Config.ConfigInstance;
+            webControl.Source = new Uri("file:///resources/html/template.html");
         }
 
-        public Config DataContext { get; set; }
+        public void Update(string src = "")
+        {
+            string options = this.GetOptions();
+            JSObject jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
+            //src不能为空 否则报错
+            if (src == null || src == "")
+                src = " ";
+            string inputString = "func('" + Uri.EscapeUriString(src) + "'," + options + ")";
+            webControl.ExecuteJavascript(inputString);
+        }
+
+        private string GetOptions()
+        {
+            string options = "{";
+            options = "gfm:" + config.Gfm.ToString() + ",";
+            options += ("tables:" + config.Tables.ToString() + ",");
+            options += ("breaks:" + config.Breaks.ToString() + ",");
+            options += ("todo:" + config.Todo.ToString() + ",");
+            options += ("marktex:" + config.MarkTex.ToString() + ",");
+            options += ("smartlist:" + config.SmartList.ToString() + ",");
+            options += ("smartquote:" + config.SmartQuote.ToString() + ",");
+            options += ("align:" + config.Align.ToString() + ",");
+            options += ("pedantic:" + config.Pedantic.ToString() + ",");
+            options += ("sanitize:" + config.Sanitize.ToString() + ",");
+            options += ("smartypants:" + config.SmartyPants.ToString() + ",");
+            options += Properties.Resources.footer + "}";
+            return options;
+        }
     }
 }
