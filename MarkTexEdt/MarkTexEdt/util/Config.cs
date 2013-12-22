@@ -63,7 +63,22 @@ namespace MarkTexEdt.util
         }
 
 
-        #region 工具
+        #region 常量
+
+        public static string HelpUrl
+        {
+            get { return "http://buddys.github.io/marktex/guide.html"; }
+        }
+
+        public static string HomeUrl
+        {
+            get { return "http://buddys.github.io/marktex"; }
+        }
+
+        public static string TemplateUrl
+        {
+            get { return "file:///resources/html/template.html"; }
+        }
 
         /// <summary>
         /// 缓存目录
@@ -99,26 +114,40 @@ namespace MarkTexEdt.util
         }
 
         //安全的文件名
-        public string SafeFileName
+        public string SafeFilePath
         {
             get
             {
-                if (CurrentFileName != null && CurrentFileName != "")
-                    return CurrentFileName;
+                if (CurrentFilePath != null && CurrentFilePath != "")
+                    return CurrentFilePath;
                 else
                     return DefaultFileName;
             }
         }
 
-        //当前文件名
-        string currentFileName;
-        public string CurrentFileName
+        //安全的文件名称
+        public string SafeFileName
         {
             get
             {
-                return currentFileName;
+                string filename = SafeFilePath.Split('\\').Last<string>();
+
+                int dot = filename.LastIndexOf('.');
+                if (dot != -1)
+                    filename = filename.Substring(0,dot);
+                return filename;
             }
-            set { currentFileName = value; }
+        }
+
+        //当前文件名
+        string currentFilePath;
+        public string CurrentFilePath
+        {
+            get
+            {
+                return currentFilePath;
+            }
+            set { currentFilePath = value; }
         }
 
         //默认文件名

@@ -93,9 +93,6 @@
     <Compile Include="util\HighLight.cs" />
     <Compile Include="util\ObservableClass.cs" />
     <Compile Include="util\VisibilityToBoolConverter.cs" />
-    <Compile Include="view\About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
-    </Compile>
     <Compile Include="view\Config.xaml.cs">
       <DependentUpon>Config.xaml</DependentUpon>
     </Compile>
@@ -111,10 +108,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="view\About.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="view\Config.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,12 +167,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\resources\html\" />
+    <Folder Include="bin\Debug\resources\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\resources\css\dark.css" />
     <Content Include="bin\Debug\resources\css\gfm.css" />
     <Content Include="bin\Debug\resources\css\markdown.css" />
-    <Content Include="bin\Debug\resources\js\config.js" />
     <Resource Include="resource\img\toolbar\align-center.png" />
     <Resource Include="resource\img\toolbar\align-left.png" />
     <Resource Include="resource\img\toolbar\align-right.png" />

@@ -36,25 +36,24 @@ namespace MarkTexEdt.util
         {
             this.webControl = _w;
             this.config = util.Config.ConfigInstance;
-            webControl.Source = new Uri("file:///resources/html/template.html");
+            webControl.Source = new Uri(Config.TemplateUrl);
         }
 
-        public void Update(string src = "")
+        public void Update(string src)
         {
             string options = this.GetOptions();
             JSObject jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
             //src不能为空 否则报错
-            if (src == null || src == "")
-                src = " ";
-            string inputString = "func('" + Uri.EscapeUriString(src) + "'," + options + ")";
-            Console.WriteLine(inputString);
+            if ( src == "") src = " ";
+            string inputString = "update('" + Uri.EscapeUriString(src) + "'," + options + ")";
+            //Console.WriteLine(inputString);
             webControl.ExecuteJavascript(inputString);
         }
 
         public void SaveAsHtml(string filename)
         {
             JSObject jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
-            string result = webControl.ExecuteJavascriptWithResult("$('html').html()");
+            string result = webControl.ExecuteJavascriptWithResult("exportHTML()");
             //Console.WriteLine(result);
             StreamWriter sw = new StreamWriter(filename);
             sw.Write(result);

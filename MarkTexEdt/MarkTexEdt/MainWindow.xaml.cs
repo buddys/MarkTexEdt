@@ -78,17 +78,6 @@ namespace MarkTexEdt
                 }
             }
         }
-       
-        /// <summary>
-        /// 点击关于
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void About_Click(object sender, RoutedEventArgs e)
-        {
-            view.About abt = new view.About();
-            abt.ShowDialog();
-        }
 
         /// <summary>
         /// 编辑窗口发生改动
@@ -171,6 +160,8 @@ namespace MarkTexEdt
             
         }
 
+
+
         /// <summary>
         /// 打开文件
         /// </summary>
@@ -183,7 +174,7 @@ namespace MarkTexEdt
             open.Multiselect = false;
 
             if ((bool)open.ShowDialog())
-            {                
+            {
                 try
                 {
                     FileStream fs = open.OpenFile() as FileStream;
@@ -192,7 +183,7 @@ namespace MarkTexEdt
                     text.Load(fs, DataFormats.Text);
                     fs.Close();
 
-                    config.CurrentFileName = open.FileName;
+                    config.CurrentFilePath = open.FileName;
                 }
                 catch (Exception ex)
                 {
@@ -208,9 +199,9 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (config.CurrentFileName != null && config.CurrentFileName != "")
+            if (config.CurrentFilePath != null && config.CurrentFilePath != "")
             {
-                edit.SaveFile(config.CurrentFileName);
+                edit.SaveFile(config.CurrentFilePath);
             }
             else
             {
@@ -220,7 +211,7 @@ namespace MarkTexEdt
                 if ((bool)save.ShowDialog())
                 {
                     edit.SaveFile(save.FileName);
-                    config.CurrentFileName = save.FileName;
+                    config.CurrentFilePath = save.FileName;
                 }
             }
         }
@@ -234,7 +225,7 @@ namespace MarkTexEdt
         {
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = Config.MarkdownFileFilter;
-            save.FileName = Config.DefaultFileName;
+            save.FileName = config.SafeFileName;
             if ((bool)save.ShowDialog())
             {
                 edit.SaveFile(save.FileName);
@@ -616,7 +607,7 @@ namespace MarkTexEdt
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SaveAsPdf(object sender, RoutedEventArgs e)
+        private void ExportToPdf(object sender, RoutedEventArgs e)
         {
             browser.PrintToFile(Config.CachePath, PrintConfig.Default);              
         }
@@ -626,7 +617,7 @@ namespace MarkTexEdt
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SaveAsHtml(object sender, RoutedEventArgs e)
+        private void ExportToHtml(object sender, RoutedEventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = Config.HtmlFileFilter;
@@ -647,7 +638,7 @@ namespace MarkTexEdt
         {            
             FileInfo temp = new FileInfo(e.Files[0]);
             SaveFileDialog save = new SaveFileDialog();
-            save.FileName = Config.DefaultFileName;
+            save.FileName = config.SafeFileName;
             save.Filter = Config.PdfFileFilter;
             if ((bool)save.ShowDialog())
             {
@@ -690,6 +681,16 @@ namespace MarkTexEdt
         {
             converter.SaveAsHtml(Config.CacheFilePath);
             System.Diagnostics.Process.Start( Config.CacheFilePath );  
-        }       
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Config.HelpUrl);  
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Config.HomeUrl);  
+        }
     }
 }

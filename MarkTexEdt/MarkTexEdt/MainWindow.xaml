@@ -99,8 +99,8 @@
                     <MenuItem  Click="SaveAs_Click" Header=" 另存为" InputGestureText="Ctrl+Shift+S"></MenuItem>
                     <Separator Margin="7,0"></Separator>
                     <MenuItem Header=" 导出为">
-                        <MenuItem Click="SaveAsHtml" Header=" HTML 页面"></MenuItem>
-                        <MenuItem Click="SaveAsPdf" Header=" PDF 文档"></MenuItem>
+                        <MenuItem Click="ExportToHtml" Header=" HTML 页面"></MenuItem>
+                        <MenuItem Click="ExportToPdf" Header=" PDF 文档"></MenuItem>
                     </MenuItem>
                     <MenuItem Click="Print_Click" Header=" 打印" InputGestureText="Ctrl+P"></MenuItem>
                     <MenuItem Click="Close_Click" Header=" 退出"></MenuItem>
@@ -139,8 +139,8 @@
                     <MenuItem Header=" 系统配置" Click="Config_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Padding="10,3" Header="关于">
-                    <MenuItem Header=" 帮助"></MenuItem>
-                    <MenuItem Header=" 关于" Click="About_Click"></MenuItem>
+                    <MenuItem Header=" 帮助" Click="Help_Click"></MenuItem>
+                    <MenuItem Header=" 项目主页" Click="Home_Click"></MenuItem>
                 </MenuItem>
             </Menu>
             <ToolBarTray IsLocked="True" DockPanel.Dock="Top">
