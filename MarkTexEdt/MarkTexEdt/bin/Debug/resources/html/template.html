@@ -20,7 +20,7 @@
         <script type="text/javascript" src="../mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script>
             function update(mdContent, Options) {
-                marktex(decodeURI(mdContent), Options, function (err, content) {
+                marktex(mdContent, Options, function (err, content) {
                     if (err) return;
                     $('#content').html(content);
                     $('#content .mathjax').each(function (i, v) {

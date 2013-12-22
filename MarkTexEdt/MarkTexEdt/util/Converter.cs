@@ -44,7 +44,8 @@ namespace MarkTexEdt.util
             string options = this.GetOptions();
             JSObject jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
             if ( src ==null ) src = "";
-            string inputString = "update('" + Uri.EscapeUriString(src) + "'," + options + ")";
+            string inputString = "update(" + EncodeJsString(src) + "," + options + ")";
+            Console.WriteLine(inputString);
             webControl.ExecuteJavascript(inputString);
         }
 
@@ -74,6 +75,53 @@ namespace MarkTexEdt.util
             options += ("smartypants:" + config.SmartyPants.ToString().ToLower() + ",");
             options += Properties.Resources.options + "}";
             return options;
+        }
+
+        public static string EncodeJsString(string s)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("\"");
+            foreach (char c in s)
+            {
+                switch (c)
+                {
+                    case '\"':
+                        sb.Append("\\\"");
+                        break;
+                    case '\\':
+                        sb.Append("\\\\");
+                        break;
+                    case '\b':
+                        sb.Append("\\b");
+                        break;
+                    case '\f':
+                        sb.Append("\\f");
+                        break;
+                    case '\n':
+                        sb.Append("\\n");
+                        break;
+                    case '\r':
+                        sb.Append("\\r");
+                        break;
+                    case '\t':
+                        sb.Append("\\t");
+                        break;
+                    default:
+                        int i = (int)c;
+                        if (i < 32 || i > 127)
+                        {
+                            sb.AppendFormat("\\u{0:X04}", i);
+                        }
+                        else
+                        {
+                            sb.Append(c);
+                        }
+                        break;
+                }
+            }
+            sb.Append("\"");
+
+            return sb.ToString();
         }
     }
 }
