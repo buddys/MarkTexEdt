@@ -94,7 +94,7 @@
             <Menu Visibility="{Binding Path=MenuBarVisibility}" Background="LightGray" DockPanel.Dock="Top">
                 <Menu.Resources>
                     <Style x:Key="header1" TargetType="Label">
-                        <Setter Property="Width" Value="45"></Setter>
+                        <Setter Property="Width" Value="80"></Setter>
                     </Style>
                     <Style x:Key="header2" TargetType="Label">
                         <Setter Property="Width" Value="85"></Setter>
@@ -137,6 +137,22 @@
                                 <Label Style="{StaticResource ResourceKey= header2}"></Label>
                             </StackPanel>
                         </MenuItem.Header>
+                        <MenuItem Click="SaveAsHtml">
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource ResourceKey= header1}">导出到HTML</Label>
+                                    <Label Style="{StaticResource ResourceKey= header2}"></Label>
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem Click="SaveAsPdf">
+                            <MenuItem.Header >
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Style="{StaticResource ResourceKey= header1}">导出到PDF</Label>
+                                    <Label Style="{StaticResource ResourceKey= header2}"></Label>
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
                     </MenuItem>
                     <MenuItem Click="Print_Click">
                         <MenuItem.Header>
@@ -406,7 +422,7 @@
                     </RichTextBox>
                 </ScrollViewer>
                 <GridSplitter Width="2" Background="LightGray"></GridSplitter>
-                <my:WebControl Grid.Column="1"  AddressChanged="browser_AddressChanged" Name="browser"/>                
+                <my:WebControl Grid.Column="1"  AddressChanged="browser_AddressChanged" PrintComplete="browser_PrintComplete" Name="browser"/>                
             </Grid>
         </DockPanel>
     </Grid>

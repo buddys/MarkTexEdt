@@ -193,6 +193,7 @@
     <Content Include="bin\Debug\resources\html\standard.html" />
     <Content Include="bin\Debug\resources\js\config.js" />
     <Content Include="bin\Debug\resources\js\marked.js" />
+    <Resource Include="resource\script\footer.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

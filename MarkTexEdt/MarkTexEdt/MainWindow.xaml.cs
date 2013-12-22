@@ -17,6 +17,7 @@ using Awesomium.Web;
 using Microsoft.Win32;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using System.IO;
 
 namespace MarkTexEdt
 {
@@ -33,6 +34,7 @@ namespace MarkTexEdt
         util.EditBasicFuction edit;
         util.HighLight highLight;
         util.CommandAndInsert commandAndInsert;
+        FileInfo file;
 
         public MainWindow()
         {
@@ -43,7 +45,7 @@ namespace MarkTexEdt
             this.edit = new util.EditBasicFuction(tbEditor);
             this.highLight = new util.HighLight(tbEditor);
             this.commandAndInsert = new util.CommandAndInsert(tbEditor);
-            //browser.Source = new Uri("file:///test.html");
+            
         }
 
         /// <summary>
@@ -141,6 +143,11 @@ namespace MarkTexEdt
                 converter.Source = getDisplaying();
             }
         }
+        /// <summary>
+        /// 浏览器页面地址发生改变
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void browser_AddressChanged(object sender, UrlEventArgs e) {
             string currentUrl = browser.Source.ToString();
             //Console.WriteLine(currentUrl);
@@ -572,6 +579,50 @@ namespace MarkTexEdt
         private void CommandBinding_Save_File_Execute(object sender, ExecutedRoutedEventArgs e)
         {
             edit.Save_File();           
+        }
+
+        private void SaveAsPdf(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "PDF文件(.pdf)|*.pdf";
+            
+            if ((bool)save.ShowDialog())
+            {
+               
+                file = new FileInfo(save.FileName);
+                string name = file.Name;
+                Console.WriteLine(name);                
+                browser.PrintToFile(file.DirectoryName,PrintConfig.Default);
+                
+            }
+        }
+
+        private void SaveAsHtml(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "html文件(.pdf)|*.html";
+
+            if ((bool)save.ShowDialog())
+            {
+                JSObject jsobject = browser.CreateGlobalJavascriptObject("jsobject");
+                string js = "$('html').html()";
+                string result = browser.ExecuteJavascriptWithResult(js);
+                Console.WriteLine(result);
+                StreamWriter sw = new StreamWriter(save.FileName);
+                sw.Write(result);
+                sw.Close();
+            }
+            
+            
+        }
+
+        private void browser_PrintComplete(object sender, PrintCompleteEventArgs e)
+        {
+            
+               //FileInfo temp = new FileInfo(e.Files[0]);
+               //Console.WriteLine(temp.FullName);              
+               //temp.MoveTo(file.FullName);
+                           
         }
 
        

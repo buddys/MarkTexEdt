@@ -82,5 +82,137 @@ namespace MarkTexEdt.Properties {
                 this["SynchroScroll"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Gfm {
+            get {
+                return ((bool)(this["Gfm"]));
+            }
+            set {
+                this["Gfm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Tables {
+            get {
+                return ((bool)(this["Tables"]));
+            }
+            set {
+                this["Tables"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Todo {
+            get {
+                return ((bool)(this["Todo"]));
+            }
+            set {
+                this["Todo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Breaks {
+            get {
+                return ((bool)(this["Breaks"]));
+            }
+            set {
+                this["Breaks"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool MarkTex {
+            get {
+                return ((bool)(this["MarkTex"]));
+            }
+            set {
+                this["MarkTex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SmartList {
+            get {
+                return ((bool)(this["SmartList"]));
+            }
+            set {
+                this["SmartList"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SmartQuote {
+            get {
+                return ((bool)(this["SmartQuote"]));
+            }
+            set {
+                this["SmartQuote"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Align {
+            get {
+                return ((bool)(this["Align"]));
+            }
+            set {
+                this["Align"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Pedantic {
+            get {
+                return ((bool)(this["Pedantic"]));
+            }
+            set {
+                this["Pedantic"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Sanitize {
+            get {
+                return ((bool)(this["Sanitize"]));
+            }
+            set {
+                this["Sanitize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SmartyPants {
+            get {
+                return ((bool)(this["SmartyPants"]));
+            }
+            set {
+                this["SmartyPants"] = value;
+            }
+        }
     }
 }

@@ -18,13 +18,14 @@
             </StackPanel>
             <TabControl>
                 <TabItem Header="编辑器">
-                    <CheckBox Content="同步显示" Height="16" Name="SynchroScroll" Click ="SynchroScroll_Click" 
-                              Width="233" IsChecked="{Binding Path=SynchroScroll}" />
+                    
                 </TabItem>
                 <TabItem Header="转换器">
+                    
                     <StackPanel>
                         <DockPanel>
                             <Label DockPanel.Dock="Left">转换器</Label>
+                            
                             <ComboBox HorizontalContentAlignment="Center" Width="200" 
                                       SelectedIndex="{Binding Path=ConverterType}" SelectionChanged="ComboBox_SelectionChanged">
                                 <ComboBoxItem>MarkTex</ComboBoxItem>
@@ -32,7 +33,20 @@
                                 <ComboBoxItem>Github Flavored Markdown</ComboBoxItem>
                             </ComboBox>
                         </DockPanel>
+                        <CheckBox Content="同步滚动" Height="16" Name="SynchroScroll" IsChecked="{Binding Path=SynchroScroll}" />
+                        <CheckBox Content="使用GFM引擎" Height="16" Name="Gfm" IsChecked="{Binding Path=Gfm}"/>
+                        <CheckBox Content="GFM表格" Height="16" Name="Tables" IsChecked="{Binding Path=Tables}"/>
+                        <CheckBox Content="GFM Todo" Height="16" Name="Todo" IsChecked="{Binding Path=Todo}"/>
+                        <CheckBox Content="GFM Line Breaks" Height="16" Name="Breaks" IsChecked="{Binding Path=Breaks}"/>
+                        <CheckBox Content="MarkTex特性应用" Height="16" Name="MarkTex" IsChecked="{Binding Path=MarkTex}"/>
+                        <CheckBox Content="智能列表" Height="16" Name="SmartList" IsChecked="{Binding Path=SmartList}"/>
+                        <CheckBox Content="SmartQuote" Height="16" Name="SmartQuote" IsChecked="{Binding Path=SmartQuote}"/>
+                        <CheckBox Content="Paragraph Alignment" Height="16" Name="Align" IsChecked="{Binding Path=Align}"/>
+                        <CheckBox Content="恢复Markdown初始版本" Height="16" Name="Pedantic" IsChecked="{Binding Path=Pedantic}"/>
+                        <CheckBox Content="过滤输入的HTML" Height="16" Name="Sanitize" IsChecked="{Binding Path=Sanitize}"/>
+                        <CheckBox Content="标点智能排版" Height="16" Name="SmartyPants" IsChecked="{Binding Path=SmartyPants}"/>
                     </StackPanel>
+                    
                 </TabItem>
                 <TabItem Header="高级"></TabItem>
             </TabControl>

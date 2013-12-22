@@ -78,11 +78,7 @@ namespace MarkTexEdt.view
         {
 
         }
-
-        private void SynchroScroll_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+              
 
         
 
