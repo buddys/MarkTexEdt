@@ -34,8 +34,7 @@ namespace MarkTexEdt
         util.EditBasicFuction edit;
         util.HighLight highLight;
         util.CommandAndInsert commandAndInsert;
-        FileInfo file;
-
+       
         public MainWindow()
         {
             InitializeComponent();
@@ -583,24 +582,14 @@ namespace MarkTexEdt
 
         private void SaveAsPdf(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "PDF文件(.pdf)|*.pdf";
+            browser.PrintToFile("C:/", PrintConfig.Default);   
             
-            if ((bool)save.ShowDialog())
-            {
-               
-                file = new FileInfo(save.FileName);
-                string name = file.Name;
-                Console.WriteLine(name);                
-                browser.PrintToFile(file.DirectoryName,PrintConfig.Default);
-                
-            }
         }
 
         private void SaveAsHtml(object sender, RoutedEventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "html文件(.pdf)|*.html";
+            save.Filter = "html文件(.html)|*.html";
 
             if ((bool)save.ShowDialog())
             {
@@ -619,10 +608,17 @@ namespace MarkTexEdt
         private void browser_PrintComplete(object sender, PrintCompleteEventArgs e)
         {
             
-               //FileInfo temp = new FileInfo(e.Files[0]);
-               //Console.WriteLine(temp.FullName);              
-               //temp.MoveTo(file.FullName);
-                           
+            //FileInfo temp = new FileInfo(e.Files[0]);
+            //Console.WriteLine(temp.FullName);              
+            //temp.MoveTo(file.FullName);
+            FileInfo temp = new FileInfo(e.Files[0]);
+            SaveFileDialog save = new SaveFileDialog();            
+            save.Filter = "PDF文件(.pdf)|*.pdf";
+            if ((bool)save.ShowDialog())
+            {
+                temp.CopyTo(save.FileName,true);
+                temp.Delete();
+            }
         }
 
        
