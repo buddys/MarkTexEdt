@@ -9,7 +9,7 @@ Project Homepage：https://buddys.github.com/marktex
 
 ### 依赖软件
 
-* Windows XP，Windows 7，Windows 8，
+* Windows XP，Windows 7，Windows 8
 * .NET Framework 4.0
 
 ### 硬件平台
