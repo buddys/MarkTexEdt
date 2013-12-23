@@ -9,7 +9,8 @@ Project Homepage：https://buddys.github.com/marktex
 
 ### 依赖软件
 
-.NET Framework 4.0
+* Windows XP，Windows 7，Windows 8，
+* .NET Framework 4.0
 
 ### 硬件平台
 
@@ -21,5 +22,5 @@ https://github.com/buddys/MarkTexEdt/issues
 
 ## 开发任务列表
 
-- [ ] 实时预览性能提升：异步调用
-- [ ] 代码重构
+* 实时预览性能提升：异步调用
+* 版本锁定与代码重构
