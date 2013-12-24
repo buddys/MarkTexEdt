@@ -14,7 +14,7 @@ Project Homepage：https://buddys.github.com/marktex
 
 ### 硬件平台
 
-x86, x86_64
+x86
 
 ## 反馈
 
