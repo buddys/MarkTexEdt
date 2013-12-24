@@ -155,6 +155,28 @@ namespace MarkTexEdt.util
         }
 
         /// <summary>
+        /// 执行打开文件
+        /// </summary>
+        /// <param name="filePath"></param>
+        public void OpenFile(string filePath)
+        {
+            try
+            {
+                FileStream fs = new FileStream(filePath, FileMode.Open);
+
+                TextRange text = new TextRange(Out_tbEditor.Document.ContentStart, Out_tbEditor.Document.ContentEnd);
+                text.Load(fs, DataFormats.Text);
+                fs.Close();
+
+                Config.ConfigInstance.CurrentFilePath = filePath;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// 执行文件写入
         /// </summary>
         /// <param name="path"></param>

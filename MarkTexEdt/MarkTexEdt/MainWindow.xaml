@@ -268,7 +268,7 @@
                     </RichTextBox>
                 </ScrollViewer>
                 <GridSplitter Width="2" Background="LightGray"></GridSplitter>
-                <awesomium:WebControl Grid.Column="1"  AddressChanged="browser_AddressChanged" PrintComplete="browser_PrintComplete" Name="browser"/>                
+                <awesomium:WebControl Grid.Column="1" DocumentReady="browser_DocumentReady" AddressChanged="browser_AddressChanged" PrintComplete="browser_PrintComplete" Name="browser"/>                
             </Grid>
         </DockPanel>
     </Grid>

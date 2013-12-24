@@ -18,7 +18,7 @@
     <TargetCulture>zh-CN</TargetCulture>
     <ProductName>MarkTex Editor</ProductName>
     <PublisherName>buddys</PublisherName>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -26,19 +26,23 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4792E1B4651081B5D3092C5610A54F6F1EF6876D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>3B1CE6E82183346722C0E42D66BD75CCF9988690</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>MarkTexEdt_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>MarkTexEdt_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -166,7 +170,6 @@
     <None Include="lib\Awesomium Assemblies\awesomium_process" />
     <None Include="lib\Awesomium Assemblies\inspector.pak" />
     <None Include="lib\Awesomium Assemblies\Setup.exe.config" />
-    <None Include="MarkTexEdt_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -282,8 +285,12 @@
     <Resource Include="resource\img\toolbar\strikethrough.png" />
     <Resource Include="resource\img\toolbar\superscript.png" />
     <Resource Include="resource\img\toolbar\time.png" />
-    <Resource Include="resource\img\logo\MarkTex-Logo.ico" />
-    <Resource Include="resource\img\logo\MarkTex-Logo.png" />
+    <Content Include="resource\img\logo\MarkTex-Logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\img\logo\MarkTex-Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="MarkTex-Logo.ico" />
     <Content Include="lib\Awesomium Assemblies\avcodec-53.dll" />
     <Content Include="lib\Awesomium Assemblies\avformat-53.dll" />
@@ -474,13 +481,13 @@
       <Visible>False</Visible>
       <Description>Markdown文件</Description>
       <Progid>markdownfile</Progid>
-      <DefaultIcon>MarkTex-Logo.ico</DefaultIcon>
+      <DefaultIcon>resource\img\logo\MarkTex-Logo.ico</DefaultIcon>
     </FileAssociation>
     <FileAssociation Include=".md">
       <Visible>False</Visible>
       <Description>Markdown文件</Description>
       <Progid>markdownfile</Progid>
-      <DefaultIcon>MarkTex-Logo.ico</DefaultIcon>
+      <DefaultIcon>resource\img\logo\MarkTex-Logo.ico</DefaultIcon>
     </FileAssociation>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -35,7 +35,8 @@ namespace MarkTexEdt
         util.EditBasicFuction edit;
         util.HighLight highLight;
         util.CommandAndInsert commandAndInsert;
-       
+        string filePath;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -43,7 +44,17 @@ namespace MarkTexEdt
 
             this.edit = new util.EditBasicFuction(tbEditor);
             this.highLight = new util.HighLight(tbEditor);
-            this.commandAndInsert = new util.CommandAndInsert(tbEditor);            
+            this.commandAndInsert = new util.CommandAndInsert(tbEditor);
+        }
+
+        /// <summary>
+        /// 文件关联
+        /// </summary>
+        /// <param name="filePath"></param>
+        public MainWindow(string filePath)
+            : this()
+        {
+            this.filePath = filePath;
         }
 
         /// <summary>
@@ -57,7 +68,10 @@ namespace MarkTexEdt
             tbEditor.Focus();   //窗口载入后，左边的编辑框获得焦点
             config.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(config_PropertyChanged);
             converter = new Converter(this.browser);
+            if (this.filePath != null && this.filePath != "")
+                edit.OpenFile(filePath);
         }
+
         /// <summary>
         /// 设置项改变时触发
         /// </summary>
@@ -67,14 +81,7 @@ namespace MarkTexEdt
         {
             if (e.PropertyName == "SynchroScroll")
             {
-                if (config.SynchroScroll)
-                {
-                    converter.Source = getDisplaying();
-                }
-                else
-                {
-                    converter.Update(GetSource());
-                }
+                UpdateView();
             }
         }
 
@@ -85,24 +92,20 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void tbEditor_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(config.SynchroScroll == true){
-                converter.Source = getDisplaying();
-            }
-            else{
-                converter.Update(GetSource());
-            }         
+            UpdateView();
         }
 
         /// <summary>
         /// 得到编辑框内当前显示的内容
         /// </summary>
         /// <returns>stringToDisplay</returns>
-        private string getDisplaying(){
+        private string getDisplaying()
+        {
             string stringToDisplay = null;
-            double offset = scrollView.ContentVerticalOffset;           
-            double height = scrollView.ExtentHeight;            
-            double vertical = scrollView.ScrollableHeight;            
-            string source = GetSource();            
+            double offset = scrollView.ContentVerticalOffset;
+            double height = scrollView.ExtentHeight;
+            double vertical = scrollView.ScrollableHeight;
+            string source = GetSource();
             if (source != null && source != "" && source != "\r\n")
             {
                 string temp = source.Replace("\n", "");
@@ -114,11 +117,11 @@ namespace MarkTexEdt
                 for (int i = firstIndex; i <= lastIndex; i++)
                 {
                     stringToDisplay = stringToDisplay + split[i] + "\n";
-                }                
+                }
             }
             return stringToDisplay;
         }
-        
+
         /// <summary>
         /// 编辑窗口滚动状态发生变化
         /// </summary>
@@ -126,10 +129,16 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void scrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            if (this.IsLoaded && config.SynchroScroll == true)//否则直接运行会出错，调试正常（VS.bug++）
-            {
-                converter.Source = getDisplaying();
-            }
+            UpdateView();
+        }
+
+        /// <summary>
+        /// 更新显示
+        /// </summary>
+        private void UpdateView()
+        {
+            if (!this.IsLoaded) return;
+            converter.Source = config.SynchroScroll ? getDisplaying() : GetSource();
         }
 
         /// <summary>
@@ -137,10 +146,11 @@ namespace MarkTexEdt
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void browser_AddressChanged(object sender, UrlEventArgs e) {
+        private void browser_AddressChanged(object sender, UrlEventArgs e)
+        {
             //string currentUrl = browser.Source.ToString();
             ////Console.WriteLine(currentUrl);
-            
+
             //converter.Source = getDisplaying();
             //if (currentUrl != "file:///resources/html/template.html")
             //{
@@ -157,7 +167,7 @@ namespace MarkTexEdt
             //}
             //browser.Source = new Uri("file:///resources/html/template.html");
             ////browser.Reload(false);
-            
+
         }
 
 
@@ -175,20 +185,7 @@ namespace MarkTexEdt
 
             if ((bool)open.ShowDialog())
             {
-                try
-                {
-                    FileStream fs = open.OpenFile() as FileStream;
-
-                    TextRange text = new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd);
-                    text.Load(fs, DataFormats.Text);
-                    fs.Close();
-
-                    config.CurrentFilePath = open.FileName;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                edit.OpenFile(open.FileName);
             }
         }
 
@@ -245,24 +242,6 @@ namespace MarkTexEdt
         }
 
         /// <summary>
-        /// 撤销
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Undo_Click(object sender, RoutedEventArgs e)
-        {
-            edit.Undo();
-        }
-        /// <summary>
-        /// 重做
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Redo_Click(object sender, RoutedEventArgs e)
-        {
-            edit.Redo();
-        }
-        /// <summary>
         /// 窗口关闭事件
         /// </summary>
         /// <param name="sender"></param>
@@ -280,6 +259,45 @@ namespace MarkTexEdt
         private string GetSource()
         {
             return new TextRange(tbEditor.Document.ContentStart, tbEditor.Document.ContentEnd).Text.ToString();
+        }
+
+        private void tbEditor_KeyUp(object sender, KeyEventArgs e)
+        {
+            highLight.HighLight5();
+            highLight.HighLightMultiLines();
+        }
+
+        private void Print_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog pd = new PrintDialog();
+            if ((pd.ShowDialog() == true))
+            {
+                //use either one of the below      
+                pd.PrintVisual(tbEditor as Visual, "printing as visual");
+                pd.PrintDocument((((IDocumentPaginatorSource)tbEditor.Document).DocumentPaginator), "printing as paginator");
+            }
+        }
+
+        #region 编辑器工具栏
+
+
+        /// <summary>
+        /// 撤销
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Undo();
+        }
+        /// <summary>
+        /// 重做
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Redo_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Redo();
         }
 
         /// <summary>
@@ -365,38 +383,18 @@ namespace MarkTexEdt
             commandAndInsert.Add_HeadLine4();
         }
 
+        private void Horizontal_Scale_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_Horizontal_Scale();
+        }
 
         private void Graphic_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Horizontal_Scale_Click(object sender, RoutedEventArgs e)
-        {
-            commandAndInsert.Add_Horizontal_Scale();
-        }
-
-
-
-        private void tbEditor_KeyUp(object sender, KeyEventArgs e)
-        {
-            highLight.HighLight5();
-            highLight.HighLightMultiLines();
-         }
-
-        private void Print_Click(object sender, RoutedEventArgs e)
-        {
-            PrintDialog pd = new PrintDialog();
-            if ((pd.ShowDialog() == true))
-            {
-                //use either one of the below      
-                pd.PrintVisual(tbEditor as Visual, "printing as visual");
-                pd.PrintDocument((((IDocumentPaginatorSource)tbEditor.Document).DocumentPaginator), "printing as paginator");
-            }
-        }
-
         private void Time_Click(object sender, RoutedEventArgs e)
-        {           
+        {
             edit.Get_Current_Time();
         }
 
@@ -479,7 +477,9 @@ namespace MarkTexEdt
             edit.Get_Current_Time();
         }
 
-        #region Command
+        #endregion
+
+        #region 编辑命令
 
         private void CommandBinding_Increase_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -697,7 +697,7 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void ExportToPdf(object sender, RoutedEventArgs e)
         {
-            browser.PrintToFile(Config.CachePath, PrintConfig.Default);              
+            browser.PrintToFile(Config.CachePath, PrintConfig.Default);
         }
 
         /// <summary>
@@ -714,7 +714,7 @@ namespace MarkTexEdt
             if ((bool)save.ShowDialog())
             {
                 converter.SaveAsHtml(save.FileName);
-            }            
+            }
         }
 
         /// <summary>
@@ -723,14 +723,14 @@ namespace MarkTexEdt
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void browser_PrintComplete(object sender, PrintCompleteEventArgs e)
-        {            
+        {
             FileInfo temp = new FileInfo(e.Files[0]);
             SaveFileDialog save = new SaveFileDialog();
             save.FileName = config.SafeFileName;
             save.Filter = Config.PdfFileFilter;
             if ((bool)save.ShowDialog())
             {
-                temp.CopyTo(save.FileName,true);
+                temp.CopyTo(save.FileName, true);
                 temp.Delete();
             }
         }
@@ -768,17 +768,24 @@ namespace MarkTexEdt
         private void PreviewInBrowser_Click(object sender, RoutedEventArgs e)
         {
             converter.SaveAsHtml(Config.CacheFilePath);
-            System.Diagnostics.Process.Start( Config.CacheFilePath );  
+            System.Diagnostics.Process.Start(Config.CacheFilePath);
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Config.HelpUrl);  
+            System.Diagnostics.Process.Start(Config.HelpUrl);
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Config.HomeUrl);  
+            System.Diagnostics.Process.Start(Config.HomeUrl);
+        }
+
+        private void browser_DocumentReady(object sender, UrlEventArgs e)
+        {
+            //由命令行参数打开程序时，未能更新显示，此时作一次更新。
+            if (filePath != null && filePath != "")
+                converter.Update();
         }
     }
 }

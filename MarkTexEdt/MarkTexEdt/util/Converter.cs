@@ -42,8 +42,14 @@ namespace MarkTexEdt.util
             jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
         }
 
-        public void Update(string src)
+        public void Update()
         {
+            Update(Source);
+        }
+
+        void Update(string src)
+        {
+            if (!webControl.IsDocumentReady) return;
             string options = this.GetOptions();
             if (src == null) src = "";
             string inputString = "update(" + EncodeJsString(src) + "," + options + ")";
