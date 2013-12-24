@@ -16,8 +16,15 @@
         <script src='../js/jquery.min.js'></script>
         <script src='../js/highlight.min.js'></script>
         <script src='../js/marktex.js'></script>
-        <script type="text/x-mathjax-config"> MathJax.Hub.Config({ skipStartupTypeset: true });</script>
-        <script type="text/javascript" src="../mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config"> MathJax.Hub.Config({
+            skipStartupTypeset: true, 
+            MathMenu: {showLocale: false,
+                showRenderer: false,
+                helpURL: "http://www.mathjax.org/help/user/"
+                } 
+          });
+        </script>
+        <script type="text/javascript" src="../mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=zh-hans"></script>
         <script>
             function update(mdContent, Options) {
                 marktex(mdContent, Options, function (err, content) {

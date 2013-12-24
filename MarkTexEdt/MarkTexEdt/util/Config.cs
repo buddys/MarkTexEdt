@@ -78,7 +78,7 @@ namespace MarkTexEdt.util
         public static Uri TemplateUri
         {
             get {
-                return new Uri(BaseDirectory + "resources/html/template.html");
+                return new Uri(BaseDirectory + "resource/html/template.html");
             }
         }
 

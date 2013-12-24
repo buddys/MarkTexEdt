@@ -5,21 +5,23 @@
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdatePeriodically>true</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://rawgithub.com/buddys/MarkTexEdt/master/publish/</InstallUrl>
+    <InstallUrl>https://rawgithub.com/buddys/MarkTexEdt/master/MarkTexEdt/MarkTexEdt/publish/</InstallUrl>
     <SupportUrl>http://buddys.github.io/marktex/</SupportUrl>
     <ErrorReportUrl>https://github.com/buddys/MarkTexEdt/issues</ErrorReportUrl>
+    <TargetCulture>zh-CN</TargetCulture>
     <ProductName>MarkTex Editor</ProductName>
     <PublisherName>buddys</PublisherName>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -34,6 +36,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -706,7 +711,69 @@
     <None Include="resource\mathjax\fonts\HTML-CSS\TeX\otf\MathJax_Typewriter-Regular.otf" />
     <None Include="resource\mathjax\fonts\HTML-CSS\TeX\otf\MathJax_WinChrome-Regular.otf" />
     <None Include="resource\mathjax\fonts\HTML-CSS\TeX\otf\MathJax_WinIE6-Regular.otf" />
-    <None Include="resource\mathjax\LICENSE" />
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_AMS-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Caligraphic-Bold.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Caligraphic-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Fraktur-Bold.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Fraktur-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Main-Bold.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Main-Italic.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Main-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Math-BoldItalic.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Math-Italic.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Math-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_SansSerif-Bold.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_SansSerif-Italic.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_SansSerif-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Script-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Size1-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Size2-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Size3-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Size4-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\fonts\HTML-CSS\TeX\woff\MathJax_Typewriter-Regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\mathjax\LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -833,7 +900,9 @@
     <Content Include="resource\mathjax\config\MML_HTMLorMML.js" />
     <Content Include="resource\mathjax\config\Safe.js" />
     <Content Include="resource\mathjax\config\TeX-AMS-MML_HTMLorMML-full.js" />
-    <Content Include="resource\mathjax\config\TeX-AMS-MML_HTMLorMML.js" />
+    <Content Include="resource\mathjax\config\TeX-AMS-MML_HTMLorMML.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="resource\mathjax\config\TeX-AMS-MML_SVG-full.js" />
     <Content Include="resource\mathjax\config\TeX-AMS-MML_SVG.js" />
     <Content Include="resource\mathjax\config\TeX-AMS_HTML-full.js" />
@@ -842,7 +911,9 @@
     <Content Include="resource\mathjax\config\TeX-MML-AM_HTMLorMML.js" />
     <Content Include="resource\mathjax\extensions\asciimath2jax.js" />
     <Content Include="resource\mathjax\extensions\FontWarnings.js" />
-    <Content Include="resource\mathjax\extensions\HelpDialog.js" />
+    <Content Include="resource\mathjax\extensions\HelpDialog.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="resource\mathjax\extensions\HTML-CSS\handle-floats.js" />
     <Content Include="resource\mathjax\extensions\jsMath2jax.js" />
     <Content Include="resource\mathjax\extensions\MatchWebFonts.js" />
@@ -17488,8 +17559,33 @@
     <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\png\Main\Regular\SpacingModLetters.js" />
     <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\png\Main\Regular\SupplementalArrowsA.js" />
     <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\png\Main\Regular\SuppMathOperators.js" />
-    <Resource Include="resource\mathjax\images\CloseX-31.png" />
-    <Resource Include="resource\mathjax\images\MenuArrow-15.png" />
+    <Content Include="resource\mathjax\images\CloseX-31.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\mathjax\images\MenuArrow-15.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_AMS-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Caligraphic-Bold.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Caligraphic-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Fraktur-Bold.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Fraktur-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Main-Bold.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Main-Italic.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Main-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Math-BoldItalic.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Math-Italic.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Math-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_SansSerif-Bold.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_SansSerif-Italic.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_SansSerif-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Script-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Size1-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Size2-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Size3-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Size4-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_Typewriter-Regular.svg" />
+    <Content Include="resource\mathjax\fonts\HTML-CSS\TeX\svg\MathJax_WinChrome-Regular.svg" />
     <Content Include="resource\mathjax\jax\element\mml\jax.js" />
     <Content Include="resource\mathjax\jax\element\mml\optable\Arrows.js" />
     <Content Include="resource\mathjax\jax\element\mml\optable\BasicLatin.js" />
@@ -17944,7 +18040,9 @@
     <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\Caligraphic\Bold\Main.js" />
     <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\Caligraphic\Regular\Main.js" />
     <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\fontdata-extra.js" />
-    <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\fontdata.js" />
+    <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\fontdata.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\Fraktur\Bold\BasicLatin.js" />
     <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\Fraktur\Bold\Main.js" />
     <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\Fraktur\Bold\Other.js" />
@@ -18014,7 +18112,9 @@
     <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\WinIE6\Regular\Bold.js" />
     <Content Include="resource\mathjax\jax\output\HTML-CSS\fonts\TeX\WinIE6\Regular\Main.js" />
     <Content Include="resource\mathjax\jax\output\HTML-CSS\imageFonts.js" />
-    <Content Include="resource\mathjax\jax\output\HTML-CSS\jax.js" />
+    <Content Include="resource\mathjax\jax\output\HTML-CSS\jax.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="resource\mathjax\jax\output\NativeMML\config.js" />
     <Content Include="resource\mathjax\jax\output\NativeMML\jax.js" />
     <Content Include="resource\mathjax\jax\output\SVG\autoload\annotation-xml.js" />
@@ -18306,15 +18406,33 @@
     <Content Include="resource\mathjax\localization\en\MathMenu.js" />
     <Content Include="resource\mathjax\localization\en\MathML.js" />
     <Content Include="resource\mathjax\localization\en\TeX.js" />
-    <Content Include="resource\mathjax\localization\zh-hans\FontWarnings.js" />
-    <Content Include="resource\mathjax\localization\zh-hans\HelpDialog.js" />
-    <Content Include="resource\mathjax\localization\zh-hans\HTML-CSS.js" />
-    <Content Include="resource\mathjax\localization\zh-hans\MathMenu.js" />
-    <Content Include="resource\mathjax\localization\zh-hans\MathML.js" />
-    <Content Include="resource\mathjax\localization\zh-hans\TeX.js" />
-    <Content Include="resource\mathjax\localization\zh-hans\zh-hans.js" />
-    <Content Include="resource\mathjax\MathJax.js" />
-    <Content Include="resource\script\options.js" />
+    <Content Include="resource\mathjax\localization\zh-hans\FontWarnings.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\mathjax\localization\zh-hans\HelpDialog.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\mathjax\localization\zh-hans\HTML-CSS.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\mathjax\localization\zh-hans\MathMenu.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\mathjax\localization\zh-hans\MathML.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\mathjax\localization\zh-hans\TeX.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\mathjax\localization\zh-hans\zh-hans.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\mathjax\MathJax.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\js\options.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -18339,6 +18457,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <FileAssociation Include=".markdown">
+      <Visible>False</Visible>
+      <Description>Markdown文件</Description>
+      <Progid>markdownfile</Progid>
+      <DefaultIcon>MarkTex-Logo.ico</DefaultIcon>
+    </FileAssociation>
     <FileAssociation Include=".md">
       <Visible>False</Visible>
       <Description>Markdown文件</Description>
