@@ -18,7 +18,7 @@
     <TargetCulture>zh-CN</TargetCulture>
     <ProductName>MarkTex Editor</ProductName>
     <PublisherName>buddys</PublisherName>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -26,7 +26,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>3B1CE6E82183346722C0E42D66BD75CCF9988690</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>9F43CC7584FCA804FD206878A5A5BAEB02C5E366</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
