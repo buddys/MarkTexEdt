@@ -18,7 +18,7 @@
     <TargetCulture>zh-CN</TargetCulture>
     <ProductName>MarkTex Editor</ProductName>
     <PublisherName>buddys</PublisherName>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -171,7 +171,6 @@
     <None Include="lib\Awesomium Assemblies\awesomium_process" />
     <None Include="lib\Awesomium Assemblies\inspector.pak" />
     <None Include="lib\Awesomium Assemblies\Setup.exe.config" />
-    <None Include="MarkTexEdt_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
