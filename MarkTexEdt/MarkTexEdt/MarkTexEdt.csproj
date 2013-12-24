@@ -18,7 +18,7 @@
     <TargetCulture>zh-CN</TargetCulture>
     <ProductName>MarkTex Editor</ProductName>
     <PublisherName>buddys</PublisherName>
-    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
