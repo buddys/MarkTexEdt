@@ -18,7 +18,9 @@
     <TargetCulture>zh-CN</TargetCulture>
     <ProductName>MarkTex Editor</ProductName>
     <PublisherName>buddys</PublisherName>
-    <ApplicationRevision>23</ApplicationRevision>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>27</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -26,16 +28,17 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>93A93E10D00A87A17766DD39E324BFEE8E561B38</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>3B1CE6E82183346722C0E42D66BD75CCF9988690</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>MarkTexEdt_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -170,7 +173,6 @@
     <None Include="lib\Awesomium Assemblies\awesomium_process" />
     <None Include="lib\Awesomium Assemblies\inspector.pak" />
     <None Include="lib\Awesomium Assemblies\Setup.exe.config" />
-    <None Include="MarkTexEdt_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
