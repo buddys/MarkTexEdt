@@ -1,0 +1,448 @@
+<zuiprezi><version>7</version><zui-table><settings>
+									<autoplay>
+										<delay>4000</delay>
+									</autoplay>
+								<bounds x="427113.8790405094" y="-355459.9203944061" width="8184.451788671315" height="15570.549051617389"/><aspectratio>4:3</aspectratio><mode type="normal"/></settings><object id="148_13415665" type="button" x="431206.10493484506" y="-347674.6458685974" r="0" s="5.857333277514726" class="invisible"><type>invisible</type><size><w>1402.2736409977979</w><h>2663.3473887196405</h></size><meta><notModifiedByUser>from-template</notModifiedByUser><parentTemplate>on-the-road-quick</parentTemplate></meta><layout><frametype value="OVERVIEW"/></layout></object><object id="0" type="image" x="434597.3608733122" y="-354846.947644785" r="0" s="3.6796076090197674"><source w="256" h="256">MarkTex-Logo.png<url>MarkTex-Logo.png</url></source><sourceUrl>MarkTex-Logo.png</sourceUrl></object><object id="0_4096537" type="text" x="430841.6" y="-355028.55" r="0" s="8.344125816997876" class="head"><height>54.75</height><width>641.2558011034723</width><p align="center"><text><![CDATA[MarkTex：基于Markdown的排版系统]]></text></p><p align="center"><text><![CDATA[MarkTex:A preparation system based on markdown]]></text></p></object><object id="7" type="button" x="428018.1275426458" y="-353638.3665632654" r="0" s="1.3101319156093834" class="circle"><type>circle</type><size><w>865.6244964526559</w><h>865.6244964526559</h></size></object><object id="7_4" type="text" x="427979.33215830434" y="-354027.8218123892" r="0" s="2.732677480830354" class="head"><height>27.375</height><width>184.996143553921</width><p align="center"><text><![CDATA[Markdown简介]]></text></p><meta><parentTemplate>on-the-road-quick</parentTemplate></meta><layout><layout-element role="title" parent-id="0_4"/></layout></object><object id="4" type="text" x="430585.69823491113" y="-354569.63127257914" r="0" s="5.12981174604185" class="body"><height>27.375</height><width>553.5258771045969</width><p><text><![CDATA[buddys团队：杨珺 杜实现 李淞毅 唐浩 田璐 张申  ]]></text></p><layout><layout-element role="body" parent-id="2"/></layout></object><object id="161" type="button" x="429648.3535539147" y="-350425.9785014423" r="0" s="1.7893586654522362" class="bracket"><type>bracket</type><size><w>625.2631578947368</w><h>600</h></size></object><object id="9" type="text" x="429644.1619557691" y="-350899.1595278502" r="0" s="1.703765462710304" class="head"><height>27.375</height><width>-192</width><p><text><![CDATA[使用的工具和环境]]></text></p></object><object id="11" type="text" x="429646.0789455656" y="-350509.3340241378" r="0" s="1.8741420089813345" class="body"><height>164.25</height><width>552</width><p listType="bullet" indent="1"><text><![CDATA[托管于github，采用git协同开发,QQ群,每周开会]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Rational Rose 2007]]></text></p><p listType="bullet" indent="1"><text><![CDATA[C#为主体，WPF前端]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Microsoft Visual Studio 2010]]></text></p><p listType="bullet" indent="1"><text><![CDATA[markdown引擎源码分析（可用版本包括：python，ruby，C#，javascript）]]></text></p></object><object id="163" type="button" x="429647.94425729953" y="-348789.7418394098" r="0" s="1.7072688018535749" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="69" type="image" x="429647.99033693457" y="-348748.61115707224" r="0" s="1.5231752409808355"><source w="313" h="670">c9.jpg<url>c9.jpg</url></source><sourceUrl>c9.jpg</sourceUrl></object><object id="118" type="image" x="428091.7" y="-345618.5" r="0" s="1.4674279999306603"><source w="370" h="702">l1.jpg<url>l1.jpg</url></source><sourceUrl>l1.jpg</sourceUrl></object><object id="162" type="button" x="428018.36019656685" y="-348790.24183940975" r="0" s="1.7057681501313422" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="13" type="text" x="428018.2219576613" y="-349284.25239195843" r="0" s="3.6583117207679523" class="head"><height>27.375</height><width>-93.5625</width><p><text><![CDATA[marktex]]></text></p></object><object id="14" type="text" x="428013.28334717907" y="-349162.0909153227" r="0" s="1.247171461775305" class="strong"><height>27.375</height><width>-282.46875</width><p><text><![CDATA[Markdown Parser Design]]></text></p></object><object id="15" type="text" x="427758.2660387461" y="-349024.36791648436" r="0" s="2.203909739783851" class="head"><height>27.375</height><width>-163.5</width><p><text><![CDATA[Overall Design]]></text></p></object><object id="16" type="text" x="427786.2031430981" y="-348922.6747375867" r="0" s="1.0307202163432272" class="body"><height>54.75</height><width>-282.28125</width><p listType="bullet" indent="1"><text><![CDATA[Input：text : String]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Output：html : String]]></text></p></object><object id="18" type="text" x="427807.6389631626" y="-348741.0017721287" r="0" s="1.0307202163432272" class="body"><height>136.875</height><width>-325.6875</width><p listType="bullet" indent="1"><text><![CDATA[Development：]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Linux 3.12.1-1-ARCH]]></text></p><p listType="bullet" indent="2"><text><![CDATA[GNU make 4.0]]></text></p><p listType="bullet" indent="2"><text><![CDATA[NodeJS v0.10.22]]></text></p><p><text><![CDATA[]]></text></p></object><object id="19" type="text" x="427898.18054880254" y="-348589.36384660023" r="0" s="1.0307202163432272" class="body"><height>82.125</height><width>-499.6875</width><p listType="bullet" indent="1"><text><![CDATA[Configuration：switches & interfaces]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Deployment：web page, npm module, CLI]]></text></p><p><text><![CDATA[]]></text></p></object><object id="20" type="text" x="429647.9115279237" y="-349317.07329729054" r="0" s="2.6734227896128884" class="head"><height>27.375</height><width>-108.9375</width><p><text><![CDATA[Workflow]]></text></p></object><object id="164" type="button" x="431122.43533609976" y="-348789.740115151" r="0" s="1.7130552198872977" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="68" type="image" x="431122.4445520267" y="-348735.22790676495" r="0" s="1.544701933806755"><source w="281" h="713">c8.jpg<url>c8.jpg</url></source><sourceUrl>c8.jpg</sourceUrl></object><object id="22" type="text" x="431141.81998187164" y="-349327.41391228465" r="0" s="2.430384354193534" class="head"><height>27.375</height><width>-178.96875</width><p><text><![CDATA[Workflow Demo]]></text></p></object><object id="165" type="button" x="432868.75995462964" y="-348789.97180608235" r="0" s="1.7050221704323596" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="23" type="text" x="432868.74656731804" y="-349338.0688166874" r="0" s="2.430384354193534" class="head"><height>27.375</height><width>-161.53125</width><p><text><![CDATA[System Design]]></text></p></object><object id="24" type="text" x="432575.5644520778" y="-349098.40123601566" r="0" s="1.371888607952836" class="body"><height>82.125</height><width>-307.125</width><p listType="bullet" indent="1"><text><![CDATA[Host object extension]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Object masquerading]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Very Late Binding]]></text></p></object><object id="26" type="image" x="432534.88070839667" y="-348601.71573296405" r="0" s="1.0305100763916901"><source w="212" h="314">c1.jpg<url>c1.jpg</url></source><sourceUrl>c1.jpg</sourceUrl></object><object id="25" type="text" x="432510.2041751423" y="-348872.45070457394" r="0" s="1.371888607952836" class="body"><height>27.375</height><width>-211.96875</width><p listType="bullet" indent="1"><text><![CDATA[Call() & Apply()]]></text></p></object><object id="28" type="text" x="433043.9417026142" y="-349079.608688224" r="0" s="1.371888607952836" class="body"><height>109.5</height><width>-304.03125</width><p listType="bullet" indent="1"><text><![CDATA[Encapsulation]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Closure ]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Anonymous function]]></text></p><p><text><![CDATA[]]></text></p></object><object id="29" type="image" x="433131.0591246709" y="-348658.487791606" r="0" s="1.1124435329016962"><source w="472" h="220">c2.jpg<url>c2.jpg</url></source><sourceUrl>c2.jpg</sourceUrl></object><object id="166" type="button" x="434418.8268955592" y="-348790.12396763824" r="0" s="1.7013744157075363" class="circle"><type>circle</type><size><w>804.25</w><h>804.25</h></size></object><object id="31" type="text" x="434418.77218511386" y="-349330.3711776805" r="0" s="2.940765068574176" class="head"><height>27.375</height><width>-153.9375</width><p><text><![CDATA[Object Design]]></text></p></object><object id="32" type="text" x="434388.1655063286" y="-349021.6068455557" r="0" s="2.590448746540893" class="body"><height>109.5</height><width>-337.3125</width><p listType="bullet" indent="1"><text><![CDATA[Class Implementation]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Constructor：properties]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Prototype：method]]></text></p><p><text><![CDATA[]]></text></p></object><object id="33" type="image" x="434418.78081592405" y="-348604.3557492449" r="0" s="1.8301379526333208"><source w="376" h="268">c3.jpg<url>c3.jpg</url></source><sourceUrl>c3.jpg</sourceUrl></object><object id="168" type="button" x="429648.2586514166" y="-347251.11006502237" r="0" s="1.3451998573856443" class="bracket"><type>bracket</type><size><w>800</w><h>810.6100795755967</h></size></object><object id="42" type="image" x="429648.2086514166" y="-347251.11006502237" r="0" s="0.7995600831315398"><source w="510" h="270">c6.jpg<url>c6.jpg</url></source><sourceUrl>c6.jpg</sourceUrl></object><object id="167" type="button" x="428018.2586514166" y="-347250.8100650223" r="0" s="1.8384242134546158" class="bracket"><type>bracket</type><size><w>641.7112299465241</w><h>600</h></size></object><object id="35" type="text" x="428036.41854977456" y="-347701.98544717336" r="0" s="2.645128484711251" class="head"><height>27.375</height><width>-217.03125</width><p><text><![CDATA[Testing (Black Box)]]></text></p></object><object id="36" type="text" x="427814.30865141656" y="-347505.41006502236" r="0" s="1.9137431258881352" class="body"><height>109.5</height><width>-304.125</width><p listType="bullet" indent="1"><text><![CDATA[Test case]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Input：14 files]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Option：11 switches]]></text></p><p><text><![CDATA[]]></text></p></object><object id="38" type="image" x="428018.2586514165" y="-346986.9100650225" r="0" s="1.6588591037612523"><source w="391" h="263">c4.jpg<url>c4.jpg</url></source><sourceUrl>c4.jpg</sourceUrl></object><object id="37" type="text" x="427785.1586514164" y="-347308.66006502236" r="0" s="1.9137431258881352" class="body"><height>109.5</height><width>273.61947500998104</width><p listType="bullet" indent="1"><text><![CDATA[Makefile]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Multiple objects]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Static pattern]]></text></p><p align="right"><text><![CDATA[]]></text></p></object><object id="39" type="text" x="429674.5086514166" y="-347706.01006502233" r="0" s="2.6451284847112513" class="head"><height>27.375</height><width>-210.09375</width><p><text><![CDATA[Functional Testing]]></text></p></object><object id="40" type="text" x="429482.1086514166" y="-347485.3100650224" r="0" s="2.070651656349217" class="body"><height>136.875</height><width>-261</width><p listType="bullet" indent="1"><text><![CDATA[option.diff]]></text></p><p listType="bullet" indent="2"><text><![CDATA[1 diff per switch]]></text></p><p listType="bullet" indent="2"><text><![CDATA[diff with default]]></text></p><p listType="bullet" indent="2"><text><![CDATA[merge diffs]]></text></p><p><text><![CDATA[]]></text></p></object><object id="41" type="image" x="429648.2586514166" y="-346928.71006502234" r="0" s="1.896076357148355"><source w="350" h="158">c5.jpg<url>c5.jpg</url></source><sourceUrl>c5.jpg</sourceUrl></object><object id="169" type="button" x="431122.5586514165" y="-347226.3100650223" r="0" s="1.845185122911713" class="bracket"><type>bracket</type><size><w>601.6085790884719</w><h>600</h></size></object><object id="43" type="text" x="431152.3746770646" y="-347671.02851698507" r="0" s="2.6756860223125343" class="head"><height>27.375</height><width>-208.875</width><p><text><![CDATA[Regression Testing]]></text></p></object><object id="170" type="image" x="431122.5080737974" y="-347002.04890168936" r="0" s="2.0499266886551313"><source w="191" h="267">c13.jpg<url>c13.jpg</url></source><sourceUrl>c13.jpg</sourceUrl></object><object id="44" type="text" x="431082.85522037983" y="-347405.70888016495" r="0" s="3.019448184470263" class="body"><height>109.5</height><width>-248.71875</width><p listType="bullet" indent="1"><text><![CDATA[version.diff ]]></text></p><p listType="bullet" indent="2"><text><![CDATA[1 diff per input]]></text></p><p listType="bullet" indent="2"><text><![CDATA[merge diffs]]></text></p><p><text><![CDATA[]]></text></p></object><object id="171" type="button" x="432868.7586514166" y="-347226.3100650224" r="0" s="1.3435009261782185" class="bracket"><type>bracket</type><size><w>800</w><h>857.7617328519855</h></size></object><object id="46" type="text" x="432904.50016690383" y="-347629.8416310252" r="0" s="3.905875103318294" class="head"><height>27.375</height><width>84.46875</width><p><text><![CDATA[Publish]]></text></p></object><object id="47" type="text" x="432807.80016697524" y="-347407.85285565135" r="0" s="1.656472328977672" class="head"><height>136.875</height><width>462.28125</width><p listType="bullet" indent="1"><text><![CDATA[npm module]]></text></p><p listType="bullet" indent="2"><text><![CDATA[https://npmjs.org/package/marktex]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Git public repo]]></text></p><p listType="bullet" indent="2"><text><![CDATA[https://github.com/buddys/marktex]]></text></p><p><text><![CDATA[]]></text></p></object><object id="48" type="text" x="432652.75000950106" y="-347130.9359905027" r="0" s="2.9345417755960135" class="body"><height>27.375</height><width>-173.34375</width><p listType="bullet" indent="1"><text><![CDATA[MIT Lisence]]></text></p></object><object id="51" type="image" x="428018.0759609851" y="-353428.68348361895" r="0" s="1.3702346455219274"><source w="576" h="228">z1.jpg<url>z1.jpg</url></source><sourceUrl>z1.jpg</sourceUrl></object><object id="50" type="text" x="427974.476794612" y="-353778.9798892973" r="0" s="2.0648287742762204" class="body"><height>164.25</height><width>338.2193025088193</width><p listType="bullet" indent="1"><text><![CDATA[轻量级的标记语言]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Text-to-Html]]></text></p><p listType="bullet" indent="1"><text><![CDATA[特点：]]></text></p><p listType="bullet" indent="2"><text><![CDATA[易读易写]]></text></p><p listType="bullet" indent="2"><text><![CDATA[Html注重表示，Markdown注重书写体验]]></text></p></object><object id="10" type="button" x="429647.5689873453" y="-353638.2972899477" r="0" s="1.3101319156093836" class="circle"><type>circle</type><size><w>865.6244964526559</w><h>865.6244964526559</h></size></object><object id="52" type="text" x="429647.5344979502" y="-354022.18479288655" r="0" s="2.511368721668084" class="head"><height>27.375</height><width>-215.25</width><p><text><![CDATA[Markdown基本语义]]></text></p></object><object id="53" type="text" x="429622.821129402" y="-353609.8105737304" r="0" s="2.267584475955101" class="body"><height>246.375</height><width>-332.15625</width><p listType="bullet" indent="1"><text><![CDATA[标题]]></text></p><p listType="bullet" indent="1"><text><![CDATA[格式（粗体/斜体/下划线）]]></text></p><p listType="bullet" indent="1"><text><![CDATA[列表（无序列表/有序列表）]]></text></p><p listType="bullet" indent="1"><text><![CDATA[链接]]></text></p><p listType="bullet" indent="1"><text><![CDATA[图片]]></text></p><p listType="bullet" indent="1"><text><![CDATA[引用]]></text></p><p listType="bullet" indent="1"><text><![CDATA[水平线]]></text></p><p listType="bullet" indent="1"><text><![CDATA[代码块]]></text></p><p listType="bullet" indent="1"><text><![CDATA[段落]]></text></p></object><object id="66" type="button" x="431200.4274339774" y="-353638.3827376205" r="0" s="1.3101319156093836" class="circle"><type>circle</type><size><w>865.6244964526559</w><h>865.6244964526559</h></size></object><object id="55" type="text" x="431200.55513162893" y="-354054.2124269696" r="0" s="2.511368721668084" class="head"><height>27.375</height><width>-96</width><p><text><![CDATA[项目背景]]></text></p></object><object id="56" type="text" x="431258.4615338204" y="-353823.14364273014" r="0" s="2.0614404326864544" class="body"><height>109.5</height><width>351.08745399138826</width><p><text><![CDATA[背景：]]></text></p><p listType="bullet" indent="1"><text><![CDATA[有许多开源的转换器（引擎）]]></text></p><p listType="bullet" indent="1"><text><![CDATA[还有比较好用但收费的商用软件MARKPAD]]></text></p></object><object id="57" type="text" x="431227.7710894772" y="-353510.17076077074" r="0" s="2.0614404326864544" class="strong"><height>27.375</height><width>-440.25</width><p><text><![CDATA[目标：做出一款能挑战MARKPAD的产品]]></text></p></object><object id="77" type="button" x="432794.25673238764" y="-353638.15137294825" r="0" s="1.3629692371016868" class="circle"><type>circle</type><size><w>865.6244964526559</w><h>865.6244964526559</h></size></object><object id="58" type="text" x="432800.6189289" y="-354061.7169820047" r="0" s="3.3426317685402207" class="head"><height>27.375</height><width>-48</width><p><text><![CDATA[功能]]></text></p></object><object id="62" type="image" x="432735.2421522049" y="-353432.0736642882" r="0" s="0.8960786010849071"><source w="577" h="392">z2.jpg<url>z2.jpg</url></source><sourceUrl>z2.jpg</sourceUrl></object><object id="120" type="button" x="434419.2419402884" y="-353638.6261265004" r="0" s="1.3629692371016868" class="circle"><type>circle</type><size><w>865.6244964526559</w><h>865.6244964526559</h></size></object><object id="64" type="image" x="434419.3893951208" y="-353599.4400047663" r="0" s="2.077668191574278"><source w="280" h="342">z3.jpg<url>z3.jpg</url></source><sourceUrl>z3.jpg</sourceUrl></object><object id="61" type="text" x="432791.15890083316" y="-353692.9432755258" r="0" s="2.0614404326864544" class="head"><height>27.375</height><width>-216</width><p><text><![CDATA[需求分析—应用场景]]></text></p></object><object id="63" type="text" x="434415.4318087812" y="-354031.9595363956" r="0" s="2.5113687216680844" class="head"><height>27.375</height><width>-192</width><p><text><![CDATA[需求分析—用例图]]></text></p></object><object id="151" type="button" x="428018.14059474255" y="-352026.4489119385" r="0" s="1.752287924548429" class="bracket"><type>bracket</type><size><w>662.3785677205893</w><h>643.477165626445</h></size></object><object id="71" type="image" x="428018.14981066965" y="-352026.48577564664" r="0" s="1.1173188807953423"><source w="867" h="721">t2.jpg<url>t2.jpg</url></source><sourceUrl>t2.jpg</sourceUrl></object><object id="135" type="button" x="431122.34171919053" y="-350425.9561492234" r="0" s="1.9154237806124979" class="bracket"><type>bracket</type><size><w>612.3966942148761</w><h>600</h></size></object><object id="76" type="text" x="431122.29608265863" y="-350906.9561468239" r="0" s="2.061440432686454" class="head"><height>27.375</height><width>-262.78125</width><p><text><![CDATA[markdown编辑器流程图]]></text></p></object><object id="154" type="button" x="432868.7620297033" y="-350425.9100695883" r="0" s="1.782680112852755" class="bracket"><type>bracket</type><size><w>662.3785677205893</w><h>643.477165626445</h></size></object><object id="83" type="image" x="432868.9187004628" y="-350166.8227129768" r="0" s="2.287944771130027"><source w="397" h="180">d2.jpg<url>d2.jpg</url></source><sourceUrl>d2.jpg</sourceUrl></object><object id="159" type="button" x="434418.8222560225" y="-350426.41398995306" r="0" s="1.904735142414487" class="bracket"><type>bracket</type><size><w>625.2631578947368</w><h>600</h></size></object><object id="86" type="text" x="434335.7679202578" y="-350482.1720140071" r="0" s="2.061440432686454" class="body"><height>82.125</height><width>332.92881107789077</width><p><text><![CDATA[1、语法高亮]]></text></p><p listType="bullet" indent="1"><text><![CDATA[tbEditor_TextChanged()]]></text></p><p listType="bullet" indent="1"><text><![CDATA[tbEditor_KeyUp()]]></text></p></object><object id="172" type="button" x="434419.17238312936" y="-347244.7207981289" r="0" s="1.7499034122736112" class="bracket"><type>bracket</type><size><w>652.3450704656095</w><h>620.9848531955759</h></size></object><object id="88" type="text" x="434386.61809134734" y="-347621.3339356671" r="0" s="3.319970431245864" class="head"><height>27.375</height><width>-96</width><p><text><![CDATA[显示模块]]></text></p></object><object id="89" type="text" x="434267.75" y="-347319.85" r="0" s="2.7437772159056726" class="body"><height>109.5</height><width>187.9538090414356</width><p listType="bullet" indent="1"><text><![CDATA[Awesomium]]></text></p><p listType="bullet" indent="1"><text><![CDATA[获取文本]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Converter类]]></text></p><p listType="bullet" indent="1"><text><![CDATA[HTML显示]]></text></p></object><object id="91" type="text" x="429705.1319149459" y="-346059.8897478579" r="0" s="2.7437772159056717" class="head"><height>27.375</height><width>272.40588750189977</width><p><text><![CDATA[结构模式-代理（Proxy）]]></text></p></object><object id="92" type="text" x="429597.27344602393" y="-345711.6200282554" r="0" s="3.3423179305643202" class="body"><height>82.125</height><width>251.2167574978804</width><p listType="bullet" indent="1"><text><![CDATA[Converter.Source]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Set()]]></text></p><p listType="bullet" indent="1"><text><![CDATA[同步显示]]></text></p></object><object id="94" type="text" x="431249.4059267569" y="-346076.65708368056" r="0" s="3.0181549374962393" class="head"><height>27.375</height><width>-192.9375</width><p><text><![CDATA[Config 和Settings]]></text></p></object><object id="95" type="text" x="431230.4010195544" y="-345708.31516528496" r="0" s="3.0181549374962393" class="body"><height>109.5</height><width>324.31967440361063</width><p listType="bullet" indent="1"><text><![CDATA[Config类-代理（Proxy）]]></text></p><p listType="bullet" indent="1"><text><![CDATA[单例模式（singlton）]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Properties.Settings]]></text></p><p listType="bullet" indent="1"><text><![CDATA[显示模块]]></text></p></object><object id="97" type="text" x="432867.6677017803" y="-346090.0006747936" r="0" s="2.49434292355061" class="head"><height>27.375</height><width>308.3579578582069</width><p><text><![CDATA[行为模式-观察者(Observer)]]></text></p></object><object id="98" type="text" x="432841.9681046993" y="-345795.6649198513" r="0" s="3.651967474370451" class="body"><height>54.75</height><width>249.05971355207564</width><p listType="bullet" indent="1"><text><![CDATA[ObservableClass]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Property_Changed]]></text></p></object><object id="99" type="text" x="434407.5371271855" y="-350724.00127258856" r="0" s="2.061440432686454" class="body"><height>82.125</height><width>-474.5625</width><p listType="bullet" indent="1"><text><![CDATA[ markdown语法]]></text></p><p listType="bullet" indent="1"><text><![CDATA[ GFM(Github Flavored Markdown)语法]]></text></p><p listType="bullet" indent="1"><text><![CDATA[ 自定义公式语法高亮]]></text></p></object><object id="148" type="button" x="429585.6097335317" y="-352026.0341741734" r="0" s="1.7670611369492946" class="bracket"><type>bracket</type><size><w>662.3785677205893</w><h>643.477165626445</h></size></object><object id="100" type="image" x="429585.65" y="-352089.1" r="0" s="0.6759347869023232"><source w="1486" h="738">t4.jpg<url>t4.jpg</url></source><sourceUrl>t4.jpg</sourceUrl></object><object id="147" type="button" x="432869.0120279499" y="-352026.44359532755" r="0" s="1.767061136949295" class="bracket"><type>bracket</type><size><w>662.3785677205893</w><h>643.477165626445</h></size></object><object id="104" type="text" x="432865.7952279558" y="-352493.2462404413" r="0" s="2.061440432686454" class="head"><height>27.375</height><width>-247.96875</width><p><text><![CDATA[系统分析与设计-协作图]]></text></p></object><object id="141" type="button" x="434419.1827243613" y="-352026.4435953275" r="0" s="1.7670611369492957" class="bracket"><type>bracket</type><size><w>662.3785677205893</w><h>643.477165626445</h></size></object><object id="106" type="image" x="434447.5054773451" y="-351996.01402527053" r="0" s="2.7496421563620626"><source w="278" h="313">t6.jpg<url>t6.jpg</url></source><sourceUrl>t6.jpg</sourceUrl></object><object id="107" type="text" x="434419.0683642183" y="-352492.8980635364" r="0" s="2.008582110903747" class="head"><height>27.375</height><width>-247.96875</width><p><text><![CDATA[系统分析与设计-状态图]]></text></p></object><object id="142" type="button" x="431122.25253659085" y="-352026.0841741734" r="0" s="1.7670611369492952" class="bracket"><type>bracket</type><size><w>662.3785677205893</w><h>643.477165626445</h></size></object><object id="109" type="image" x="431122.24332066387" y="-352026.3237882762" r="0" s="1.4218129065167866"><source w="701" h="580">t8.jpg<url>t8.jpg</url></source><sourceUrl>t8.jpg</sourceUrl></object><object id="110" type="image" x="432869.01158648956" y="-352026.35816114367" r="0" s="1.6378337030546466"><source w="514" h="432">t9.jpg<url>t9.jpg</url></source><sourceUrl>t9.jpg</sourceUrl></object><object id="111" type="text" x="431149.52676562313" y="-352512.046263791" r="0" s="2.008582110903747" class="head"><height>27.375</height><width>-247.96875</width><p><text><![CDATA[系统分析与设计-顺序图]]></text></p></object><object id="138" type="button" x="428018.1090265967" y="-350426.247056082" r="0" s="1.9154237806124979" class="bracket"><type>bracket</type><size><w>612.3966942148761</w><h>600</h></size></object><object id="115" type="text" x="428003.29990577576" y="-350891.5153036179" r="0" s="2.0085821109037485" class="head"><height>27.375</height><width>-247.96875</width><p><text><![CDATA[系统分析与设计-构件图]]></text></p></object><object id="116" type="image" x="431122.3140714095" y="-350379.71062738384" r="0" s="1.2341807817956918"><source w="764" h="705">d3.jpg<url>d3.jpg</url></source><sourceUrl>d3.jpg</sourceUrl></object><object id="119" type="text" x="427719.55842545565" y="-345649.09756088426" r="0" s="4.017164221807496" class="head"><height>82.125</height><width>52.018046654884</width><p><text><![CDATA[流]]></text></p><p><text><![CDATA[程]]></text></p><p><text><![CDATA[图]]></text></p></object><object id="5" type="text" x="434443.5069746713" y="-350260.63780438626" r="0" s="2.061440432686454" class="body"><height>54.75</height><width>437.45</width><p><text><![CDATA[2、块级元素(Block)的语法高亮]]></text></p><p listType="bullet" indent="1"><text><![CDATA[TextRange.ApplyPropertyValue ()]]></text></p></object><object id="6" type="image" x="428018.0629469615" y="-350426.29313571716" r="0" s="2.049500190534536"><source w="459" h="201">t11.jpg<url>t11.jpg</url></source><sourceUrl>t11.jpg</sourceUrl></object><object id="114" type="text" x="432744.7749624056" y="-353882.7189141717" r="0" s="2.0614404326864544" class="body"><height>109.5</height><width>-254.90625</width><p listType="bullet" indent="1"><text><![CDATA[文件编辑]]></text></p><p listType="bullet" indent="1"><text><![CDATA[实时预览]]></text></p><p listType="bullet" indent="1"><text><![CDATA[导出：HTML，PDF]]></text></p><p listType="bullet" indent="1"><text><![CDATA[支持表格、公式]]></text></p></object><object id="149" type="text" x="429585.69552451366" y="-352512.3153967888" r="0" s="2.061440432686453" class="head"><height>27.375</height><width>-247.96875</width><p><text><![CDATA[系统分析与设计-活动图]]></text></p></object><object id="152" type="text" x="428018.03024726815" y="-352511.9445043481" r="0" s="2.0442061125336233" class="head"><height>27.375</height><width>-223.96875</width><p><text><![CDATA[系统分析与设计-类图]]></text></p></object><object id="157" type="text" x="432900.0593178993" y="-350915.18363564316" r="0" s="3.6583117207679527" class="body"><height>27.375</height><width>-72</width><p><text><![CDATA[编辑器]]></text></p></object><object id="158" type="text" x="432869.9631105185" y="-350611.860716327" r="0" s="3.6583117207679527" class="body"><height>82.125</height><width>-263.25</width><p listType="bullet" indent="1"><text><![CDATA[RichTextBox控件]]></text></p><p listType="bullet" indent="1"><text><![CDATA[Command机制(行为]]></text></p><p><text><![CDATA[模式中的Command模式)]]></text></p></object><object id="160" type="text" x="434418.8117290512" y="-350900.69944853545" r="0" s="3.6583117207679523" class="body"><height>27.375</height><width>-96</width><p><text><![CDATA[语法高亮]]></text></p></object><object id="173" type="button" x="428013.25" y="-345618.65" r="0" s="1.4200711350168445" class="bracket"><type>bracket</type><size><w>800</w><h>853.631284916201</h></size></object><object id="174" type="button" x="429651.15" y="-345618.4" r="0" s="1.4657374127067129" class="bracket"><type>bracket</type><size><w>797.7827189436139</w><h>827.2347669565172</h></size></object><object id="175" type="button" x="431202.25" y="-345604.55" r="0" s="2.0330672886040198" class="bracket"><type>bracket</type><size><w>613.5593220338983</w><h>600</h></size></object><object id="176" type="button" x="432847.2" y="-345606.9" r="0" s="1.4716598418609912" class="bracket"><type>bracket</type><size><w>800</w><h>819.9445983379501</h></size></object><object id="177" type="button" x="434399.2" y="-345606.75" r="0" s="1.4060646506715095" class="bracket"><type>bracket</type><size><w>800</w><h>843.2432432432431</h></size></object><object id="178" type="image" x="434399.35" y="-345606.85" r="0" s="0.9689887145666356"><source w="869" h="639">tl1.jpg<url>tl1.jpg</url></source><sourceUrl>tl1.jpg</sourceUrl></object><object id="179" type="button" x="428012.85000000003" y="-344005.39999999997" r="0" s="1.7935163751556924" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="180" type="button" x="428013.3290771208" y="-342390.0779385783" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="181" type="button" x="429651.1049309892" y="-344005.3973867981" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="182" type="button" x="429650.8807848577" y="-342431.9168350179" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="183" type="button" x="431202.5566387262" y="-344005.2362832377" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="184" type="button" x="432846.88249259465" y="-344005.5057314575" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="185" type="button" x="434399.65834646305" y="-344005.7251796773" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="186" type="button" x="431202.38420033164" y="-342431.694627897" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="187" type="button" x="432847.21005419997" y="-342431.8640761168" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="188" type="button" x="434399.4859080684" y="-342431.5335243366" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="189" type="button" x="428012.8617619368" y="-340778.45297255635" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="190" type="button" x="429651.1876158053" y="-340778.67242077616" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="191" type="button" x="431202.3634696738" y="-340778.3918689959" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="192" type="button" x="432806.2893235423" y="-340788.7613172157" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="193" type="button" x="434399.41517741064" y="-340778.78076543554" r="0" s="1.7935163751556928" class="circle"><type>circle</type><size><w>800</w><h>800</h></size></object><object id="194" type="image" x="428012.85" y="-344005.45" r="0" s="1.1892318274046239"><source w="864" h="595">tl2.jpg<url>tl2.jpg</url></source><sourceUrl>tl2.jpg</sourceUrl></object><object id="195" type="image" x="429650.85" y="-344005.45" r="0" s="1.1484046487992157"><source w="874" h="632">tl3.jpg<url>tl3.jpg</url></source><sourceUrl>tl3.jpg</sourceUrl></object><object id="196" type="image" x="431202.25" y="-344005.45" r="0" s="1.1087101155200905"><source w="872" h="644">tl4.jpg<url>tl4.jpg</url></source><sourceUrl>tl4.jpg</sourceUrl></object><object id="197" type="image" x="432846.75" y="-344005.45" r="0" s="1.1289804095056468"><source w="859" h="627">tl5.jpg<url>tl5.jpg</url></source><sourceUrl>tl5.jpg</sourceUrl></object><object id="198" type="image" x="434399.25000000006" y="-344005.45" r="0" s="1.1605027994357233"><source w="858" h="638">tl6.jpg<url>tl6.jpg</url></source><sourceUrl>tl6.jpg</sourceUrl></object><object id="199" type="image" x="428013.35" y="-342390.3" r="0" s="1.0808696531751907"><source w="859" h="637">tl7.jpg<url>tl7.jpg</url></source><sourceUrl>tl7.jpg</sourceUrl></object><object id="200" type="image" x="429650.8" y="-342432.25" r="0" s="1.1148172705263681"><source w="863" h="630">tl8.jpg<url>tl8.jpg</url></source><sourceUrl>tl8.jpg</sourceUrl></object><object id="201" type="image" x="431202.2" y="-342431.7" r="0" s="1.1898999882759218"><source w="855" h="628">tl9.jpg<url>tl9.jpg</url></source><sourceUrl>tl9.jpg</sourceUrl></object><object id="202" type="image" x="432847.25" y="-342432.25" r="0" s="1.2063121009851683"><source w="858" h="635">tl10.jpg<url>tl10.jpg</url></source><sourceUrl>tl10.jpg</sourceUrl></object><object id="203" type="image" x="434399.75" y="-342431.7" r="0" s="1.1916476988492892"><source w="854" h="630">tl11.jpg<url>tl11.jpg</url></source><sourceUrl>tl11.jpg</sourceUrl></object><object id="204" type="image" x="428012.80000000005" y="-340778.45" r="0" s="1.1970872718558023"><source w="858" h="599">tl12.jpg<url>tl12.jpg</url></source><sourceUrl>tl12.jpg</sourceUrl></object><object id="205" type="image" x="429651.35" y="-340779" r="0" s="1.1854849677001074"><source w="865" h="608">tl13.jpg<url>tl13.jpg</url></source><sourceUrl>tl13.jpg</sourceUrl></object><object id="206" type="image" x="431202.2" y="-340778.45" r="0" s="1.215320458539356"><source w="840" h="601">tl14.jpg<url>tl14.jpg</url></source><sourceUrl>tl14.jpg</sourceUrl></object><object id="207" type="image" x="432806.4" y="-340788.7" r="0" s="1.1852673375866583"><source w="854" h="616">tl15.jpg<url>tl15.jpg</url></source><sourceUrl>tl15.jpg</sourceUrl></object><object id="208" type="text" x="434453.96846989816" y="-341202.5502664316" r="0" s="4.105264945845653" class="head"><height>54.75</height><width>181.1044653473721</width><p><text><![CDATA[     敏捷开发]]></text></p><p><text><![CDATA[Agile Modeling]]></text></p></object><object id="209" type="text" x="434323.65" y="-340697.8" r="0" s="4.105264945845653" class="head"><height>136.875</height><width>139.5976393206924</width><p listType="bullet" indent="1"><text><![CDATA[沟通]]></text></p><p listType="bullet" indent="1"><text><![CDATA[简单]]></text></p><p listType="bullet" indent="1"><text><![CDATA[反馈]]></text></p><p listType="bullet" indent="1"><text><![CDATA[勇气]]></text></p><p listType="bullet" indent="1"><text><![CDATA[谦逊]]></text></p></object></zui-table><path><s><eagle o="148_13415665"/></s><s><eagle o="0_4096537"/></s><s><eagle o="4"/></s><s><eagle o="0"/></s><s><eagle o="7"/></s><s><buildin o="7_4"/></s><s><buildin o="50"/></s><s><buildin o="51"/></s><s><eagle o="10"/></s><s><buildin o="52"/></s><s><buildin o="53"/></s><s><eagle o="66"/></s><s><buildin o="55"/></s><s><buildin o="56"/></s><s><buildin o="57"/></s><s><eagle o="77"/></s><s><buildin o="58"/></s><s><buildin o="114"/></s><s><buildin o="61"/></s><s><buildin o="62"/></s><s><eagle o="120"/></s><s><buildin o="63"/></s><s><buildin o="64"/></s><s><eagle o="148_13415665"/></s><s><eagle o="193"/></s><s><buildin o="208"/></s><s><buildin o="209"/></s><s><eagle o="151"/></s><s><buildin o="152"/></s><s><buildin o="71"/></s><s><eagle o="148"/></s><s><buildin o="149"/></s><s><buildin o="100"/></s><s><eagle o="142"/></s><s><buildin o="111"/></s><s><buildin o="109"/></s><s><eagle o="147"/></s><s><buildin o="104"/></s><s><buildin o="110"/></s><s><eagle o="141"/></s><s><buildin o="107"/></s><s><buildin o="106"/></s><s><eagle o="138"/></s><s><buildin o="115"/></s><s><buildin o="6"/></s><s><eagle o="148_13415665"/></s><s><eagle o="161"/></s><s><buildin o="9"/></s><s><buildin o="11"/></s><s><eagle o="135"/></s><s><buildin o="76"/></s><s><buildin o="116"/></s><s><eagle o="154"/></s><s><buildin o="157"/></s><s><buildin o="158"/></s><s><buildin o="83"/></s><s><eagle o="159"/></s><s><buildin o="160"/></s><s><buildin o="99"/></s><s><buildin o="86"/></s><s><buildin o="5"/></s><s><eagle o="148_13415665"/></s><s><eagle o="162"/></s><s><buildin o="13"/></s><s><buildin o="14"/></s><s><buildin o="15"/></s><s><buildin o="16"/></s><s><buildin o="18"/></s><s><buildin o="19"/></s><s><eagle o="163"/></s><s><buildin o="20"/></s><s><buildin o="69"/></s><s><eagle o="164"/></s><s><buildin o="22"/></s><s><buildin o="68"/></s><s><eagle o="165"/></s><s><buildin o="23"/></s><s><buildin o="24"/></s><s><buildin o="25"/></s><s><buildin o="26"/></s><s><buildin o="28"/></s><s><buildin o="29"/></s><s><eagle o="166"/></s><s><buildin o="31"/></s><s><buildin o="32"/></s><s><buildin o="33"/></s><s><eagle o="167"/></s><s><buildin o="35"/></s><s><buildin o="36"/></s><s><buildin o="37"/></s><s><buildin o="38"/></s><s><eagle o="168"/></s><s><buildin o="39"/></s><s><buildin o="40"/></s><s><buildin o="42"/></s><s><buildin o="41"/></s><s><eagle o="169"/></s><s><buildin o="43"/></s><s><buildin o="44"/></s><s><buildin o="170"/></s><s><eagle o="171"/></s><s><buildin o="46"/></s><s><buildin o="47"/></s><s><buildin o="48"/></s><s><eagle o="148_13415665"/></s><s><eagle o="172"/></s><s><buildin o="88"/></s><s><buildin o="89"/></s><s><eagle o="173"/></s><s><buildin o="119"/></s><s><buildin o="118"/></s><s><eagle o="174"/></s><s><buildin o="91"/></s><s><buildin o="92"/></s><s><eagle o="175"/></s><s><buildin o="94"/></s><s><buildin o="95"/></s><s><eagle o="176"/></s><s><buildin o="97"/></s><s><buildin o="98"/></s><s><eagle o="148_13415665"/></s><s><eagle o="177"/></s><s><eagle o="179"/></s><s><eagle o="181"/></s><s><eagle o="183"/></s><s><eagle o="184"/></s><s><eagle o="185"/></s><s><eagle o="180"/></s><s><eagle o="182"/></s><s><eagle o="186"/></s><s><eagle o="187"/></s><s><eagle o="188"/></s><s><eagle o="189"/></s><s><eagle o="190"/></s><s><eagle o="191"/></s><s><eagle o="207"/></s><s><eagle o="148_13415665"/></s></path><style type="text/css"><![CDATA[
+@font-face
+{
+	src: url('DFMingV.keg');
+	fontFamily: body;
+	font-class: body;
+	font-style: normal;
+	font-weight: normal;
+	font-family: DFMingV;
+}
+
+@font-face
+{
+	src: url('DFMingV.keg');
+	fontFamily: head;
+	font-class: head;
+	font-style: normal;
+	font-weight: normal;
+	font-family: DFMingV;
+}
+
+@font-face
+{
+	src: url('DFMingV.keg');
+	fontFamily: strong;
+	font-class: strong;
+	font-style: normal;
+	font-weight: normal;
+	font-family: DFMingV;
+}
+
+.line1
+{
+	color: #3fc0ff;
+	gradEndColor: #3fc0ff;
+	gradStartColor: #3fc0ff;
+}
+
+.line2
+{
+	borderColor: #fff;
+	color: #f00;
+	gradEndColor: #f00;
+	gradStartColor: #f00;
+}
+
+.line3
+{
+	color: #004f75;
+	gradEndColor: #004f75;
+	gradStartColor: #004f75;
+}
+
+.line4
+{
+	color: #ffbe00;
+	gradEndColor: #ffbe00;
+	gradStartColor: #ffbe00;
+}
+
+.line5
+{
+	color: #333;
+	gradEndColor: #333;
+	gradStartColor: #333;
+}
+
+.poly1
+{
+	borderColor: #3fc0ff;
+	borderThickness: 9;
+	gradEndColor: #fff;
+	gradStartColor: #fff;
+}
+
+.poly2
+{
+	borderColor: #3fc0ff;
+	borderThickness: 0;
+	gradEndColor: #3fc0ff;
+	gradStartColor: #3fc0ff;
+}
+
+.poly3
+{
+	borderColor: #004f75;
+	borderThickness: 9;
+	gradEndColor: #fff;
+	gradStartColor: #fff;
+}
+
+.poly4
+{
+	borderColor: #004f75;
+	borderThickness: 0;
+	gradEndColor: #004f75;
+	gradStartColor: #004f75;
+}
+
+.poly5
+{
+	borderColor: #333;
+	borderThickness: 9;
+	gradEndColor: #fff;
+	gradStartColor: #fff;
+}
+
+Background
+{
+	gradEnd: #fff;
+	gradStart: #fff;
+}
+
+Grid
+{
+	color: #b8b8b8;
+}
+
+ZArrow
+{
+	borderColor: #fff;
+	borderThickness: 0;
+	gradEndColor: #333;
+	gradStartColor: #333;
+	lockTintAlpha: 0;
+}
+
+ZCircle
+{
+	borderAlpha: 1;
+	gradEndAlpha: 1;
+	gradStartAlpha: 1;
+	lockTintAlpha: 0;
+	radius: 0;
+	thickness: 100;
+}
+
+ZCurveLine
+{
+	color: #333;
+}
+
+ZFrame.bracket
+{
+	borderColor: #b2b2b2;
+	borderThickness: 1;
+	gradEndColor: #b2b2b2;
+	gradStartColor: #b2b2b2;
+	thickness: 8;
+}
+
+ZFrame.circle
+{
+	borderColor: #004f75;
+	borderThickness: 0;
+	gradEndColor: #004f75;
+	gradStartColor: #004f75;
+	thickness: 8;
+}
+
+ZFrame.roundrect
+{
+	borderColor: #3fc0ff;
+	borderThickness: 0;
+	gradEndColor: #3fc0ff;
+	gradStartColor: #3fc0ff;
+	radius: 3;
+}
+
+ZLabel
+{
+	lockTintAlpha: 0.15;
+	padding: 1.2;
+}
+
+ZLabel.body
+{
+	color: #000;
+	fontFamily: body;
+}
+
+ZLabel.body-background
+{
+	background-alpha: 0.9;
+	background-color: #dfdfdf;
+	background-padding: 5;
+	background-padding-bottom: 5;
+}
+
+ZLabel.head
+{
+	color: #000;
+	fontFamily: head;
+}
+
+ZLabel.head-background
+{
+	background-alpha: 0.9;
+	background-color: #ff0;
+	background-padding: 4;
+	background-padding-bottom: 4;
+}
+
+ZLabel.strong
+{
+	color: #000;
+	fontFamily: strong;
+}
+
+ZLabel.strong-background
+{
+	background-alpha: 0.9;
+	background-color: #bff;
+	background-padding: 4;
+	background-padding-bottom: 4;
+}
+
+ZLine
+{
+	color: #333;
+	lockTintAlpha: 0;
+}
+
+ZMarker
+{
+	alpha: 0.3;
+	color: #00e1ff;
+}
+
+ZPath
+{
+	alpha: 1;
+	color: #40abe6;
+	textColor: #fff;
+	thickness: 3;
+}
+
+ZPath Ball.base
+{
+	alpha: 1;
+	fillColor: #40abe6;
+	radius: 12;
+}
+
+ZPath Ball.mid
+{
+	alpha: .5;
+	fillColor: #40abe6;
+	radius: 8;
+}
+
+ZPoly
+{
+	borderAlpha: 1;
+	gradEndAlpha: 1;
+	gradStartAlpha: 1;
+	lockTintAlpha: 0;
+	radius: 0;
+	thickness: 100;
+}
+
+ZVideo
+{
+	padding: 1.2;
+}
+
+arrow
+{
+	borderColor: #fff;
+	borderThickness: -1;
+	gradEndColor: #fff808;
+	gradStartColor: #fff808;
+}
+
+background
+{
+	gradEnd: #808080;
+	gradStart: #808080;
+}
+
+circle
+{
+	borderAlpha: 1;
+	lockTintAlpha: 0.6;
+	radius: 0;
+	thickness: 100;
+}
+
+frame.bracket
+{
+	borderColor: #fff;
+	borderThickness: 0;
+	gradEndColor: #c5c3c3;
+	gradStartColor: #fff;
+	thickness: 7;
+}
+
+frame.circle
+{
+	borderColor: #999;
+	borderThickness: 0;
+	gradEndColor: #333;
+	gradStartColor: #333;
+}
+
+frame.rectangle
+{
+	borderColor: #fff;
+	borderThickness: 0;
+	gradEndColor: #000;
+	gradStartColor: #000;
+	radius: 0;
+}
+
+free-line
+{
+	color: #fff808;
+}
+
+free-marker
+{
+	alpha: 0.3;
+	color: #ffff0d;
+}
+
+grid
+{
+	color: #ddd;
+}
+
+line
+{
+	color: #fff808;
+}
+
+line-arrow.style1
+{
+	color: #fff;
+	gradEndColor: #fff;
+	gradStartColor: #fff;
+}
+
+line-arrow.style2
+{
+	color: #c5c3c3;
+	gradEndColor: #c5c3c3;
+	gradStartColor: #c5c3c3;
+}
+
+line-arrow.style3
+{
+	color: #fff808;
+	gradEndColor: #fff808;
+	gradStartColor: #fff808;
+}
+
+line-arrow.style4
+{
+	color: #333;
+	gradEndColor: #333;
+	gradStartColor: #333;
+}
+
+line-arrow.style5
+{
+	color: #000;
+	gradEndColor: #000;
+	gradStartColor: #000;
+}
+
+shape
+{
+	borderAlpha: 1;
+	gradEndAlpha: 0.8;
+	gradStartAlpha: 0.7;
+	lockTintAlpha: 0.6;
+	radius: 0;
+	thickness: 100;
+}
+
+shape.style1
+{
+	borderColor: #fff;
+	borderThickness: 0;
+	gradEndColor: #fff;
+	gradStartColor: #fff;
+}
+
+shape.style2
+{
+	borderColor: #c5c3c3;
+	borderThickness: 0;
+	gradEndColor: #c5c3c3;
+	gradStartColor: #c5c3c3;
+}
+
+shape.style3
+{
+	borderColor: #fff808;
+	borderThickness: 0;
+	gradEndColor: #fff808;
+	gradStartColor: #fff808;
+}
+
+shape.style4
+{
+	borderColor: #333;
+	borderThickness: 0;
+	gradEndColor: #333;
+	gradStartColor: #333;
+}
+
+shape.style5
+{
+	borderColor: #000;
+	borderThickness: 0;
+	gradEndColor: #000;
+	gradStartColor: #000;
+}
+
+text
+{
+	padding: 1.2;
+}
+
+text.body
+{
+	color: #fff;
+	fontFamily: body;
+}
+
+text.subtitle
+{
+	color: #fff;
+	fontFamily: strong;
+}
+
+text.title
+{
+	color: #fff808;
+	fontFamily: head;
+}
+
+]]></style><hash>-48e0a566</hash><sync><oid>UNKNOWN</oid><hash>UNKNOWN</hash><lid>kY1R7pQW</lid><title>Untitled Prezi</title></sync><config>FvqMwJV3iPQc0AAbC6UAN9JPU0TQjxM9VA==</config></zuiprezi>

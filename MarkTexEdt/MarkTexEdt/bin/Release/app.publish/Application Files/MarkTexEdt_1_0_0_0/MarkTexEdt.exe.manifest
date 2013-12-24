@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="MarkTexEdt.exe" version="1.0.0.0" publicKeyToken="397916aa5a66c9e6" language="neutral" processorArchitecture="x86" type="win32" />
+  <description asmv2:iconFile="MarkTex-Logo.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="MarkTexEdt" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="MarkTexEdt.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC 清单选项
+          如果要更改 Windows 用户帐户控制级别，请用以下节点之一替换
+          requestedExecutionLevel 节点。
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+          如果要利用文件和注册表虚拟化提供
+          向后兼容性，请删除 requestedExecutionLevel 节点。
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Awesomium.Core.dll" size="916672">
+      <assemblyIdentity name="Awesomium.Core" version="1.7.3.0" publicKeyToken="E1A0D7C8071A5214" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>7GNqQJBQ86exG1qWW3jShqTRzAc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Awesomium.Windows.Controls.dll" size="837312">
+      <assemblyIdentity name="Awesomium.Windows.Controls" version="1.7.3.0" publicKeyToken="7A34E179B8B61C39" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>0xrIGEyDIvrPxqXjoEP1/Ofa1e8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Awesomium.Windows.Controls.Design.dll" size="52192">
+      <assemblyIdentity name="Awesomium.Windows.Controls.Design" version="1.7.3.0" publicKeyToken="5CD2BD3DAD6C912E" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>ySw99J0rNhmfUheP4rA4B/1XC1M=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MarkTexEdt.exe" size="258560">
+      <assemblyIdentity name="MarkTexEdt" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>DCRISViwC90++R+9iL8Usb/9rzc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Windows.Design.Extensibility.dll" size="121736">
+      <assemblyIdentity name="Microsoft.Windows.Design.Extensibility" version="4.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>LdnJVlR7Us3HW+q0sTtZdP2S1IU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="zh-Hans\Microsoft.Windows.Design.Extensibility.resources.dll" size="14752">
+      <assemblyIdentity name="Microsoft.Windows.Design.Extensibility.resources" version="4.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="zh-Hans" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>/ouHQx2L1ALyZkOh4HQg6FfdVt8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Windows.Design.Interaction.dll" size="416648">
+      <assemblyIdentity name="Microsoft.Windows.Design.Interaction" version="4.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>9GixgzRaWHVQ5HNX2KOE2/9+klk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="zh-Hans\Microsoft.Windows.Design.Interaction.resources.dll" size="21920">
+      <assemblyIdentity name="Microsoft.Windows.Design.Interaction.resources" version="4.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="zh-Hans" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>cVeZfam6XUy3dM+x4r0Lfdw1vyM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="bin\Debug\resources\css\dark.css" size="4640">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>+My/U19TyeOOgGgylVQfgvxqjew=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="bin\Debug\resources\css\gfm.css" size="6670">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>ldpRMjxn/eFJOVzsCnBrGZyyr5o=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="bin\Debug\resources\css\markdown.css" size="5991">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>c+0bY3sfJTChhhK1nSSv/jW+yMQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MarkTexEdt.exe.config" size="2876">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>Jdr9RMZi2Z3Rxny4zhJ3LAmJnGo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MarkTex-Logo.ico" size="32934">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>UG9zmesnL/ggiUTFMKAu7QPC2qU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="resource\script\options.js" size="276">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>Nyx2QcsOO2OxGUEfUJxB49vZ8Ww=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=harttle-station\harttle" issuerKeyHash="2627faf1ecd9e5e6a949df74ae98d22196630c86" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>gwRm9UYTC/VqdqIWDWIfqYZfTOo=</DigestValue></Reference></SignedInfo><SignatureValue>wT7yXP9aPCLZKZYpKL0QIOjWQ3uRmWmNppfGU/I+IxDA+p47m/8CN1NPwdFvrAceKZroFOy8ozPb2evDLvLQBYVZddPX1aaFcZB7DKjIUnqQIhC/WkWAnrrnv7TI3h2v35V1pnHhD3qMDLz0GX9SGOtu021UoL5fFbr1rhnbwTs=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>xf1tC1l4bozTTpfOHabwlzfncR5V+ncBOdi8OKEWN6BasU/GMHoJl3jbR4Ri7NlLj6xRslzjKiiA2Vof900u0hP0Fn6gs2P+r8t1BKjO1VVrpUqVqk6O+6xMkRGR4nL0e2cfH5FK8NFWF8d2sLcsH43njGj8HE1oDbh3OnQuNt8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="ea4c5f86a91f620d16a2766af50b1346f5660483" Description="" Url=""><as:assemblyIdentity name="MarkTexEdt.exe" version="1.0.0.0" publicKeyToken="397916aa5a66c9e6" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=harttle-station\harttle</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>qL0Pq/W8nOnYzUCSzbMo7wB/Dcg=</DigestValue></Reference></SignedInfo><SignatureValue>KvWD24fdJVUBrfzdREgc9DSW7J5OpdhJ0Ac3FxjcZi5v4c4iSZg7xtyEF2UburfFJ0fT1QjAqBHf9pkgCFeZrPO9sM5p+udNaEewvkLEp60aqO7imYYaghgwJiw7+NQIGJ4cuoWgNbnHEO+/zk4qzDlw6Hu5v5k6sGYoFoVAF1I=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>xf1tC1l4bozTTpfOHabwlzfncR5V+ncBOdi8OKEWN6BasU/GMHoJl3jbR4Ri7NlLj6xRslzjKiiA2Vof900u0hP0Fn6gs2P+r8t1BKjO1VVrpUqVqk6O+6xMkRGR4nL0e2cfH5FK8NFWF8d2sLcsH43njGj8HE1oDbh3OnQuNt8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB9TCCAV6gAwIBAgIQeNKGy9NHzKZNN4i/tFxk8zANBgkqhkiG9w0BAQUFADA5MTcwNQYDVQQDHi4AaABhAHIAdAB0AGwAZQAtAHMAdABhAHQAaQBvAG4AXABoAGEAcgB0AHQAbABlMB4XDTEzMTIyNDA1MDE0NFoXDTE0MTIyNDExMDE0NFowOTE3MDUGA1UEAx4uAGgAYQByAHQAdABsAGUALQBzAHQAYQB0AGkAbwBuAFwAaABhAHIAdAB0AGwAZTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAxf1tC1l4bozTTpfOHabwlzfncR5V+ncBOdi8OKEWN6BasU/GMHoJl3jbR4Ri7NlLj6xRslzjKiiA2Vof900u0hP0Fn6gs2P+r8t1BKjO1VVrpUqVqk6O+6xMkRGR4nL0e2cfH5FK8NFWF8d2sLcsH43njGj8HE1oDbh3OnQuNt8CAwEAATANBgkqhkiG9w0BAQUFAAOBgQCtNsLl42NUUrwzlDtuqxJ2EEY+3I7hmt1Pk3ylTzjvQX+HdqfatnC9JXYquWMj6lasR8Hl9tQQet6w3lhGKvSGi8o7j2VN3+HE1E8TJe+ExE+ESBtAEH7AwTDEZLMxDUG50S0wreJdbBBrtciUKAUv2vANKIqwpaP3UeQGngVrew==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
