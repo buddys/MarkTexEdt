@@ -17,7 +17,7 @@
     <ErrorReportUrl>https://github.com/buddys/MarkTexEdt/issues</ErrorReportUrl>
     <ProductName>MarkTex Editor</ProductName>
     <PublisherName>buddys</PublisherName>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
