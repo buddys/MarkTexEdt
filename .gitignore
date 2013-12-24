@@ -1,15 +1,6 @@
 *.suo
 *.log
-
-/MarkTexEdt/MarkTexEdt/*.user
-
-/MarkTexEdt/MarkTexEdt/obj/Debug/*.lref
-
-/MarkTexEdt/MarkTexEdt/bin/Debug/*.pdb
+*.user
 
 /MarkTexEdt/MarkTexEdt/obj
-/MarkTexEdt/MarkTexEdt/bin/Debug/marktex.pdb
-/MarkTexEdt/MarkTexEdt/bin/Debug/marktex.vshost.exe
-/MarkTexEdt/MarkTexEdt/bin/Debug/marktex.vshost.exe.config
-/MarkTexEdt/MarkTexEdt/bin/Debug/marktex.exe
-/*.ppk
+/MarkTexEdt/MarkTexEdt/bin/

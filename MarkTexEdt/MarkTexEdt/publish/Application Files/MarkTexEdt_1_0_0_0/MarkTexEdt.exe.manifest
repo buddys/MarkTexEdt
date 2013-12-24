@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MarkTexEdt.exe" size="258560">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MarkTexEdt.exe" size="265728">
       <assemblyIdentity name="MarkTexEdt" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>DCRISViwC90++R+9iL8Usb/9rzc=</dsig:DigestValue>
+        <dsig:DigestValue>MyGtbWFpqB72pIy8Q7oS8NruHIs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -138,33 +138,6 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="bin\Debug\resources\css\dark.css" size="4640">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>+My/U19TyeOOgGgylVQfgvxqjew=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="bin\Debug\resources\css\gfm.css" size="6670">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ldpRMjxn/eFJOVzsCnBrGZyyr5o=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="bin\Debug\resources\css\markdown.css" size="5991">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>c+0bY3sfJTChhhK1nSSv/jW+yMQ=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="MarkTexEdt.exe.config" size="2876">
     <hash>
       <dsig:Transforms>
@@ -192,4 +165,5 @@
       <dsig:DigestValue>Nyx2QcsOO2OxGUEfUJxB49vZ8Ww=</dsig:DigestValue>
     </hash>
   </file>
-<publisherIdentity name="CN=harttle-station\harttle" issuerKeyHash="2627faf1ecd9e5e6a949df74ae98d22196630c86" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>gwRm9UYTC/VqdqIWDWIfqYZfTOo=</DigestValue></Reference></SignedInfo><SignatureValue>wT7yXP9aPCLZKZYpKL0QIOjWQ3uRmWmNppfGU/I+IxDA+p47m/8CN1NPwdFvrAceKZroFOy8ozPb2evDLvLQBYVZddPX1aaFcZB7DKjIUnqQIhC/WkWAnrrnv7TI3h2v35V1pnHhD3qMDLz0GX9SGOtu021UoL5fFbr1rhnbwTs=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>xf1tC1l4bozTTpfOHabwlzfncR5V+ncBOdi8OKEWN6BasU/GMHoJl3jbR4Ri7NlLj6xRslzjKiiA2Vof900u0hP0Fn6gs2P+r8t1BKjO1VVrpUqVqk6O+6xMkRGR4nL0e2cfH5FK8NFWF8d2sLcsH43njGj8HE1oDbh3OnQuNt8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="ea4c5f86a91f620d16a2766af50b1346f5660483" Description="" Url=""><as:assemblyIdentity name="MarkTexEdt.exe" version="1.0.0.0" publicKeyToken="397916aa5a66c9e6" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=harttle-station\harttle</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>qL0Pq/W8nOnYzUCSzbMo7wB/Dcg=</DigestValue></Reference></SignedInfo><SignatureValue>KvWD24fdJVUBrfzdREgc9DSW7J5OpdhJ0Ac3FxjcZi5v4c4iSZg7xtyEF2UburfFJ0fT1QjAqBHf9pkgCFeZrPO9sM5p+udNaEewvkLEp60aqO7imYYaghgwJiw7+NQIGJ4cuoWgNbnHEO+/zk4qzDlw6Hu5v5k6sGYoFoVAF1I=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>xf1tC1l4bozTTpfOHabwlzfncR5V+ncBOdi8OKEWN6BasU/GMHoJl3jbR4Ri7NlLj6xRslzjKiiA2Vof900u0hP0Fn6gs2P+r8t1BKjO1VVrpUqVqk6O+6xMkRGR4nL0e2cfH5FK8NFWF8d2sLcsH43njGj8HE1oDbh3OnQuNt8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB9TCCAV6gAwIBAgIQeNKGy9NHzKZNN4i/tFxk8zANBgkqhkiG9w0BAQUFADA5MTcwNQYDVQQDHi4AaABhAHIAdAB0AGwAZQAtAHMAdABhAHQAaQBvAG4AXABoAGEAcgB0AHQAbABlMB4XDTEzMTIyNDA1MDE0NFoXDTE0MTIyNDExMDE0NFowOTE3MDUGA1UEAx4uAGgAYQByAHQAdABsAGUALQBzAHQAYQB0AGkAbwBuAFwAaABhAHIAdAB0AGwAZTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAxf1tC1l4bozTTpfOHabwlzfncR5V+ncBOdi8OKEWN6BasU/GMHoJl3jbR4Ri7NlLj6xRslzjKiiA2Vof900u0hP0Fn6gs2P+r8t1BKjO1VVrpUqVqk6O+6xMkRGR4nL0e2cfH5FK8NFWF8d2sLcsH43njGj8HE1oDbh3OnQuNt8CAwEAATANBgkqhkiG9w0BAQUFAAOBgQCtNsLl42NUUrwzlDtuqxJ2EEY+3I7hmt1Pk3ylTzjvQX+HdqfatnC9JXYquWMj6lasR8Hl9tQQet6w3lhGKvSGi8o7j2VN3+HE1E8TJe+ExE+ESBtAEH7AwTDEZLMxDUG50S0wreJdbBBrtciUKAUv2vANKIqwpaP3UeQGngVrew==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
+  <fileAssociation extension=".md" description="Markdown文件" progid="markdownfile" defaultIcon="MarkTex-Logo.ico" xmlns="urn:schemas-microsoft-com:clickonce.v1" />
+<publisherIdentity name="CN=harttle-station\harttle" issuerKeyHash="2627faf1ecd9e5e6a949df74ae98d22196630c86" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>EzECgYBBFZhwowV+MI//iuez64U=</DigestValue></Reference></SignedInfo><SignatureValue>N3gWjzfTUx6ytNJC+fY4J2myVsi6LhqKpzPGKR0cEs4aD0VMUDh0QATqpA5VbIxTD0a+lrpDWVKu33jE2Xp3fy8Ab00iqHBqpbWWExWTMEXBtZMGWg5EOR1o85p9Nm+JGG9ajhta3cpfW0P8GNFQAhex/vYmW+rfEOq2IoT0kow=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>xf1tC1l4bozTTpfOHabwlzfncR5V+ncBOdi8OKEWN6BasU/GMHoJl3jbR4Ri7NlLj6xRslzjKiiA2Vof900u0hP0Fn6gs2P+r8t1BKjO1VVrpUqVqk6O+6xMkRGR4nL0e2cfH5FK8NFWF8d2sLcsH43njGj8HE1oDbh3OnQuNt8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="85ebb3e78aff8f307e05a3709815418081023113" Description="" Url=""><as:assemblyIdentity name="MarkTexEdt.exe" version="1.0.0.0" publicKeyToken="397916aa5a66c9e6" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=harttle-station\harttle</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>SEG2nUFXagEZQnshHxVnzSjGs7o=</DigestValue></Reference></SignedInfo><SignatureValue>fX5xOqzmzsi+YgqyDql+zd0zBay22p+ZJtmHMgteLFHxnKO15Hk0DZktPUPsvps75xz9CwOt5ThwRenXMMPyanhADSnnEIMK8eejXaj8IYxWKOKFN7bAQb2sWGQ9zZBTkii8AiF7NVgGXcms7bo+iB07VY6ClLygAZUdcb7/qs8=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>xf1tC1l4bozTTpfOHabwlzfncR5V+ncBOdi8OKEWN6BasU/GMHoJl3jbR4Ri7NlLj6xRslzjKiiA2Vof900u0hP0Fn6gs2P+r8t1BKjO1VVrpUqVqk6O+6xMkRGR4nL0e2cfH5FK8NFWF8d2sLcsH43njGj8HE1oDbh3OnQuNt8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB9TCCAV6gAwIBAgIQeNKGy9NHzKZNN4i/tFxk8zANBgkqhkiG9w0BAQUFADA5MTcwNQYDVQQDHi4AaABhAHIAdAB0AGwAZQAtAHMAdABhAHQAaQBvAG4AXABoAGEAcgB0AHQAbABlMB4XDTEzMTIyNDA1MDE0NFoXDTE0MTIyNDExMDE0NFowOTE3MDUGA1UEAx4uAGgAYQByAHQAdABsAGUALQBzAHQAYQB0AGkAbwBuAFwAaABhAHIAdAB0AGwAZTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAxf1tC1l4bozTTpfOHabwlzfncR5V+ncBOdi8OKEWN6BasU/GMHoJl3jbR4Ri7NlLj6xRslzjKiiA2Vof900u0hP0Fn6gs2P+r8t1BKjO1VVrpUqVqk6O+6xMkRGR4nL0e2cfH5FK8NFWF8d2sLcsH43njGj8HE1oDbh3OnQuNt8CAwEAATANBgkqhkiG9w0BAQUFAAOBgQCtNsLl42NUUrwzlDtuqxJ2EEY+3I7hmt1Pk3ylTzjvQX+HdqfatnC9JXYquWMj6lasR8Hl9tQQet6w3lhGKvSGi8o7j2VN3+HE1E8TJe+ExE+ESBtAEH7AwTDEZLMxDUG50S0wreJdbBBrtciUKAUv2vANKIqwpaP3UeQGngVrew==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
