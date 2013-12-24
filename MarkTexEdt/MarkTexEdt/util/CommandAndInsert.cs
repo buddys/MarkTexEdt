@@ -15,13 +15,6 @@ namespace MarkTexEdt.util
             Out_tbEditor = rtb;
         }
 
-        public void Add_Code()
-        {
-            String code = "``";
-            Out_tbEditor.CaretPosition.InsertTextInRun(code);
-            Out_tbEditor.CaretPosition = Out_tbEditor.CaretPosition.GetPositionAtOffset(1,LogicalDirection.Backward);
-        }
-
         public void Add_HeadLine1()
         {
             Out_tbEditor.CaretPosition.InsertTextInRun("#  #");
@@ -70,6 +63,37 @@ namespace MarkTexEdt.util
             else
             {
                 Out_tbEditor.FontSize = fontSize;
+            }
+        }
+
+        public void Add_Head()
+        {
+            Out_tbEditor.CaretPosition.InsertTextInRun("#");
+        }
+
+        public void Add_Picture()
+        {
+            String pictureFormate = "![alt text](file:/// \"Title\")";
+            Out_tbEditor.CaretPosition.InsertTextInRun(pictureFormate);
+        }
+
+        public void Add_Math_Formula()
+        {
+            String mathFormula = "$$$\r\n\r\n$$$";
+            Out_tbEditor.CaretPosition.InsertTextInRun(mathFormula);
+            if (Out_tbEditor.CaretPosition.GetLineStartPosition(-1) != null)
+            {
+                Out_tbEditor.CaretPosition = Out_tbEditor.CaretPosition.GetLineStartPosition(-1);
+            }
+        }
+
+        public void Add_Code()
+        {
+            String mathFormula = "```\r\n\r\n```";
+            Out_tbEditor.CaretPosition.InsertTextInRun(mathFormula);
+            if (Out_tbEditor.CaretPosition.GetLineStartPosition(-1) != null)
+            {
+                Out_tbEditor.CaretPosition = Out_tbEditor.CaretPosition.GetLineStartPosition(-1);
             }
         }
     }

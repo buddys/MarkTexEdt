@@ -23,7 +23,7 @@ namespace MarkTexEdt.util
         }
 
         /// <summary>
-        /// Singleton 接口
+        /// Singleton 实例
         /// </summary>
         static Config configInstance;
         static public Config ConfigInstance
@@ -63,7 +63,7 @@ namespace MarkTexEdt.util
         }
 
 
-        #region 常量
+        #region 变量
 
         public static string HelpUrl
         {
@@ -75,9 +75,18 @@ namespace MarkTexEdt.util
             get { return "http://buddys.github.io/marktex"; }
         }
 
-        public static string TemplateUrl
+        public static Uri TemplateUri
         {
-            get { return "file:///resources/html/template.html"; }
+            get {
+                return new Uri(BaseDirectory + "resources/html/template.html");
+            }
+        }
+
+        public static string BaseDirectory
+        {
+            get{
+                return System.AppDomain.CurrentDomain.BaseDirectory;
+            }
         }
 
         /// <summary>

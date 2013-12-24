@@ -38,16 +38,16 @@ namespace MarkTexEdt.util
         {
             this.webControl = _w;
             this.config = util.Config.ConfigInstance;
-            webControl.Source = new Uri(Config.TemplateUrl);
+            webControl.Source = Config.TemplateUri;
             jsobject = webControl.CreateGlobalJavascriptObject("jsobject");
         }
 
         public void Update(string src)
         {
             string options = this.GetOptions();
-            if ( src ==null ) src = "";
+            if (src == null) src = "";
             string inputString = "update(" + EncodeJsString(src) + "," + options + ")";
-            //Console.WriteLine(inputString);
+            Console.WriteLine(inputString);
             webControl.ExecuteJavascript(inputString);
         }
 

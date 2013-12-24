@@ -43,8 +43,7 @@ namespace MarkTexEdt
 
             this.edit = new util.EditBasicFuction(tbEditor);
             this.highLight = new util.HighLight(tbEditor);
-            this.commandAndInsert = new util.CommandAndInsert(tbEditor);
-            
+            this.commandAndInsert = new util.CommandAndInsert(tbEditor);            
         }
 
         /// <summary>
@@ -57,7 +56,7 @@ namespace MarkTexEdt
             config.RestoreWindow(this);
             tbEditor.Focus();   //窗口载入后，左边的编辑框获得焦点
             config.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(config_PropertyChanged);
-            this.converter = new util.Converter(this.browser);
+            converter = new Converter(this.browser);
         }
         /// <summary>
         /// 设置项改变时触发
@@ -91,10 +90,9 @@ namespace MarkTexEdt
             }
             else{
                 converter.Update(GetSource());
-            }
-            
-         
+            }         
         }
+
         /// <summary>
         /// 得到编辑框内当前显示的内容
         /// </summary>
@@ -128,35 +126,37 @@ namespace MarkTexEdt
         /// <param name="e"></param>
         private void scrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            if(config.SynchroScroll == true){
+            if (this.IsLoaded && config.SynchroScroll == true)//否则直接运行会出错，调试正常（VS.bug++）
+            {
                 converter.Source = getDisplaying();
             }
         }
+
         /// <summary>
         /// 浏览器页面地址发生改变
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void browser_AddressChanged(object sender, UrlEventArgs e) {
-            string currentUrl = browser.Source.ToString();
-            //Console.WriteLine(currentUrl);
+            //string currentUrl = browser.Source.ToString();
+            ////Console.WriteLine(currentUrl);
             
-            converter.Source = getDisplaying();
-            if (currentUrl != "file:///resources/html/template.html")
-            {
-                RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\");
-                string s = key.GetValue("").ToString();
-                Regex reg = new Regex("\"([^\"]+)\"");
-                MatchCollection matchs = reg.Matches(s);
-                string filename = "";
-                if (matchs.Count > 0)
-                {
-                    filename = matchs[0].Groups[1].Value;
-                    System.Diagnostics.Process.Start(filename, currentUrl); 
-                }
-            }
-            browser.Source = new Uri("file:///resources/html/template.html");
-            //browser.Reload(false);
+            //converter.Source = getDisplaying();
+            //if (currentUrl != "file:///resources/html/template.html")
+            //{
+            //    RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\");
+            //    string s = key.GetValue("").ToString();
+            //    Regex reg = new Regex("\"([^\"]+)\"");
+            //    MatchCollection matchs = reg.Matches(s);
+            //    string filename = "";
+            //    if (matchs.Count > 0)
+            //    {
+            //        filename = matchs[0].Groups[1].Value;
+            //        System.Diagnostics.Process.Start(filename, currentUrl); 
+            //    }
+            //}
+            //browser.Source = new Uri("file:///resources/html/template.html");
+            ////browser.Reload(false);
             
         }
 
@@ -434,6 +434,51 @@ namespace MarkTexEdt
             }
         }
 
+        private void Strike_Through_Text_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Strike_Through_Text();
+        }
+
+        private void Header_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_Head();
+        }
+
+        private void Center_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Set_Center();
+        }
+
+        private void Add_Picture_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_Picture();
+        }
+
+        private void Add_Code_Click(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_Code();
+        }
+
+        private void Add_Math_Formula(object sender, RoutedEventArgs e)
+        {
+            commandAndInsert.Add_Math_Formula();
+        }
+
+        private void Right_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Set_Right();
+        }
+
+        private void Add_Quotation_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Add_Quotation();
+        }
+
+        private void Add_Time_Stamp_Click(object sender, RoutedEventArgs e)
+        {
+            edit.Get_Current_Time();
+        }
+
         #region Command
 
         private void CommandBinding_Increase_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -597,7 +642,50 @@ namespace MarkTexEdt
 
         private void CommandBinding_Save_File_Execute(object sender, ExecutedRoutedEventArgs e)
         {
-            Save_Click(sender, e);      
+            Save_Click(sender, e);
+
+        }
+
+        private void CommandBinding_Head_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Head_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            commandAndInsert.Add_Head();
+        }
+
+        private void CommandBinding_Set_Center_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Set_Center_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            edit.Set_Center();
+        }
+
+        private void CommandBinding_Set_Right_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+
+
+        }
+
+        private void CommandBinding_Set_Right_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            edit.Set_Right();
+        }
+
+        private void CommandBinding_Picture_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CommandBinding_Picture_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            commandAndInsert.Add_Picture();
         }
 
         #endregion

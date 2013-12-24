@@ -194,7 +194,28 @@ namespace MarkTexEdt.util
             String link = "[urlName](http:// \"title\")";
             Out_tbEditor.CaretPosition.InsertTextInRun(link);
         }
-        
 
+        public void Strike_Through_Text()
+        {
+            Out_tbEditor.CaretPosition.InsertTextInRun("~~~~");
+            Out_tbEditor.CaretPosition = Out_tbEditor.CaretPosition.GetPositionAtOffset(-2, LogicalDirection.Forward);
+        }
+
+
+        public void Set_Center()
+        {
+            Out_tbEditor.CaretPosition.InsertTextInRun(">");
+        }
+
+        public void Set_Right()
+        {
+            Out_tbEditor.CaretPosition.InsertTextInRun(">>");
+        }
+
+        public void Add_Quotation()
+        {
+            Out_tbEditor.CaretPosition = Out_tbEditor.CaretPosition.GetLineStartPosition(0);
+            Out_tbEditor.CaretPosition.InsertTextInRun(">");
+        }
     }
 }

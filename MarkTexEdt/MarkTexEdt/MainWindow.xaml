@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:util="clr-namespace:MarkTexEdt.util" 
-        Title="MarkTexEdt" Height="600" Width="800" Loaded="Window_Loaded" Closing="Window_Closing" xmlns:my="http://schemas.awesomium.com/winfx" Icon="/MarkTexEdt;component/MarkTex-Logo.ico">
+        Title="MarkTexEdt" Height="600" Width="800" Loaded="Window_Loaded" Closing="Window_Closing" xmlns:awesomium="http://schemas.awesomium.com/winfx" Icon="/MarkTexEdt;component/MarkTex-Logo.ico">
     <Window.Resources>
         <util:VisibilityToBoolConverter x:Key="VisibilityToBoolConverter" />
         <RoutedUICommand x:Key="IncreaseFontSize" Text="Increase Font Size" />
@@ -20,6 +20,12 @@
         <RoutedUICommand x:Key="Undo" Text="Undo"/>
         <RoutedUICommand x:Key="Open_File" Text="Open New File"/>
         <RoutedUICommand x:Key="Save_File" Text="Save File"/>
+
+        <RoutedUICommand x:Key="Head" Text="Head"/>
+        <RoutedUICommand x:Key="Set_Center" Text="Center"/>
+        <RoutedUICommand x:Key="Set_Right" Text="Right"/>
+        <RoutedUICommand x:Key="Picture" Text="Picture"/>
+
     </Window.Resources>
 
     <Window.InputBindings>
@@ -38,6 +44,14 @@
         <KeyBinding Gesture="Ctrl+Alt+Z" Command="{StaticResource Undo}"/>
         <KeyBinding Gesture="Ctrl+O" Command="{StaticResource Open_File}"/>
         <KeyBinding Gesture="Ctrl+S" Command="{StaticResource Save_File}"/>
+
+        <KeyBinding Gesture="Ctrl+H" Command="{StaticResource Head}"/>
+        <KeyBinding Gesture="Ctrl+Alt+C" Command="{StaticResource Set_Center}"/>
+        <KeyBinding Gesture="Ctrl+Alt+R" Command="{StaticResource Set_Right}"/>
+        <KeyBinding Gesture="Ctrl+Alt+P" Command="{StaticResource Picture}"/>
+
+
+
     </Window.InputBindings>
 
     <Window.CommandBindings>
@@ -87,13 +101,28 @@
                         CanExecute="CommandBinding_Save_File_CanExecute"
                         Executed="CommandBinding_Save_File_Execute"/>
 
+        <CommandBinding Command="{StaticResource Head}"
+                        CanExecute="CommandBinding_Head_CanExecute"
+                        Executed="CommandBinding_Head_Execute"/>
+        <CommandBinding Command="{StaticResource Set_Center}"
+                        CanExecute="CommandBinding_Set_Center_CanExecute"
+                        Executed="CommandBinding_Set_Center_Execute"/>
+        <CommandBinding Command="{StaticResource Set_Right}"
+                        CanExecute="CommandBinding_Set_Right_CanExecute"
+                        Executed="CommandBinding_Set_Right_Execute"/>
+        <CommandBinding Command="{StaticResource Picture}"
+                        CanExecute="CommandBinding_Picture_CanExecute"
+                        Executed="CommandBinding_Picture_Execute"/>
+
     </Window.CommandBindings>
-    
+
     <Grid>
         <DockPanel>
             <Menu Visibility="{Binding Path=MenuBarVisibility}" Background="LightGray" DockPanel.Dock="Top">
                 <MenuItem Padding="10,3" Header="文件">
-                    <MenuItem Click="Open_Click" InputGestureText="Ctrl+F" Header=" 打开"></MenuItem>
+
+                    <MenuItem Click="Open_Click" InputGestureText="Ctrl+O" Header=" 打开"></MenuItem>
+
                     <MenuItem Click="PreviewInBrowser_Click" InputGestureText="" Header=" 预览"></MenuItem>
                     <MenuItem Click="Save_Click" Header=" 保存" InputGestureText="Ctrl+S"></MenuItem>
                     <MenuItem  Click="SaveAs_Click" Header=" 另存为" InputGestureText="Ctrl+Shift+S"></MenuItem>
@@ -126,11 +155,11 @@
                     <MenuItem  Click="HeadLine3_Click" Header=" 三级标题" InputGestureText="Ctrl+3"></MenuItem>
                     <MenuItem  Click="HeadLine4_Click" Header=" 四级标题" InputGestureText="Ctrl+4"></MenuItem>
                     <Separator Margin="7,0"></Separator>
-                    <MenuItem  Click="Add_Link_Click" Header=" 超链接" InputGestureText="Ctrl+L"></MenuItem>
+                    <MenuItem  Click="Add_Link_Click" Header=" 超链接" InputGestureText="Ctrl+Alt+L"></MenuItem>
                     <MenuItem  Click="Graphic_Click" Header=" 图片" InputGestureText="Ctrl+G"></MenuItem>
                     <Separator Margin="7,0"></Separator>
-                    <MenuItem  Click="Horizontal_Scale_Click" Header=" 水平标尺" InputGestureText="Ctrl+R"></MenuItem>
-                    <MenuItem Click="Time_Click" Header=" 时间戳" InputGestureText="Ctrl+T"></MenuItem>
+                    <MenuItem  Click="Horizontal_Scale_Click" Header=" 水平标尺" InputGestureText="Ctrl+Alt+R"></MenuItem>
+                    <MenuItem Click="Time_Click" Header=" 时间戳" InputGestureText="Ctrl+Alt+T"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="视图">
                     <MenuItem IsCheckable="True" Header=" 显示菜单栏" IsChecked="{Binding Path=MenuBarVisibility,Converter={StaticResource VisibilityToBoolConverter}}"></MenuItem>
@@ -175,10 +204,10 @@
                     <Button Click="Italic_Click" ToolTip="斜体 (Ctrl+Alt+I)">
                         <Image Source="/resource/img/toolbar/italic.png" ></Image>
                     </Button>
-                    <Button Click="Italic_Click" ToolTip="删除线 (Ctrl+Alt+I)">
+                    <Button Click="Strike_Through_Text_Click" ToolTip="删除线">
                         <Image Source="/resource/img/toolbar/strikethrough.png" ></Image>
                     </Button>
-                    <Button Click="Italic_Click" ToolTip="标题 (Ctrl+Alt+I)">
+                    <Button Click="Header_Click" ToolTip="标题 (Ctrl+H)">
                         <Image Source="/resource/img/toolbar/h-sign.png" ></Image>
                     </Button>
                     <Button Command="EditingCommands.ToggleBullets" ToolTip="无序列表">
@@ -190,29 +219,29 @@
                     <Button Command="EditingCommands.AlignLeft" ToolTip="左对齐">
                         <Image Source="/resource/img/toolbar/align-left.png" ></Image>
                     </Button>
-                    <Button  Command="EditingCommands.AlignCenter" ToolTip="居中">
+                    <Button  Click="Center_Click" ToolTip="居中(Ctrl+Alt+C)">
                         <Image Source="/resource/img/toolbar/align-center.png" ></Image>
                     </Button>
-                    <Button Command="EditingCommands.AlignRight" ToolTip="右对齐">
+                    <Button Click="Right_Click" ToolTip="右对齐(Ctrl+Alt+R)">
                         <Image Source="/resource/img/toolbar/align-right.png" ></Image>
                     </Button>
                     <Separator Margin="3,0"></Separator>
-                    <Button Click="Add_Link_Click" ToolTip="引文(Ctrl+L)">
+                    <Button Click="Add_Quotation_Click" ToolTip="引文">
                         <Image Source="/resource/img/toolbar/quote-left.png" ></Image>
                     </Button>
-                    <Button Click="Add_Link_Click" ToolTip="超链接(Ctrl+L)">
+                    <Button Click="Add_Link_Click" ToolTip="超链接(Ctrl+Alt+L)">
                         <Image Source="/resource/img/toolbar/link.png" ></Image>
                     </Button>
-                    <Button Click="Add_Link_Click" ToolTip="时间戳(Ctrl+L)">
+                    <Button Click="Add_Time_Stamp_Click" ToolTip="时间戳(Ctrl+Alt+T)">
                         <Image Source="/resource/img/toolbar/time.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Click="Add_Picture_Click" ToolTip="图片(Ctrl+Alt+P)">
                         <Image Source="/resource/img/toolbar/picture.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Click="Add_Code_Click" ToolTip="代码">
                         <Image Source="/resource/img/toolbar/code.png" ></Image>
                     </Button>
-                    <Button >
+                    <Button Click="Add_Math_Formula" ToolTip="公式">
                         <Image Source="/resource/img/toolbar/superscript.png" ></Image>
                     </Button>
                     <Separator Margin="3,0"></Separator>
@@ -220,9 +249,8 @@
                         <Image Source="/resource/img/toolbar/external-link.png" ></Image>
                     </Button>
                 </ToolBar>
-            </ToolBarTray>                
-          
-            
+            </ToolBarTray>
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50*" />
@@ -240,7 +268,7 @@
                     </RichTextBox>
                 </ScrollViewer>
                 <GridSplitter Width="2" Background="LightGray"></GridSplitter>
-                <my:WebControl Grid.Column="1"  AddressChanged="browser_AddressChanged" PrintComplete="browser_PrintComplete" Name="browser"/>                
+                <awesomium:WebControl Grid.Column="1"  AddressChanged="browser_AddressChanged" PrintComplete="browser_PrintComplete" Name="browser"/>                
             </Grid>
         </DockPanel>
     </Grid>
